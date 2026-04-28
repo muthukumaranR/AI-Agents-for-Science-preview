@@ -44,6 +44,7 @@ AI Agents for science aims to establish a thriving ecosystem to harmonize the de
 
 | Name | Name |
 |---|---|
+| Rahul Ramachandran | |
 | Kumar Ramasubramanian | Nidhi Jha |
 | Ajinkya Kulkarni | Nishan Pantha |
 | Paridhi Parijuli | Sanjog Thapa |
@@ -51,7 +52,7 @@ AI Agents for science aims to establish a thriving ecosystem to harmonize the de
 | Pushwitha Krishnappa | Rachel Slank |
 | Ash Danehar | Sajil Awale |
 | Simran KC | Ray French |
-| McKenzie | |
+| McKenzie Hicks | |
 
 #### IBM Research
 
