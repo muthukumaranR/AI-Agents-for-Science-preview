@@ -45,12 +45,12 @@ AI Agents for science aims to establish a thriving ecosystem to harmonize the de
 | Name | Name |
 |---|---|
 | Rahul Ramachandran | |
-| Kumar Ramasubramanian | Nidhi Jha |
+| Muthukumaran Ramasubramanian | Nidhi Jha |
 | Ajinkya Kulkarni | Nishan Pantha |
-| Paridhi Parijuli | Sanjog Thapa |
+| Paridhi Parajuli | Sanjog Thapa |
 | Rohit Sahoo | Luke Payne |
 | Pushwitha Krishnappa | Rachel Slank |
-| Ash Danehar | Sajil Awale |
+| Ashkbiz Danehkar | Sajil Awale |
 | Simran KC | Ray French |
 | McKenzie Hicks | |
 
@@ -58,10 +58,10 @@ AI Agents for science aims to establish a thriving ecosystem to harmonize the de
 
 | Name | Name |
 |---|---|
-| Geeth Del Mel | Alessandra Pascale |
+| Geeth De Mel | Alessandra Pascale |
 | Bishwaranjan Bhattacharjee | James Barry |
 | Vishnudev Kuruvanthodi | Movina Moses |
-| Tigran Tchkarian | Javier Carnerero Cano |
+| Tigran Tchrakian | Javier Carnerero Cano |
 | Mohab Elkaref | |
 
 #### Development Seed
