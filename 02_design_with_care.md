@@ -2,7 +2,7 @@
 
 *Authors: Rahul Ramachandran, Nidhi Jha, Muthukumuran Ramasubramanian*
 
-**Collaborative Agent Reasoning Engineering (CARE)** is a disciplined, stage-gated methodology designed to systematically engineer AI agents for scientific and technical workflows. Influenced by the vision of Accelerated Knowledge Discovery (AKD), CARE moves away from ad hoc "prompt tinkering" toward a structured engineering process centered on reusable design artifacts and human-in-the-loop oversight.
+**Collaborative Agent Reasoning Engineering (CARE)** is a disciplined, stage-gated methodology designed to systematically engineer AI agents for scientific and technical workflows. Influenced by the vision of Accelerated Knowledge Discovery (AKD), CARE moves away from ad hoc "prompt tinkering" toward a structured engineering process centered on reusable design artifacts and human-in-the-loop oversight. CARE process also includes MCP Design best practices to ensure optimal tool integration.
 
 ---
 
