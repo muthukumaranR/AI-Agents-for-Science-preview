@@ -6,7 +6,7 @@ import { defineCollection, z } from 'astro:content';
 const akdRef = z
   .object({
     kind: z.enum(['agents', 'flow', 'frameworks', 'guardrails', 'labs', 'docs']),
-    path: z.string(),
+    path: z.string().min(1),
   })
   .optional();
 

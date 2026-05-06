@@ -23,7 +23,8 @@ kebab-case (e.g. `factreasoner`, `closed-loop`). Files starting with
 
 Each entry has an `order` field. Lower numbers appear first. Default is
 100 so entries without an explicit order land at the end. Ties are
-broken alphabetically by `name` / `title`.
+broken alphabetically by `name` / `title` (implemented in the
+rendering components, not by Astro itself).
 
 ## `akdRef` cross-references
 
@@ -45,6 +46,14 @@ This guarantees cross-links don't silently rot.
 
 The authoritative shape of every collection is in
 [`config.ts`](./config.ts). When in doubt, read the Zod schemas.
+
+## Tag vocabulary
+
+Only the `agents` collection has a `tags` field today. Use lowercase,
+hyphen-free, single-word tags. Common values so far: `reasoning`,
+`guardrail`, `retrieval`. If you need a new tag, add it to an entry
+and mention it in the PR description so the vocabulary stays small
+and consistent.
 
 ## Empty collections
 

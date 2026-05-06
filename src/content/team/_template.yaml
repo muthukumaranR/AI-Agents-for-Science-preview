@@ -7,3 +7,4 @@ members:
   - name: <Person Name>
     # role: <optional title>
   - name: <Another Person>
+    # role: <optional title>
