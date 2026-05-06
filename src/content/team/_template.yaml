@@ -1,0 +1,9 @@
+# Copy this file: cp _template.yaml my-org.yaml
+# Each file is one organization.
+
+org: <Organization Display Name>
+order: 100
+members:
+  - name: <Person Name>
+    # role: <optional title>
+  - name: <Another Person>

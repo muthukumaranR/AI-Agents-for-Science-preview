@@ -1,0 +1,79 @@
+import { defineCollection, z } from 'astro:content';
+
+// Cross-reference into NASA-IMPACT/akd-suite. Validated at build time
+// by integrations/akd-ref-validator.js (added in Task 8). The eventual
+// content-sync migration reuses this exact field shape as its loader key.
+const akdRef = z
+  .object({
+    kind: z.enum(['agents', 'flow', 'frameworks', 'guardrails', 'labs', 'docs']),
+    path: z.string(),
+  })
+  .optional();
+
+const agents = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    tagline: z.string(),
+    description: z.string(),
+    tags: z.array(z.string()).default([]),
+    order: z.number().int().default(100),
+    akdRef,
+  }),
+});
+
+const workflows = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    tagline: z.string(),
+    agents: z.array(z.string()).default([]),
+    order: z.number().int().default(100),
+    akdRef,
+  }),
+});
+
+const governance = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    order: z.number().int().default(100),
+    akdRef,
+  }),
+});
+
+const pages = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+  }),
+});
+
+const partners = defineCollection({
+  type: 'data',
+  schema: z.object({
+    name: z.string(),
+    url: z.string().url(),
+    logo: z.string().optional(),
+    blurb: z.string().optional(),
+    order: z.number().int().default(100),
+  }),
+});
+
+const team = defineCollection({
+  type: 'data',
+  schema: z.object({
+    org: z.string(),
+    order: z.number().int().default(100),
+    members: z.array(
+      z.object({
+        name: z.string(),
+        role: z.string().optional(),
+      }),
+    ),
+  }),
+});
+
+export const collections = { agents, workflows, governance, pages, partners, team };
