@@ -1,0 +1,82 @@
+{
+  "planPath": "docs/superpowers/plans/2026-05-06-astro-migration-plan.md",
+  "tasks": [
+    {
+      "id": 9,
+      "subject": "Task 0: Astro scaffold and tooling",
+      "status": "pending",
+      "description": "**Goal:** Land an Astro project at the repo root that builds an empty page.\n\n**Files:** package.json, package-lock.json, .nvmrc, astro.config.mjs, tsconfig.json, src/pages/index.astro, .gitignore\n\n**Verify:** `rm -rf dist && npm run build && ls dist/index.html`\n\n```json:metadata\n{\"files\":[\"package.json\",\"astro.config.mjs\",\".nvmrc\",\"tsconfig.json\",\"src/pages/index.astro\",\".gitignore\"],\"verifyCommand\":\"npm install && npm run build && ls dist/index.html\",\"acceptanceCriteria\":[\"npm install succeeds\",\"npm run build produces dist/index.html\",\"dist node_modules .astro gitignored\",\"Node 20 pinned in .nvmrc\"]}\n```"
+    },
+    {
+      "id": 10,
+      "subject": "Task 1: Base layout and global styles",
+      "status": "pending",
+      "blockedBy": [9],
+      "description": "**Goal:** Port global CSS and page-shell head into a reusable Astro layout.\n\n**Files:** src/layouts/Base.astro, src/styles/global.css, src/pages/index.astro, public/favicon.svg\n\n**Verify:** `npm run build && npm run preview` — eyeball dark theme + stars + glows.\n\n```json:metadata\n{\"files\":[\"src/layouts/Base.astro\",\"src/styles/global.css\",\"src/pages/index.astro\",\"public/favicon.svg\"],\"verifyCommand\":\"npm run build && npm run preview\",\"acceptanceCriteria\":[\"global.css has tokens base typography container section background\",\"Base.astro has meta title fonts og favicon\",\"placeholder renders with dark theme stars glows\"]}\n```"
+    },
+    {
+      "id": 11,
+      "subject": "Task 2: Content collection schemas, templates, README",
+      "status": "pending",
+      "blockedBy": [9],
+      "description": "**Goal:** Zod schemas for all 6 collections + _template files + contributor README.\n\n**Files:** src/content/config.ts, src/content/README.md, src/content/{agents,workflows,governance}/_template.mdx, src/content/{partners,team}/_template.yaml\n\n**Verify:** Build succeeds; bad agent file fails build with Zod error.\n\n```json:metadata\n{\"files\":[\"src/content/config.ts\",\"src/content/README.md\",\"src/content/agents/_template.mdx\",\"src/content/workflows/_template.mdx\",\"src/content/governance/_template.mdx\",\"src/content/partners/_template.yaml\",\"src/content/team/_template.yaml\"],\"verifyCommand\":\"npm run build\",\"acceptanceCriteria\":[\"build succeeds with templates ignored\",\"schema enforces required fields\",\"README documents workflow\"]}\n```"
+    },
+    {
+      "id": 12,
+      "subject": "Task 3: Move vision and CARE markdown into pages collection",
+      "status": "pending",
+      "blockedBy": [11],
+      "description": "**Goal:** Convert root markdown docs into pages collection entries.\n\n**Files:** src/content/pages/vision.mdx, src/content/pages/care.mdx\n\n**Verify:** `npm run build`.\n\n```json:metadata\n{\"files\":[\"src/content/pages/vision.mdx\",\"src/content/pages/care.mdx\"],\"verifyCommand\":\"npm run build\",\"acceptanceCriteria\":[\"frontmatter has title\",\"body verbatim prose with heading dropped\",\"build validates schema\"]}\n```"
+    },
+    {
+      "id": 13,
+      "subject": "Task 4: Seed governance, team, partners, agents, workflows entries",
+      "status": "pending",
+      "blockedBy": [11],
+      "description": "**Goal:** Populate list-driven collections from index.html and 01_vision.md.\n\n**Files:** 3 governance MDX, 3 team YAML, ≥1 partner YAML, named agents/workflows MDX\n\n**Verify:** `npm run build`.\n\n```json:metadata\n{\"files\":[\"src/content/governance/\",\"src/content/team/\",\"src/content/partners/\",\"src/content/agents/\",\"src/content/workflows/\"],\"verifyCommand\":\"npm run build\",\"acceptanceCriteria\":[\"3 governance items\",\"3 team org files\",\"≥1 partner\",\"seeded agents and workflows\",\"build succeeds\"]}\n```"
+    },
+    {
+      "id": 14,
+      "subject": "Task 5: Component port — Nav, Hero, Footer",
+      "status": "pending",
+      "blockedBy": [10],
+      "description": "**Goal:** Port page chrome components.\n\n**Files:** src/components/Nav.astro, Hero.astro, Footer.astro; src/pages/index.astro\n\n**Verify:** `npm run build && npm run preview`; compare top + bottom against live at 3 viewports.\n\n```json:metadata\n{\"files\":[\"src/components/Nav.astro\",\"src/components/Hero.astro\",\"src/components/Footer.astro\",\"src/pages/index.astro\"],\"verifyCommand\":\"npm run build && npm run preview\",\"acceptanceCriteria\":[\"Nav anchors match\",\"mobile toggle works inline script\",\"Hero matches live\",\"Footer matches\",\"visual parity 3 viewports\"]}\n```"
+    },
+    {
+      "id": 15,
+      "subject": "Task 6: Component port — Vision and Care (MDX-driven)",
+      "status": "pending",
+      "blockedBy": [10, 12],
+      "description": "**Goal:** Render pages/vision and pages/care MDX entries as full sections.\n\n**Files:** src/components/Vision.astro, Care.astro; src/pages/index.astro\n\n**Verify:** `npm run build && npm run preview`; click Vision/CARE nav links; compare vs live.\n\n```json:metadata\n{\"files\":[\"src/components/Vision.astro\",\"src/components/Care.astro\",\"src/pages/index.astro\"],\"verifyCommand\":\"npm run build && npm run preview\",\"acceptanceCriteria\":[\"Vision and CARE render with prose tables lists\",\"section chrome matches live\",\"anchors work\",\"build succeeds\"]}\n```"
+    },
+    {
+      "id": 16,
+      "subject": "Task 7: Component port — remaining sections + full visual parity",
+      "status": "pending",
+      "blockedBy": [13, 14, 15],
+      "description": "**Goal:** Port remaining 10 components + AkdRefLink, finalize composition, full visual parity.\n\n**Files:** src/components/{Objectives,Ecosystem,Pathway,AgentsGrid,WorkflowsList,Guardrails,Governance,PartnersStrip,TeamGrid,GithubCTA,AkdRefLink}.astro; src/pages/index.astro; src/styles/global.css\n\n**Verify:** `npm run build && npm run preview`; methodical side-by-side compare at 3 viewports top to bottom.\n\n```json:metadata\n{\"files\":[\"src/components/Objectives.astro\",\"src/components/Ecosystem.astro\",\"src/components/Pathway.astro\",\"src/components/AgentsGrid.astro\",\"src/components/WorkflowsList.astro\",\"src/components/Guardrails.astro\",\"src/components/Governance.astro\",\"src/components/PartnersStrip.astro\",\"src/components/TeamGrid.astro\",\"src/components/GithubCTA.astro\",\"src/components/AkdRefLink.astro\",\"src/pages/index.astro\",\"src/styles/global.css\"],\"verifyCommand\":\"npm run build && npm run preview\",\"acceptanceCriteria\":[\"every section matches order\",\"collection-driven render seeded entries\",\"empty collections render nothing\",\"akdRef links rendered consistently\",\"anchors work\",\"visual parity 3 viewports\"]}\n```"
+    },
+    {
+      "id": 17,
+      "subject": "Task 8: akdRef build-time validator integration",
+      "status": "pending",
+      "blockedBy": [13, 16],
+      "description": "**Goal:** Astro integration validating akdRef paths against akd-suite tree at build start. Fail-loud on broken paths; skip on network failure.\n\n**Files:** integrations/akd-ref-validator.js, integrations/akd-ref-validator.test.mjs; astro.config.mjs\n\n**Verify:** `node --test integrations/akd-ref-validator.test.mjs && npm run build`; induce bad path → fails; offline mode → succeeds with warning.\n\n```json:metadata\n{\"files\":[\"integrations/akd-ref-validator.js\",\"integrations/akd-ref-validator.test.mjs\",\"astro.config.mjs\"],\"verifyCommand\":\"node --test integrations/akd-ref-validator.test.mjs && npm run build\",\"acceptanceCriteria\":[\"runs at astro build start\",\"clean build validates and reports\",\"bad path fails with clear error\",\"offline mode skips with warning\",\"unit tests pass\"]}\n```"
+    },
+    {
+      "id": 18,
+      "subject": "Task 9: GitHub Actions deploy workflow",
+      "status": "pending",
+      "blockedBy": [9],
+      "description": "**Goal:** Push-to-main pipeline that builds Astro and publishes to GitHub Pages via actions/deploy-pages@v4.\n\n**Files:** .github/workflows/deploy.yml\n\n**Verify:** actionlint if available; CI run after push.\n\n```json:metadata\n{\"files\":[\".github/workflows/deploy.yml\"],\"verifyCommand\":\"actionlint .github/workflows/deploy.yml || true\",\"acceptanceCriteria\":[\"valid yaml\",\"push to main builds and publishes\",\"workflow_dispatch works\",\"concurrency group set\"]}\n```"
+    },
+    {
+      "id": 19,
+      "subject": "Task 10: Cleanup, final verification, PR prep",
+      "status": "pending",
+      "blockedBy": [16, 17, 18],
+      "description": "**Goal:** Delete legacy files; run §12 verification checklist; prepare PR documenting manual Pages-source flip.\n\n**Files (delete):** index.html, 01_vision.md, 02_design_with_care.md, About\n**Files (modify):** readme.md\n\n**Verify:** spec §12 checklist end to end.\n\n```json:metadata\n{\"files\":[\"readme.md\"],\"verifyCommand\":\"npm run build && npm run preview\",\"acceptanceCriteria\":[\"legacy files removed\",\"readme updated\",\"build succeeds no warnings\",\"visual parity 3 viewports\",\"lighthouse captured\",\"external links resolve\",\"PR documents manual flip\"]}\n```"
+    }
+  ],
+  "lastUpdated": "2026-05-06T00:00:00Z"
+}
