@@ -42,6 +42,19 @@ The build runs an integration that fetches the akd-suite directory
 listing and **fails the build** if any `akdRef.path` doesn't exist.
 This guarantees cross-links don't silently rot.
 
+### Building offline
+
+To skip the akd-suite path validation (e.g., when building without
+network access or when iterating fast on content), set the
+`AKD_REF_VALIDATOR_OFFLINE` env var:
+
+```bash
+AKD_REF_VALIDATOR_OFFLINE=1 npm run build
+```
+
+CI builds use the GitHub-provided `GITHUB_TOKEN` automatically to
+authenticate the rate-limit check (5000 req/hr instead of 60).
+
 ## Schemas
 
 The authoritative shape of every collection is in

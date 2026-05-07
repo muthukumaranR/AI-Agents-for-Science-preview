@@ -73,8 +73,16 @@ function parseAkdRef(text) {
 export function checkRefs(refs, tree) {
   const errors = [];
   for (const ref of refs) {
-    const exists =
-      tree.has(ref.path) || [...tree].some((p) => p.startsWith(ref.path + '/'));
+    let exists = tree.has(ref.path);
+    if (!exists) {
+      const prefix = ref.path + '/';
+      for (const p of tree) {
+        if (p.startsWith(prefix)) {
+          exists = true;
+          break;
+        }
+      }
+    }
     if (!exists) {
       errors.push({
         ref,
@@ -86,10 +94,12 @@ export function checkRefs(refs, tree) {
 }
 
 async function fetchTree() {
+  const token = process.env.GITHUB_TOKEN;
   const res = await fetch(TREE_API, {
     headers: {
       'User-Agent': 'akd-ref-validator',
       Accept: 'application/vnd.github+json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
   });
   if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
@@ -100,6 +110,11 @@ async function fetchTree() {
     if (entry.type === 'tree' || entry.type === 'blob') set.add(entry.path);
   }
   return { set, sha: data.sha };
+}
+
+/** @returns {boolean} true if validation should skip due to AKD_REF_VALIDATOR_OFFLINE=1 */
+export function shouldSkipForOffline(env = process.env) {
+  return env.AKD_REF_VALIDATOR_OFFLINE === '1';
 }
 
 /**
@@ -121,7 +136,7 @@ export default function akdRefValidator() {
       },
 
       'astro:build:start': async ({ logger }) => {
-        if (process.env.AKD_REF_VALIDATOR_OFFLINE === '1') {
+        if (shouldSkipForOffline()) {
           logger.warn('Skipping (offline mode via AKD_REF_VALIDATOR_OFFLINE=1)');
           return;
         }

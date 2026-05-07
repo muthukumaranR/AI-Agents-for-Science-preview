@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { collectAkdRefs, checkRefs } from './akd-ref-validator.js';
+import { collectAkdRefs, checkRefs, shouldSkipForOffline } from './akd-ref-validator.js';
 
 test('checkRefs returns no errors when all paths exist in tree', () => {
   const tree = new Set(['agents/factreasoner', 'flow/closed-loop', 'docs/intro']);
@@ -39,4 +39,14 @@ test('collectAkdRefs walks content collections and gathers refs', async () => {
   // Smoke test only — the function must be callable and return an array.
   const refs = await collectAkdRefs({ contentDir: new URL('../src/content/', import.meta.url) });
   assert.ok(Array.isArray(refs));
+});
+
+test('shouldSkipForOffline returns true when AKD_REF_VALIDATOR_OFFLINE=1', () => {
+  assert.equal(shouldSkipForOffline({ AKD_REF_VALIDATOR_OFFLINE: '1' }), true);
+});
+
+test('shouldSkipForOffline returns false otherwise', () => {
+  assert.equal(shouldSkipForOffline({}), false);
+  assert.equal(shouldSkipForOffline({ AKD_REF_VALIDATOR_OFFLINE: '0' }), false);
+  assert.equal(shouldSkipForOffline({ AKD_REF_VALIDATOR_OFFLINE: 'true' }), false);  // strict equality
 });
