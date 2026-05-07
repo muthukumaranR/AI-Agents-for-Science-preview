@@ -1,10 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Footer from '../components/Footer.astro';
 ---
 <Base>
-  <main class="container" style="padding: 80px 0;">
-    <p class="eyebrow">Build smoke test</p>
-    <h1>AI Agents for Science</h1>
-    <p>Layout OK. Page composition lands in subsequent tasks.</p>
+  <Nav />
+  <Hero />
+  <main>
+    <p style="padding: 100px 28px; text-align: center; color: var(--text-dim);">
+      Section components land in Tasks 6 and 7.
+    </p>
   </main>
+  <Footer />
 </Base>
