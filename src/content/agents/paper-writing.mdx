@@ -4,5 +4,36 @@ tagline: Supports staged scientific manuscript drafting from structured research
 description: Given structured research inputs — references, methods, datasets, and results — the Paper Writing Agent produces section drafts and revision suggestions for scientific manuscripts.
 tags: [writing, manuscript, publication]
 order: 70
+designers: [Nidhi Jha, Siddharth Chaudhary]
+repo: https://github.com/nidhi23aug/Usecase-AI-Agents-Mynamar-Conflict-Research/tree/main/Agents/PaperWritingAgent
 # akdRef: { kind: agents, path: agents/paper-writing }   # no confirmed path in akd-suite yet
 ---
+
+The Scientific Paper Writing Assistant is a collaborative scientific writing agent that converts your research materials into publication-ready manuscript sections. It keeps you in control; the agent drafts and flags gaps while every decision remains yours. It is built to handle large literature sets of research articles without hallucination; it follows a structured distill-then-draft workflow from literature to submission.
+
+### Inputs
+
+- Target journal, author guidelines, and citation format
+- Author metadata, affiliations, ORCIDs
+- Literature PDFs (up to 30 papers, processed in batches)
+- Research question, hypothesis, and identified research gaps
+- Key findings (quantitative where possible)
+- Datasets, methods summary
+- Study area description
+- Result summaries and visuals
+- Discussion directions and prior drafts or templates
+
+### Collaborative Design
+
+The agent operates as a turn-by-turn partnership; the agent drafts one section at a time, surfaces gaps, flags assumptions, and waits. Every content decision, conflict resolution, and directional choice is made by you before the next section begins.
+
+### Outputs
+
+- Manuscript-ready draft for each section
+- Claimed-tagged text (grounded fact, inference, assumption, tbd_placeholder)
+- Open questions and required input list
+- Explicit assumption log
+- TBDs and risk flags
+- Sources and citation list
+- Figure and Table placeholders
+- Summary for continuity across sections

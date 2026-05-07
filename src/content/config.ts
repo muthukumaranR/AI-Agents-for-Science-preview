@@ -19,6 +19,9 @@ const agents = defineCollection({
     tags: z.array(z.string()).default([]),
     order: z.number().int().default(100),
     akdRef,
+    designers: z.array(z.string()).default([]),
+    developers: z.array(z.string()).default([]),
+    repo: z.string().url().optional(),
   }),
 });
 
@@ -30,6 +33,20 @@ const workflows = defineCollection({
     agents: z.array(z.string()).default([]),
     order: z.number().int().default(100),
     akdRef,
+    designers: z.array(z.string()).default([]),
+    developers: z.array(z.string()).default([]),
+    repo: z.string().url().optional(),
+  }),
+});
+
+const caseStudies = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    designers: z.array(z.string()).default([]),
+    order: z.number().int().default(100),
+    repo: z.string().url().optional(),
   }),
 });
 
@@ -76,4 +93,4 @@ const team = defineCollection({
   }),
 });
 
-export const collections = { agents, workflows, governance, pages, partners, team };
+export const collections = { agents, workflows, governance, pages, partners, team, 'case-studies': caseStudies };

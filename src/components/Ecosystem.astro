@@ -20,12 +20,27 @@ export const ECOSYSTEM_AKD_REFS = [
 
     <div class="cards cards-3">
       <article class="card eco-card">
-        <span class="tag">Library · Python</span>
+        <span class="tag">Meta Repo · Wiki</span>
+        <h3>AKD Suite</h3>
+        <p>
+          The top-level meta-repository and wiki for the AKD SDK. Combines the
+          multi-agent framework, workflow-oriented web product, and experimental
+          lab into a single ecosystem. The entry point for understanding how all
+          components fit together.
+        </p>
+        <a class="gh-link" href="https://github.com/NASA-IMPACT/akd-suite" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          NASA-IMPACT/akd-suite
+        </a>
+      </article>
+
+      <article class="card eco-card">
+        <span class="tag">Library · Python · Primitives</span>
         <h3>AKD Core</h3>
         <p>
-          Core Python primitives for building AKD agents, tools, streaming workflows,
-          human-in-the-loop pause points, planner registries, guardrail protocols, and
-          LLM-agnostic provider support.
+          Core Python library defining how AKD agents and tools are built. Provides
+          primitives for streaming workflows, human-in-the-loop pause points, planner
+          registries, guardrail protocols, and LLM-agnostic provider support.
         </p>
         <a class="gh-link" href="https://github.com/NASA-IMPACT/akd-core" target="_blank" rel="noopener">
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -34,12 +49,13 @@ export const ECOSYSTEM_AKD_REFS = [
       </article>
 
       <article class="card eco-card">
-        <span class="tag">Library · Extension Layer</span>
+        <span class="tag">Library · Python · Domain Agents</span>
         <h3>AKD Ext</h3>
         <p>
-          Opinionated extension layer with OpenAI Agents SDK integration, Pydantic
-          Agents SDK support, MCP glue, automatic tool conversion, hosted MCP
-          integration, file attachment support, and published domain agents.
+          Extension layer for domain agents and tools. Provides MCP glue, automatic
+          tool conversion, hosted MCP integration, file attachment support, and
+          published domain agents for Earth science, astrophysics, code search,
+          and more.
         </p>
         <a class="gh-link" href="https://github.com/NASA-IMPACT/akd-ext" target="_blank" rel="noopener">
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -51,9 +67,9 @@ export const ECOSYSTEM_AKD_REFS = [
         <span class="tag">Platform · Production</span>
         <h3>AKD Flow</h3>
         <p>
-          Production multi-agent workflow interface where users compose and run
-          published agents through a planner and a visual workflow canvas — with
-          explicit human approval gates.
+          Public multi-agent workflow product at <strong>flow.akd.odsi.io</strong>. Users plan,
+          run, review, and share agent-based research workflows through a natural-language
+          planner and a visual workflow canvas — with streaming updates and guardrail badges.
         </p>
         <a class="gh-link" href="https://github.com/NASA-IMPACT/akd/tree/main/flow" target="_blank" rel="noopener">
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -62,12 +78,12 @@ export const ECOSYSTEM_AKD_REFS = [
       </article>
 
       <article class="card eco-card">
-        <span class="tag">Platform · Internal</span>
+        <span class="tag">Platform · Dev &amp; Benchmarking</span>
         <h3>AKD Labs</h3>
         <p>
-          Internal development and benchmarking platform for creating, debugging,
-          validating, and reviewing experimental agents before publication to
-          AKD Flow.
+          Multi-tenant development and benchmarking environment at <strong>labs.akd.odsi.io</strong>.
+          Teams build, debug, test, and validate experimental agents before publishing
+          them to AKD Flow. Includes full trace logs and a benchmark runner.
         </p>
         <a class="gh-link" href="https://github.com/NASA-IMPACT/akd-labs" target="_blank" rel="noopener">
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -79,27 +95,14 @@ export const ECOSYSTEM_AKD_REFS = [
         <span class="tag">Library · Trust &amp; Safety</span>
         <h3>Guardrails</h3>
         <p>
-          Reusable science-specific guardrails for checking inputs and outputs,
-          detecting risks, and supporting trustworthy agent behavior across the
-          ecosystem.
+          Reusable input/output safety providers: IBM Granite Guardian for content
+          moderation (jailbreak, bias, RAG-specific checks via Ollama) and the Risk
+          Agent — an LLM-judge evaluating outputs against the IBM Risk Atlas and a
+          NASA-IMPACT Science Literature Risk taxonomy.
         </p>
         <a class="gh-link" href="https://github.com/NASA-IMPACT/akd/tree/main/guardrails" target="_blank" rel="noopener">
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
           NASA-IMPACT/akd · guardrails
-        </a>
-      </article>
-
-      <article class="card eco-card">
-        <span class="tag">Pathway · Integrated</span>
-        <h3>End-to-End Lifecycle</h3>
-        <p>
-          Each component is intentionally composable. Teams move from CARE design
-          artifacts, through Labs benchmarking, into Flow publication — without
-          rebuilding the agent runtime contract along the way.
-        </p>
-        <a class="gh-link" href="#pathway">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          See the development pathway
         </a>
       </article>
     </div>

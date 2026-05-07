@@ -4,5 +4,30 @@ tagline: Transforms scientific text into structured, publication-grade visual pr
 description: Accepts a research narrative and figure intent and produces figure specifications, captions, and image-generation prompts suitable for publication-grade scientific illustrations.
 tags: [visualization, figures, publication]
 order: 60
+designers: [Nidhi Jha, Rahul Ramachandran]
+repo: https://github.com/NASA-IMPACT/AKD-Scientific-Illustration-Agent/blob/main/Version2/Readme_v2.md
 # akdRef: { kind: agents, path: agents/scientific-illustrator }   # hosted in separate AKD-Scientific-Illustration-Agent repo; no akd-suite path confirmed
 ---
+
+The Scientific Illustrator Agent is an AKD-designed cognitive assistant that transforms scientific text into structured, publication-grade visual representations, enabling scientists to communicate complex ideas with clarity and precision. A key feature of the agent is a faithfulness audit stage, which validates the transformation from input text → visual representation by explicitly distinguishing grounded facts, assumptions, and inferred elements before generating the final image prompt.
+
+### Inputs
+
+- Scientific text (methods, workflows, concepts, results descriptions)
+
+### Collaborative Design
+
+The agent provides suggestions, while users retain control to finalize scientific accuracy, visual abstraction level and representation choices. Users define visualization intent with guided options:
+
+- **Visualization Type:** Schematic, Illustration, Concept Map, Infographic, Flowchart (e.g., process diagram)
+- **Illustration Style:** Minimalist, Annotated Publication Diagram, Vector Schematic, Infographic Style, Nature-style, IEEE-style, NASA-style (aligned with NASA Graphics Standards, Sept 2025), or Custom
+- **Output Mode:** SVG or Image
+
+### Outputs
+
+- Structured visual prompts (for flowcharts, conceptual diagrams, figure layouts) compatible with image generation systems
+- Publication-ready figure captions and annotations
+
+### Pipeline
+
+Text → Visual Logic → Faithfulness Audit → Traceable reasoning → Final Image Prompt → Image rendering (SVG/Image)

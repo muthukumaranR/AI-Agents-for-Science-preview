@@ -4,5 +4,43 @@ tagline: Supports governance, policy interpretation, compliance reasoning, and c
 description: Given a policy question and context, the NASA Governance Agent returns structured analysis with cited policy clauses, supporting compliance reasoning and governance workflows.
 tags: [governance, policy, compliance]
 order: 80
+designers: [Emma Koontz, Kaylin Bugbee, Emily Foshee, Nidhi Wahi]
 # akdRef: { kind: agents, path: agents/nasa-governance }   # no confirmed path in akd-suite yet
 ---
+
+The NASA Data Governance Agent is an AKD-designed cognitive assistant that supports practical, traceable, and role-adaptive data governance guidance across NASA Science Mission Directorate divisions. The agent helps users interpret governance questions, scope documents, dataset descriptions, workflow concerns, repository practices, and compliance issues by mapping them to relevant enterprise-, division-, and topic-level data management standards.
+
+A key feature of the agent is its scope-confirmation and traceability workflow, which requires the agent to explicitly interpret and confirm the user's question or uploaded scope document before producing guidance. The agent selects only the relevant SMD division context, distinguishes enterprise-wide guidance from division-specific standards, and maps every requirement, recommendation, or finding back to authoritative source documentation. This ensures that governance guidance is actionable, transparent, and grounded in documented NASA data management standards rather than inferred or invented policy.
+
+### Inputs
+
+- Governance questions posed directly by users
+- User-uploaded scope documents
+- Dataset, workflow, repository, or compliance descriptions
+- Condensed SMD governance and data management context files
+- Relevant authoritative NASA and SMD source documents
+
+### Collaborative Design
+
+The agent provides governance analysis, guidance, and recommendations while users retain control over scope definition, compliance interpretation, and final decision-making. The agent is designed to support multiple user roles, including governance teams, data stewards, and science teams.
+
+Users may define or refine the governance task through guided framing such as:
+
+- **Governance Scope:** Enterprise-wide, division-specific, cross-division, topical standard, repository/workflow-specific, or dataset-specific
+- **SMD Division Context:** Astrophysics, Biological and Physical Sciences, Earth Science, Heliophysics, Planetary Science, or cross-SMD comparison
+- **Document Category:** Division-Level Policy & Guidance, Topical Standards, Best Practices, Papers / Reference Materials
+- **User Role:** Governance team, data steward, science team, project team, repository manager, or compliance reviewer
+- **Lifecycle Phase:** Planning, collection, processing, documentation, preservation, publication, access, reuse, or compliance review
+
+### Outputs
+
+- Practical NASA science data governance guidance
+- Role-tailored summaries for governance teams, data stewards, and science teams
+- Gap, overlap, risk, and conflict analysis across relevant standards
+- Actionable compliance and stewardship recommendations
+- Traceable references linking condensed context to full authoritative sources
+- Fact-check list identifying critical interpretations for human validation
+
+### Pipeline
+
+User Question / Scope Document → Scope Interpretation → Clarification / Confirmation → Relevant SMD Context Selection → Governance Question Decomposition → Source Mapping → Gap & Conflict Analysis → Role-Tailored Guidance → Traceable References → Fact Check List

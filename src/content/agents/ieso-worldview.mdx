@@ -1,0 +1,37 @@
+---
+name: iESO Agent for NASA Worldview
+tagline: AKD-designed, CARE-based chatbot agent for interpreting Earth observation imagery and datasets in NASA Worldview.
+description: An AKD-designed agent that helps users interpret, explore, and validate Earth observation imagery and related dataset context inside NASA Worldview, grounded in authoritative Earth science sources and SME-reviewed guidance.
+tags: [earth-observation, worldview, imagery, ieso]
+order: 90
+designers: [Cecile Rousseaux, Ian Brosnan, Christopher Hain, Ivona Cetinic, Denis Felikson, Sujay Kumar, Nidhi Jha]
+developers: [Kumar Ramasubramanian, Sanjog Thapa, Sajil Awale]
+---
+
+The iESO Agent for NASA Worldview is an AKD-designed, CARE-based agent design package for developing a reliable IESO-style chatbot agent for NASA Worldview. The agent is intended to help users interpret, explore, and validate Earth observation imagery and related dataset context inside NASA Worldview while remaining grounded in authoritative Earth science sources, Worldview behavior, and SME-reviewed guidance.
+
+### Inputs
+
+- User questions in natural language about NASA Worldview imagery, layers, time ranges, and dataset context
+- User intent categories, including scientific and operational interpretation needs
+- Scenario-based scientific and operational test queries
+
+### Collaborative Design
+
+The iESO Agent works collaboratively with users by helping them define or refine the discovery task through guided framing, such as science domain, search scope, and user expertise level.
+
+The agent provides structured search support while users retain control over the scientific framing, assumptions, and final dataset selection. It is explicitly non-prescriptive: it does not endorse, select, or judge datasets for suitability. Instead, it surfaces candidate collections, explains the metadata basis for their inclusion, and highlights what users should verify manually.
+
+### Tools and data sources
+
+WIP
+
+### Outputs
+
+- Reusable, reviewable IESO agent design package for NASA Worldview
+- CARE phase artifacts documenting scope, knowledge needs, reasoning rules, prompts, tools, and benchmarks
+- Structured prompts and response templates for Worldview chatbot behavior
+- Tool orchestration and UI action guidance for Worldview-related tasks
+- Guardrails for uncertainty, citation, verification, and safe failure behavior
+- Scenario-based benchmark suites for scientific and operational testing
+- Regression evaluation outputs to support repeatable testing over time

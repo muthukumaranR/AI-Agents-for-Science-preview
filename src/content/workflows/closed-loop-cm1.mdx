@@ -1,7 +1,12 @@
 ---
 name: Closed-Loop CM1 Climate Modeling Workflow
-tagline: Five-stage atmospheric simulation research workflow from gap analysis to publication-style reporting.
+tagline: Multi-agent closed-loop workflow for climate model research — from gap analysis to publication-style reporting.
 order: 10
 agents: [gap, cmr, code-search]
 akdRef: { kind: agents, path: agents/closed-loop-cm1 }
+repo: https://github.com/NASA-IMPACT/akd-ext/tree/develop/akd_ext/agents/closed_loop
 ---
+
+The Climate Modeling Workflow is a multi-agent closed-loop workflow that chains specialized AKD agents across the scientific research lifecycle for climate model research. The workflow orchestrates gap analysis, Earth science data search, and code discovery into a unified pipeline, enabling researchers to move from identifying knowledge gaps to locating relevant datasets and reusable code — with human approval between each stage.
+
+The workflow is implemented as a Closed-Loop Workflow (CLW) in AKD Flow, where agents are connected into a graph and executed with streaming updates and guardrail badges at each node.

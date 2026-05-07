@@ -4,5 +4,46 @@ tagline: Helps users discover NASA Earth science datasets through structured, ev
 description: A decision-support agent that accepts natural-language science queries and returns ranked CMR datasets with full provenance. Built under CARE and protected by AKD guardrails.
 tags: [search, earth-science, cmr]
 order: 10
-# akdRef: { kind: agents, path: agents/cmr }   # no confirmed path in akd-suite yet
+akdRef: { kind: agents, path: agents/cmr }
+designers: [Nidhi Jha, Emily Foshee, Sid Chaudhary, Madison Wallner]
+developers: [Nishan Pantha, Kumar Ramasubramanian, Simran KC, Sajil Awale, Pushwitha Krishnappa]
+repo: https://github.com/NASA-IMPACT/akd-suite/tree/main/agents/cmr
 ---
+
+The Earth Science Data Search Agent is an AKD-designed, CMR-integrated assistant that helps users discover and understand NASA Earthdata datasets relevant to Earth science questions. It is a non-decision-making, human-in-the-loop agent: it does not recommend or endorse datasets, but supports transparent discovery of candidate collections through NASA's Common Metadata Repository.
+
+A key feature is its CARE reasoning loop: Clarify → Analyze → Rank → Explain. The agent helps users clarify variables, spatial and temporal bounds, and whether indirect discovery is allowed. It then maps the confirmed scope to GCMD keywords and CMR API parameters, searches CMR, ranks collections by metadata relevance only, and explains why each dataset appears. The researcher makes the final decision on dataset suitability.
+
+### Inputs
+
+- Free-text Earth science questions
+- User-selected expertise level, such as Intermediate or Advanced
+- Clarified science variables, spatial bounds, and temporal bounds
+- User confirmation on whether indirect inference or multi-hop discovery is permitted
+- NASA Earthdata / CMR metadata
+- GCMD keyword mappings
+- Optional user-approved literature-based discovery context
+
+### Collaborative Design
+
+The agent provides structured search support while users retain control over the scientific framing, assumptions, and final dataset selection. The agent is explicitly non-prescriptive: it does not endorse, select, or judge datasets for suitability. Instead, it surfaces candidate collections, explains the metadata basis for their inclusion, and identifies what users should verify manually.
+
+Users define or refine the discovery task through guided framing such as Science Domain, Search Scope and User Expertise Level.
+
+### Tools and data sources
+
+- NASA CMR Search API — collection discovery only
+- GCMD Keyword Management System — vocabulary mapping only
+- Semantic Scholar API — optional, user-approved indirect discovery only
+- Google Scholar — last resort for literature lookup
+- Earthdata Search Web App — link handoff only
+
+### Outputs
+
+- Clarifying questions for variables, spatial bounds, temporal bounds, and inference permissions
+- Interpreted search scope based on the user's confirmed question
+- Ranked list of candidate CMR collections based on metadata relevance only
+- Explanation of why each dataset appears in the results
+- Notes on missing, incomplete, or ambiguous metadata
+- Reproducibility log with CMR endpoints, parameters, GCMD mappings, and timestamps
+- Fact-check and verification list for user review
