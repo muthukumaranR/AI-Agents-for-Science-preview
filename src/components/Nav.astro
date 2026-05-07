@@ -61,8 +61,9 @@ const baseUrl = import.meta.env.BASE_URL;
     z-index: 50;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    background: rgba(6, 8, 15, 0.72);
+    background: oklch(1 0 0 / 0.88);
     border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   }
   .nav-inner {
     position: relative;
@@ -116,7 +117,7 @@ const baseUrl = import.meta.env.BASE_URL;
     border-radius: 8px;
     transition: color .2s ease, background .2s ease;
   }
-  .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+  .nav-links a:hover { color: var(--text); background: var(--surface); }
   .nav-links a.gh {
     border: 1px solid var(--border-strong);
     color: var(--text);
@@ -125,7 +126,7 @@ const baseUrl = import.meta.env.BASE_URL;
     gap: 8px;
     margin-left: 6px;
   }
-  .nav-links a.gh:hover { background: rgba(92,210,230,0.08); border-color: var(--accent); }
+  .nav-links a.gh:hover { background: var(--surface); border-color: var(--accent); }
 
   .nav-toggle {
     display: none;

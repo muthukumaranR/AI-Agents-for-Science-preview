@@ -70,13 +70,13 @@ const orgs = (await getCollection('team'))
     border-radius: var(--radius-md);
     transition: background .2s ease;
   }
-  .member:hover { background: rgba(255,255,255,0.03); }
+  .member:hover { background: var(--surface); }
   .avatar {
     width: 64px;
     height: 64px;
     border-radius: 50%;
     margin: 0 auto 12px;
-    background: linear-gradient(135deg, #1f2a4a, #0e1430);
+    background: var(--surface-2);
     border: 1px solid var(--border-strong);
     display: flex;
     align-items: center;
@@ -84,8 +84,8 @@ const orgs = (await getCollection('team'))
     font-family: var(--font-serif);
     font-weight: 500;
     font-size: 18px;
-    color: var(--text);
-    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.04);
+    color: var(--accent);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
   }
   .name {
     font-family: var(--font-serif);

@@ -152,19 +152,25 @@ p { color: var(--text-dim); margin: 0 0 1em; }
   font-weight: 500;
   letter-spacing: 0.01em;
   border: 1px solid var(--border-strong);
-  background: rgba(255,255,255,0.03);
+  background: var(--bg-0);
   color: var(--text);
   cursor: pointer;
   transition: transform .15s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 .btn:hover { transform: translateY(-1px); }
 .btn-primary {
-  background: linear-gradient(180deg, #1a2750, #0e1430);
-  border-color: rgba(122,162,255,0.45);
-  box-shadow: var(--glow-cyan);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.08);
 }
-.btn-primary:hover { border-color: var(--accent); }
-.btn-ghost:hover { background: rgba(255,255,255,0.06); border-color: var(--border-strong); }
+.btn-primary:hover {
+  background: var(--accent-4);
+  border-color: var(--accent-4);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 6px 20px rgba(0,0,0,0.10);
+}
+.btn-ghost { background: transparent; }
+.btn-ghost:hover { background: var(--surface); border-color: var(--border-strong); }
 .btn svg { width: 16px; height: 16px; }
 
 /* =========================================================
@@ -231,13 +237,13 @@ p { color: var(--text-dim); margin: 0 0 1em; }
   letter-spacing: 0.06em;
   color: var(--accent);
   text-decoration: none;
-  border-bottom: 1px solid rgba(92, 210, 230, 0.35);
+  border-bottom: 1px solid oklch(0.546 0.245 262.881 / 0.35);
   padding-bottom: 2px;
   transition: border-bottom-color 0.18s ease, color 0.18s ease;
 }
 .akd-ref:hover {
   border-bottom-color: var(--accent);
-  color: var(--accent-2, var(--accent));
+  color: var(--accent-4);
 }
 
 /* =========================================================
@@ -249,22 +255,27 @@ p { color: var(--text-dim); margin: 0 0 1em; }
 .card {
   position: relative;
   padding: 28px 26px;
-  background: linear-gradient(180deg, var(--surface), var(--bg-1));
+  background: var(--bg-0);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  transition: border-color .2s ease, transform .2s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
   overflow: hidden;
 }
-.card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07), 0 8px 24px rgba(0,0,0,0.07);
+}
 .card::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(92,210,230,0.5), transparent);
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
   opacity: 0;
   transition: opacity .25s ease;
 }
-.card:hover::before { opacity: 1; }
+.card:hover::before { opacity: 0.35; }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
