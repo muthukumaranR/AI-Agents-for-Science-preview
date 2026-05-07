@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+import AkdRefLink from './AkdRefLink.astro';
+
+const workflows = (await getCollection('workflows'))
+  .sort((a, b) => (a.data.order - b.data.order) || a.data.name.localeCompare(b.data.name));
+---
+{workflows.length > 0 && (
+  <section class="section" id="workflows">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">07 · Multi-Agent Workflows</span>
+        <h2>Chains of agents, with humans at the gates.</h2>
+        <p>
+          AKD workflows chain agents together into end-to-end research pipelines, with
+          explicit human approval gates between stages. Workflows are composed in
+          AKD Flow and run with full visibility into intermediate artifacts.
+        </p>
+      </div>
+      <div class="workflows-list">
+        {workflows.map((wf) => (
+          <article class="workflow-item card">
+            <h3>{wf.data.name}</h3>
+            <p>{wf.data.tagline}</p>
+            {wf.data.agents.length > 0 && (
+              <ul class="agent-refs">
+                {wf.data.agents.map((a) => <li>{a}</li>)}
+              </ul>
+            )}
+            {wf.data.akdRef && (
+              <AkdRefLink kind={wf.data.akdRef.kind} path={wf.data.akdRef.path} />
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .workflows-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .card {
+    position: relative;
+    padding: 28px 26px;
+    background: linear-gradient(180deg, var(--surface), var(--bg-1));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: border-color .2s ease, transform .2s ease;
+    overflow: hidden;
+  }
+  .card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(92,210,230,0.5), transparent);
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  .card:hover::before { opacity: 1; }
+
+  .workflow-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .workflow-item h3 {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    margin: 0;
+  }
+  .workflow-item p { font-size: 14px; margin: 0; flex: 1; }
+
+  .agent-refs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .agent-refs li {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px 10px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  @media (max-width: 1024px) {
+    .workflows-list { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .workflows-list { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import AkdRefLink from './AkdRefLink.astro';
+
+const items = (await getCollection('governance'))
+  .sort((a, b) => (a.data.order - b.data.order) || a.data.title.localeCompare(b.data.title));
+---
+{items.length > 0 && (
+  <section class="section" id="governance">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Governance</span>
+        <h2>Process &amp; governance deliverables.</h2>
+      </div>
+      <div class="governance-grid">
+        {items.map((item) => (
+          <article class="governance-card">
+            <h3>{item.data.title}</h3>
+            <p>{item.data.summary}</p>
+            {item.data.akdRef && (
+              <AkdRefLink kind={item.data.akdRef.kind} path={item.data.akdRef.path} />
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .governance-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .governance-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 28px 26px;
+    background: linear-gradient(180deg, var(--surface), var(--bg-1));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: border-color .2s ease, transform .2s ease;
+    overflow: hidden;
+  }
+  .governance-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .governance-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184,141,255,0.5), transparent);
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  .governance-card:hover::before { opacity: 1; }
+  .governance-card h3 {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    margin: 0;
+  }
+  .governance-card p { font-size: 14px; margin: 0; flex: 1; }
+
+  @media (max-width: 1024px) {
+    .governance-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .governance-grid { grid-template-columns: 1fr; }
+  }
+</style>
