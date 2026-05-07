@@ -55,7 +55,7 @@ const partners = defineCollection({
   type: 'data',
   schema: z.object({
     name: z.string(),
-    url: z.string().url(),
+    url: z.string().url().optional(),
     logo: z.string().optional(),
     blurb: z.string().optional(),
     order: z.number().int().default(100),

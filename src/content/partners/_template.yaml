@@ -2,7 +2,7 @@
 # The filename (without .yaml) becomes the partner's slug.
 
 name: <Partner Org Name>
-url: https://example.org
 order: 100
+# url: https://example.org      # optional
 # logo: /images/partners/<slug>.svg     # optional, place asset in public/images/partners/
 # blurb: <Short one-line role/note>     # optional

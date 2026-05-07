@@ -12,7 +12,7 @@ files; commit; the live site rebuilds.
 | Agent | `agents/_template.mdx` | `agents/<slug>.mdx` | Fill in `name`, `tagline`, `description`. |
 | Workflow | `workflows/_template.mdx` | `workflows/<slug>.mdx` | Fill in `name`, `tagline`. |
 | Governance item | `governance/_template.mdx` | `governance/<slug>.mdx` | Fill in `title`, `summary`. |
-| Partner | `partners/_template.yaml` | `partners/<slug>.yaml` | Fill in `name`, `url`. |
+| Partner | `partners/_template.yaml` | `partners/<slug>.yaml` | Fill in `name`. URL is optional. |
 | Team member | (no copy needed) | edit the right `team/<org>.yaml` | Append to the `members:` list. |
 
 `<slug>` is the filename without the extension. It must be lowercase
