@@ -1,0 +1,18 @@
+---
+import { getEntry } from 'astro:content';
+
+const entry = await getEntry('pages', 'care');
+if (!entry) throw new Error('Missing pages/care content entry');
+const { Content } = await entry.render();
+---
+<section class="section care" id="care">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">03 · Methodology</p>
+      <h2>{entry.data.title}</h2>
+    </div>
+    <div class="prose">
+      <Content />
+    </div>
+  </div>
+</section>
