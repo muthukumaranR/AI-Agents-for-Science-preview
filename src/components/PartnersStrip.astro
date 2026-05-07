@@ -20,7 +20,7 @@ const partners = (await getCollection('partners'))
         {partners.map((p) => (
           <li class="partner">
             {p.data.url ? (
-              <a href={p.data.url} rel="noopener">
+              <a href={p.data.url} target="_blank" rel="noopener">
                 {p.data.logo
                   ? <img src={p.data.logo} alt={p.data.name} />
                   : <b>{p.data.name}</b>

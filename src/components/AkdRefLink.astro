@@ -7,6 +7,6 @@ interface Props {
 const { kind, path } = Astro.props;
 const url = `https://github.com/NASA-IMPACT/akd-suite/tree/main/${path}`;
 ---
-<a class="akd-ref" href={url} rel="noopener" data-kind={kind}>
+<a class="akd-ref" href={url} target="_blank" rel="noopener" data-kind={kind}>
   Source on akd-suite ↗
 </a>
