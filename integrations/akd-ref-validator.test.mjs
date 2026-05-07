@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { collectAkdRefs, checkRefs, shouldSkipForOffline } from './akd-ref-validator.js';
+import { collectAkdRefs, checkRefs, shouldSkipForOffline, parseAkdRef } from './akd-ref-validator.js';
 
 test('checkRefs returns no errors when all paths exist in tree', () => {
   const tree = new Set(['agents/factreasoner', 'flow/closed-loop', 'docs/intro']);
@@ -49,4 +49,34 @@ test('shouldSkipForOffline returns false otherwise', () => {
   assert.equal(shouldSkipForOffline({}), false);
   assert.equal(shouldSkipForOffline({ AKD_REF_VALIDATOR_OFFLINE: '0' }), false);
   assert.equal(shouldSkipForOffline({ AKD_REF_VALIDATOR_OFFLINE: 'true' }), false);  // strict equality
+});
+
+test('parseAkdRef ignores akdRef inside fenced code blocks', () => {
+  const docMd = [
+    '# Some doc',
+    '',
+    'Example usage:',
+    '',
+    '```yaml',
+    'akdRef: { kind: agents, path: agents/example }',
+    '```',
+    '',
+    'End of doc.',
+  ].join('\n');
+  assert.equal(parseAkdRef(docMd), null);
+});
+
+test('parseAkdRef still finds a real akdRef alongside fenced examples', () => {
+  const mdxWithBoth = [
+    '---',
+    'name: Real Entry',
+    'akdRef: { kind: agents, path: agents/real }',
+    '---',
+    '',
+    '```yaml',
+    'akdRef: { kind: docs, path: docs/example }',
+    '```',
+  ].join('\n');
+  const ref = parseAkdRef(mdxWithBoth);
+  assert.deepEqual(ref, { kind: 'agents', path: 'agents/real' });
 });

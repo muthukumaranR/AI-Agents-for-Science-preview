@@ -51,9 +51,12 @@ export async function collectAkdRefs({ contentDir }) {
  * @param {string} text
  * @returns {{ kind: string, path: string } | null}
  */
-function parseAkdRef(text) {
+export function parseAkdRef(text) {
+  // Strip fenced code blocks first so example akdRef:s inside ```...``` (e.g.,
+  // documentation in README.md) don't get parsed as live declarations.
+  const codeStripped = text.replace(/^```[\s\S]*?^```/gm, '');
   // Strip line comments (best-effort).
-  const stripped = text.replace(/^\s*#.*$/gm, '');
+  const stripped = codeStripped.replace(/^\s*#.*$/gm, '');
   const inline = stripped.match(/akdRef\s*:\s*\{\s*kind\s*:\s*([a-z]+)\s*,\s*path\s*:\s*([^\s},]+)\s*\}/);
   if (inline) return { kind: inline[1], path: inline[2] };
   const block = stripped.match(/akdRef\s*:\s*\n\s+kind\s*:\s*([a-z]+)\s*\n\s+path\s*:\s*(\S+)/);
