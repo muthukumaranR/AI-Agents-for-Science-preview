@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 
 const orgs = (await getCollection('team'))
-  .sort((a, b) => a.data.order - b.data.order);
+  .sort((a, b) => (a.data.order - b.data.order) || a.data.org.localeCompare(b.data.org));
 ---
 {orgs.length > 0 && (
   <section class="section" id="team">

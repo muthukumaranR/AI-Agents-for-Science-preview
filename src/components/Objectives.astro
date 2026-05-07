@@ -58,25 +58,6 @@
   }
   .cards-4 { grid-template-columns: repeat(4, 1fr); }
 
-  .card {
-    position: relative;
-    padding: 28px 26px;
-    background: linear-gradient(180deg, var(--surface), var(--bg-1));
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    transition: border-color .2s ease, transform .2s ease;
-    overflow: hidden;
-  }
-  .card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
-  .card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(92,210,230,0.5), transparent);
-    opacity: 0;
-    transition: opacity .25s ease;
-  }
-  .card:hover::before { opacity: 1; }
   .card .num {
     font-family: var(--font-mono);
     font-size: 11px;
