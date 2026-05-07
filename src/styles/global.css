@@ -178,7 +178,7 @@ p { color: var(--text-dim); margin: 0 0 1em; }
   margin-top: 1.6em;
   margin-bottom: 0.4em;
 }
-.prose p { color: var(--text-dim); margin: 0 0 1em; }
+.prose p { color: var(--text-dim); font-size: 17px; margin: 0 0 1em; }
 .prose ul,
 .prose ol {
   color: var(--text-dim);
@@ -197,6 +197,9 @@ p { color: var(--text-dim); margin: 0 0 1em; }
 .prose a:hover { color: var(--accent-2); }
 
 .prose table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   width: 100%;
   border-collapse: collapse;
   margin: 1.5em 0;
