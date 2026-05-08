@@ -24,15 +24,14 @@ const baseUrl = import.meta.env.BASE_URL;
           <article class="card agent-card">
             <h3><a class="card-title-link" href={`${baseUrl}agents/${agent.slug}`}>{agent.data.name}</a></h3>
             <p class="tagline">{agent.data.tagline}</p>
-            <p>{agent.data.description}</p>
             {agent.data.tags.length > 0 && (
               <ul class="tag-list">
                 {agent.data.tags.map((t) => <li>{t}</li>)}
               </ul>
             )}
-            {agent.data.akdRef && (
-              <AkdRefLink kind={agent.data.akdRef.kind} path={agent.data.akdRef.path} />
-            )}
+            <a class="agent-read-more" href={`${baseUrl}agents/${agent.slug}`}>
+              Details <span aria-hidden="true">→</span>
+            </a>
           </article>
         ))}
       </div>
@@ -69,11 +68,29 @@ const baseUrl = import.meta.env.BASE_URL;
   .card-title-link:hover { color: var(--accent); }
   .agent-card .tagline {
     font-size: 14px;
-    color: var(--accent);
+    color: var(--text-dim);
     margin: 0;
-    font-style: italic;
+    flex: 1;
+    line-height: 1.5;
   }
-  .agent-card p { font-size: 14px; margin: 0; flex: 1; }
+
+  .agent-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    padding-bottom: 2px;
+    align-self: flex-start;
+    margin-top: auto;
+    transition: border-bottom-color 0.18s ease;
+  }
+  .agent-read-more:hover {
+    border-bottom-color: var(--accent);
+  }
 
   .tag-list {
     display: flex;
