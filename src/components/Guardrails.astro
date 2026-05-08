@@ -1,15 +1,19 @@
 ---
+const baseUrl = import.meta.env.BASE_URL;
 ---
 <section class="section" id="guardrails">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">09 · Trust &amp; Safety</span>
-      <h2>Science guardrails — input <em>and</em> output.</h2>
+      <h2>Generic safety + science-specific guardrails</h2>
       <p>
-        AKD guardrails are not only input filters. They also inspect generated
-        outputs before they are trusted or passed downstream — combining
-        general-purpose AI safety, science-specific risk taxonomies, and
-        defense-in-depth review patterns.
+        AKD pairs generic LLM safety — content moderation and defense-in-depth
+        review — with science-specific guardrails: factuality reasoning over
+        claims and citations, the NASA Science Literature Risk taxonomy, and
+        domain-aware compliance checks. Both layers are separate components in
+        the stack, not behavior bolted onto agents. Teams compose them like any
+        other dependency — declared at design time, run during build, and
+        active at runtime.
       </p>
     </div>
 
@@ -27,33 +31,44 @@
           <li>Multidisciplinary reasoning failures</li>
           <li>Consistency issues</li>
         </ul>
-        <a class="btn btn-ghost guard-cta" href="https://github.com/NASA-IMPACT/akd/tree/main/guardrails" target="_blank" rel="noopener">
-          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" width="14" height="14"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-          View guardrails on GitHub
-        </a>
+        <div class="guard-cta-row">
+          <a class="btn btn-primary guard-cta" href={`${baseUrl}guardrails/`}>
+            Read more — paper references &amp; details →
+          </a>
+          <a class="btn btn-ghost guard-cta" href="https://github.com/NASA-IMPACT/akd/tree/main/guardrails" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" width="14" height="14"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            View on GitHub
+          </a>
+        </div>
       </div>
 
       <div class="guard-cards">
-        <p class="guard-cards-note">A non-exhaustive sample of guardrail components teams compose into agents — order is not prescriptive.</p>
-        <div class="pill-card">
-          <h4>FactReasoner</h4>
-          <p>Targeted factuality reasoning over claims, attribution, and supporting evidence.</p>
+        <div class="guard-group">
+          <span class="guard-group-label">Generic safety</span>
+          <div class="pill-card">
+            <h4>Granite Guardian</h4>
+            <p>Foundation-model content moderation — jailbreak, harm, bias, plus RAG groundedness, relevance, and answer-relevance checks. Off-the-shelf component.</p>
+          </div>
+          <div class="pill-card">
+            <h4>Defense-in-Depth</h4>
+            <p>Layered checks across input, intermediate steps, and output — not a single gate.</p>
+          </div>
         </div>
-        <div class="pill-card">
-          <h4>Defense-in-Depth</h4>
-          <p>Layered checks across input, intermediate steps, and output — not a single gate.</p>
-        </div>
-        <div class="pill-card">
-          <h4>Risk Agent</h4>
-          <p>Reasoning component that classifies and explains risks in agent outputs.</p>
-        </div>
-        <div class="pill-card">
-          <h4>NASA Science-Specific Risk Taxonomy</h4>
-          <p>Domain-aware risk categories tailored to scientific contexts and agent failure modes.</p>
-        </div>
-        <div class="pill-card">
-          <h4>Granite Guardian</h4>
-          <p>Foundation-model-based safety checks integrated into the AKD guardrail layer.</p>
+
+        <div class="guard-group guard-group--science">
+          <span class="guard-group-label">Science-specific</span>
+          <div class="pill-card">
+            <h4>FactReasoner</h4>
+            <p>Targeted factuality reasoning over claims, attribution, and supporting evidence in agent outputs.</p>
+          </div>
+          <div class="pill-card">
+            <h4>Risk Agent</h4>
+            <p>LLM-judge that classifies and explains risks against the IBM Risk Atlas and the NASA Science Literature Risk taxonomy.</p>
+          </div>
+          <div class="pill-card">
+            <h4>NASA Science Literature Risk Taxonomy</h4>
+            <p>Domain-aware risk categories tailored to scientific contexts and agent failure modes.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -75,7 +90,12 @@
   }
   .guard-shell-heading { margin-bottom: 6px; }
   .guard-shell-intro { margin-bottom: 18px; }
-  .guard-cta { margin-top: 22px; }
+  .guard-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+  }
   .guard-list {
     list-style: none;
     padding: 0; margin: 0;
@@ -103,16 +123,25 @@
     background: var(--accent);
     flex-shrink: 0;
   }
+
   .guard-cards {
-    display: grid; gap: 14px;
+    display: grid;
+    gap: 22px;
   }
-  .guard-cards-note {
+  .guard-group {
+    display: grid;
+    gap: 12px;
+  }
+  .guard-group-label {
     font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.04em;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
     color: var(--text-muted);
-    margin: 0 0 4px;
-    line-height: 1.5;
+    margin-bottom: 2px;
+  }
+  .guard-group--science .guard-group-label {
+    color: var(--accent);
   }
   .guard-cards .pill-card {
     border: 1px solid var(--border);
@@ -120,6 +149,9 @@
     padding: 18px 20px;
     background: var(--bg-0);
     box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+  }
+  .guard-group--science .pill-card {
+    border-left: 3px solid var(--accent);
   }
   .guard-cards .pill-card h4 {
     font-family: var(--font-serif);
