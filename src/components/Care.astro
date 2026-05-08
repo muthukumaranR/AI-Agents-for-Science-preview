@@ -19,6 +19,34 @@ const roles = [
     desc: 'Facilitation infrastructure — phase-aligned questions, drafted specs, proposed revisions.',
   },
 ];
+
+const phases = [
+  {
+    n: 1,
+    label: 'Scope & Decompose',
+    desc: 'Define the target workflow, intended users, and the constraints that shape every later decision.',
+  },
+  {
+    n: 2,
+    label: 'Key Information Elicitation',
+    desc: 'Capture details on tools, domain context, and required output formats from SMEs.',
+  },
+  {
+    n: 3,
+    label: 'Reasoning Policy & Guardrails',
+    desc: 'Codify expert-like thinking logic and safety boundaries for uncertainty or tool errors.',
+  },
+  {
+    n: 4,
+    label: 'Implementation',
+    desc: 'Translate approved artifacts into an engineered agent prompt using established patterns.',
+  },
+  {
+    n: 5,
+    label: 'Benchmarking & Verification',
+    desc: 'Establish realistic query sets and scoring rubrics to detect regressions over time.',
+  },
+];
 ---
 <section class="section care" id="care">
   <div class="container">
@@ -27,6 +55,7 @@ const roles = [
       <h2>{entry.data.title}</h2>
       <p>{entry.data.description}</p>
     </div>
+
     <ul class="care-roles">
       {roles.map((r) => (
         <li>
@@ -35,18 +64,18 @@ const roles = [
         </li>
       ))}
     </ul>
-    <p class="care-phases-line">
-      <span class="phases-eyebrow">Five phases</span>
-      <span>Scope &amp; Decompose</span>
-      <span aria-hidden="true">·</span>
-      <span>Key Information Elicitation</span>
-      <span aria-hidden="true">·</span>
-      <span>Reasoning Policy &amp; Guardrails</span>
-      <span aria-hidden="true">·</span>
-      <span>Implementation</span>
-      <span aria-hidden="true">·</span>
-      <span>Benchmarking &amp; Verification</span>
-    </p>
+
+    <p class="phases-eyebrow">Five phases — each gated by joint SME / developer / agent approval</p>
+    <ol class="care-phases" aria-label="CARE methodology five phases">
+      {phases.map((p) => (
+        <li class="phase-step">
+          <span class="phase-num">Phase {p.n}</span>
+          <b>{p.label}</b>
+          <p>{p.desc}</p>
+        </li>
+      ))}
+    </ol>
+
     <a class="read-more" href={`${baseUrl}care/`}>
       Read the full methodology <span aria-hidden="true">→</span>
     </a>
@@ -57,7 +86,7 @@ const roles = [
   .care-roles {
     list-style: none;
     padding: 0;
-    margin: 36px 0 24px;
+    margin: 36px 0 28px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 18px;
@@ -83,22 +112,71 @@ const roles = [
     line-height: 1.55;
   }
 
-  .care-phases-line {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px 12px;
-    margin: 0 0 28px;
+  .phases-eyebrow {
     font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--text-dim);
-  }
-  .care-phases-line .phases-eyebrow {
-    color: var(--accent);
-    letter-spacing: 0.06em;
+    font-size: 12px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-right: 4px;
+    color: var(--accent);
+    margin: 0 0 14px;
   }
+
+  .care-phases {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    align-items: stretch;
+  }
+  .phase-step {
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px 16px;
+    background: var(--bg-0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .phase-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .phase-step b {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text);
+    margin: 2px 0 4px;
+    display: block;
+    line-height: 1.25;
+  }
+  .phase-step p {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+  }
+  .phase-step::after {
+    content: "→";
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent);
+    font-size: 14px;
+    font-family: var(--font-mono);
+    z-index: 2;
+    background: transparent;
+  }
+  .phase-step:last-child::after { content: ""; }
 
   .read-more {
     display: inline-flex;
@@ -118,8 +196,11 @@ const roles = [
 
   @media (max-width: 1024px) {
     .care-roles { grid-template-columns: repeat(2, 1fr); }
+    .care-phases { grid-template-columns: repeat(3, 1fr); }
+    .phase-step::after { content: ""; }
   }
   @media (max-width: 720px) {
     .care-roles { grid-template-columns: 1fr; }
+    .care-phases { grid-template-columns: 1fr; }
   }
 </style>
