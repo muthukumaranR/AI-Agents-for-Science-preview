@@ -1,0 +1,114 @@
+---
+import { getCollection } from 'astro:content';
+
+const orgs = (await getCollection('team'))
+  .sort((a, b) => (a.data.order - b.data.order) || a.data.org.localeCompare(b.data.org));
+---
+{orgs.length > 0 && (
+  <section class="section" id="team">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">12 · Team</span>
+        <h2>The people behind AKD.</h2>
+        <p>
+          AKD is built by a multi-organization team of scientists, engineers, and
+          researchers.
+        </p>
+      </div>
+      {orgs.map((entry) => (
+        <div class="team-group">
+          <div class="team-group-head">
+            <h3>{entry.data.org}</h3>
+          </div>
+          <ul class="team-members">
+            {entry.data.members.map((m) => (
+              <li class="member">
+                <div class="avatar" aria-hidden="true">
+                  {m.name.split(' ').map((w: string) => w[0]).slice(0, 2).join('')}
+                </div>
+                <span class="name">{m.name}</span>
+                {m.role && <span class="role">{m.role}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .team-group { margin-bottom: 56px; }
+  .team-group:last-child { margin-bottom: 0; }
+
+  .team-group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+  }
+  .team-group-head h3 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .team-members {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .member {
+    text-align: center;
+    padding: 18px 10px;
+    border-radius: var(--radius-md);
+    transition: background .2s ease;
+  }
+  .member:hover { background: var(--surface); }
+  .avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--accent);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  }
+  .name {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+    line-height: 1.3;
+  }
+  .role {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 1024px) {
+    .team-members { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .team-members { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

@@ -1,0 +1,12 @@
+---
+interface Props {
+  kind: 'agents' | 'flow' | 'frameworks' | 'guardrails' | 'labs' | 'docs';
+  path: string;
+}
+
+const { kind, path } = Astro.props;
+const url = `https://github.com/NASA-IMPACT/akd-suite/tree/main/${path}`;
+---
+<a class="akd-ref" href={url} target="_blank" rel="noopener" data-kind={kind}>
+  Source on akd-suite ↗
+</a>

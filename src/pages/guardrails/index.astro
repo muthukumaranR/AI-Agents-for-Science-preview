@@ -1,0 +1,269 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const baseUrl = import.meta.env.BASE_URL;
+
+const generic = [
+  {
+    name: 'Granite Guardian',
+    desc: 'Foundation-model content moderation — jailbreak, harm, bias, plus RAG groundedness, relevance, and answer-relevance checks. Runs via Ollama. Off-the-shelf safety component reused across agents.',
+    papers: [
+      { title: 'Granite Guardian (IBM, 2024)', url: 'https://arxiv.org/abs/2412.07724' },
+    ],
+    repo: 'https://github.com/NASA-IMPACT/akd/tree/main/guardrails',
+  },
+  {
+    name: 'Defense-in-Depth',
+    desc: 'Layered review pattern — input filters, intermediate-step checks, and output verification. A composition pattern, not a single component; AKD applies it across agent boundaries rather than gating only at one point.',
+    papers: [],
+    repo: 'https://github.com/NASA-IMPACT/akd/tree/main/guardrails',
+  },
+];
+
+const science = [
+  {
+    name: 'FactReasoner',
+    desc: 'Claim-level factuality reasoning. Decomposes agent outputs into claims, scores attribution and supporting evidence, and surfaces unsupported assertions before they reach the user.',
+    papers: [
+      { title: 'FactReasoner — source & docs (akd-suite)', url: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/agents/factreasoner' },
+    ],
+    repo: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/agents/factreasoner',
+  },
+  {
+    name: 'Risk Agent',
+    desc: 'LLM-judge that classifies and explains risks in agent outputs against two taxonomies: the IBM Risk Atlas and the NASA Science Literature Risk taxonomy. Domain-aware, importance-weighted, DAG-based evaluation graph.',
+    papers: [
+      { title: 'IBM AI Risk Atlas', url: 'https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas' },
+    ],
+    repo: 'https://github.com/NASA-IMPACT/akd/tree/main/guardrails',
+  },
+  {
+    name: 'NASA Science Literature Risk Taxonomy',
+    desc: 'Domain risk categories tailored to scientific contexts and agent failure modes — hallucination, attribution gaps, overgeneralization, multidisciplinary reasoning failures, outdated confidence, and consistency issues. Used as the basis for the Risk Agent’s science-specific evaluation.',
+    papers: [
+      { title: 'CARE methodology paper (NTRS)', url: 'https://ntrs.nasa.gov/citations/20260000926' },
+    ],
+    repo: 'https://github.com/NASA-IMPACT/akd-suite',
+  },
+];
+
+const detected = [
+  'Hallucination',
+  'Attribution gaps',
+  'Unsupported claims',
+  'Outdated confidence',
+  'Overgeneralization',
+  'Lack of grounding',
+  'Multidisciplinary reasoning failures',
+  'Consistency issues',
+];
+---
+<Base
+  title="Guardrails · AI Agents for Science"
+  description="AKD pairs generic LLM safety with science-specific guardrails — composable components teams use across agents and workflows."
+>
+  <main class="container detail-page">
+    <a class="back-link" href={`${baseUrl}#guardrails`}>← Back home</a>
+
+    <header class="detail-hero">
+      <span class="eyebrow">Guardrails</span>
+      <h1>Generic safety + science-specific guardrails</h1>
+      <p class="lede">
+        Composable components teams declare at design time, run during build, and keep
+        active at runtime. Generic LLM safety on one side, science-specific reasoning on
+        the other. Both are separate components in the AKD stack.
+      </p>
+    </header>
+
+    <section class="g-section">
+      <h2>What guardrails detect</h2>
+      <p>A non-exhaustive view of failure modes guardrails actively check for in scientific agent outputs:</p>
+      <ul class="g-detect-list">
+        {detected.map((d) => <li>{d}</li>)}
+      </ul>
+    </section>
+
+    <section class="g-section">
+      <h2>Generic safety</h2>
+      <p>Off-the-shelf LLM safety components reused across every agent in the catalog.</p>
+      {generic.map((g) => (
+        <article class="g-card">
+          <h3>{g.name}</h3>
+          <p>{g.desc}</p>
+          {g.papers.length > 0 && (
+            <ul class="g-papers">
+              {g.papers.map((p) => (
+                <li><a href={p.url} target="_blank" rel="noopener">{p.title} ↗</a></li>
+              ))}
+            </ul>
+          )}
+          {g.repo && (
+            <a class="g-repo" href={g.repo} target="_blank" rel="noopener">Source ↗</a>
+          )}
+        </article>
+      ))}
+    </section>
+
+    <section class="g-section g-section--science">
+      <h2>Science-specific guardrails</h2>
+      <p>Components built specifically for scientific agent outputs — claim-level factuality, NASA risk taxonomies, and domain-aware compliance reasoning.</p>
+      {science.map((s) => (
+        <article class="g-card g-card--science">
+          <h3>{s.name}</h3>
+          <p>{s.desc}</p>
+          {s.papers.length > 0 && (
+            <ul class="g-papers">
+              {s.papers.map((p) => (
+                <li><a href={p.url} target="_blank" rel="noopener">{p.title} ↗</a></li>
+              ))}
+            </ul>
+          )}
+          {s.repo && (
+            <a class="g-repo" href={s.repo} target="_blank" rel="noopener">Source ↗</a>
+          )}
+        </article>
+      ))}
+    </section>
+
+    <section class="g-section">
+      <h2>Reference papers</h2>
+      <ul class="g-paper-list">
+        <li><a href="https://arxiv.org/abs/2412.07724" target="_blank" rel="noopener">Granite Guardian — IBM (arXiv 2412.07724) ↗</a></li>
+        <li><a href="https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas" target="_blank" rel="noopener">IBM AI Risk Atlas ↗</a></li>
+        <li><a href="https://ntrs.nasa.gov/citations/20260000926" target="_blank" rel="noopener">CARE methodology — NASA Technical Reports (citation 20260000926) ↗</a></li>
+        <li><a href="https://github.com/NASA-IMPACT/akd-suite/tree/main/agents/factreasoner" target="_blank" rel="noopener">FactReasoner source &amp; documentation (akd-suite) ↗</a></li>
+        <li><a href="https://github.com/NASA-IMPACT/akd/tree/main/guardrails" target="_blank" rel="noopener">AKD guardrails repository ↗</a></li>
+      </ul>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .detail-page { padding: 60px 0 80px; max-width: 880px; }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 32px;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+  .back-link:hover { color: var(--accent); }
+  .detail-hero h1 {
+    font-size: clamp(32px, 4.6vw, 52px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin: 12px 0 16px;
+    color: var(--text);
+  }
+  .detail-hero .lede {
+    font-size: 18px;
+    color: var(--text-dim);
+    margin: 0 0 32px;
+    max-width: 700px;
+  }
+
+  .g-section {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+  .g-section h2 {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0 0 8px;
+  }
+  .g-section--science h2 { color: var(--accent); }
+  .g-section > p {
+    color: var(--text-dim);
+    margin: 0 0 24px;
+    line-height: 1.6;
+  }
+
+  .g-detect-list {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .g-detect-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+  .g-detect-list li::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .g-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 22px 24px;
+    background: var(--bg-0);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+    margin-bottom: 18px;
+  }
+  .g-card--science { border-left: 3px solid var(--accent); }
+  .g-card h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 19px;
+    margin: 0 0 10px;
+    color: var(--text);
+  }
+  .g-card > p {
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin: 0 0 14px;
+  }
+
+  .g-papers, .g-paper-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .g-papers li, .g-paper-list li {
+    font-size: 13px;
+  }
+  .g-papers a, .g-paper-list a {
+    color: var(--accent);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    border-bottom: 1px solid rgba(0,0,0,0);
+    padding-bottom: 1px;
+    transition: border-bottom-color 0.18s ease;
+  }
+  .g-papers a:hover, .g-paper-list a:hover {
+    border-bottom-color: var(--accent);
+  }
+  .g-repo {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 1px;
+  }
+  .g-repo:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  @media (max-width: 720px) {
+    .g-detect-list { grid-template-columns: 1fr; }
+  }
+</style>

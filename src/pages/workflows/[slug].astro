@@ -1,0 +1,161 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import AkdRefLink from '../../components/AkdRefLink.astro';
+
+export async function getStaticPaths() {
+  const workflows = await getCollection('workflows');
+  return workflows.map((workflow) => ({
+    params: { slug: workflow.slug },
+    props: { workflow },
+  }));
+}
+
+const { workflow } = Astro.props;
+const { Content } = await workflow.render();
+const baseUrl = import.meta.env.BASE_URL;
+---
+<Base
+  title={`${workflow.data.name} · AI Agents for Science`}
+  description={workflow.data.tagline}
+>
+  <Nav />
+  <main class="container detail-page">
+    <a class="back-link" href={`${baseUrl}#workflows`}>← Back to Workflows</a>
+
+    <header class="detail-hero">
+      <span class="eyebrow">Workflow</span>
+      <h1>{workflow.data.name}</h1>
+      <p class="lede">{workflow.data.tagline}</p>
+      {(workflow.data.designers.length > 0 || workflow.data.developers.length > 0) && (
+        <div class="attribution">
+          {workflow.data.designers.length > 0 && (
+            <p><strong>Designers:</strong> {workflow.data.designers.join(', ')}</p>
+          )}
+          {workflow.data.developers.length > 0 && (
+            <p><strong>Developers:</strong> {workflow.data.developers.join(', ')}</p>
+          )}
+        </div>
+      )}
+    </header>
+
+    {workflow.data.agents.length > 0 && (
+      <div class="agents-used">
+        <span class="agents-label">Agents in this workflow:</span>
+        <ul class="agent-refs">
+          {workflow.data.agents.map((a) => <li>{a}</li>)}
+        </ul>
+      </div>
+    )}
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <footer class="detail-footer">
+      {workflow.data.akdRef && (
+        <AkdRefLink kind={workflow.data.akdRef.kind} path={workflow.data.akdRef.path} />
+      )}
+      {workflow.data.repo && (
+        <a class="akd-ref" href={workflow.data.repo} target="_blank" rel="noopener">
+          Repository ↗
+        </a>
+      )}
+    </footer>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .detail-page {
+    padding: 60px 0 80px;
+    max-width: 800px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 32px;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    transition: color 0.18s ease;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .detail-hero { margin-bottom: 24px; }
+
+  .detail-hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin: 12px 0 16px;
+    color: var(--text);
+  }
+
+  .detail-hero .lede {
+    font-size: 20px;
+    color: var(--text-dim);
+    margin: 0 0 24px;
+  }
+
+  .attribution {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: 32px;
+    font-size: 14px;
+  }
+  .attribution p { margin: 0; color: var(--text-dim); }
+  .attribution strong { color: var(--text); }
+
+  .agents-used {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .agents-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .agent-refs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .agent-refs li {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px 10px;
+    background: var(--surface);
+  }
+
+  .detail-footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+</style>

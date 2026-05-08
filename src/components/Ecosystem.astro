@@ -1,0 +1,360 @@
+---
+// Exported so integrations/akd-ref-validator.js (Task 8) can import and validate.
+export const ECOSYSTEM_AKD_REFS = [
+  { kind: 'frameworks' as const, path: 'frameworks' },
+  { kind: 'flow' as const, path: 'flow' },
+  { kind: 'labs' as const, path: 'labs' },
+];
+---
+<section class="section" id="ecosystem">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">10 · Architecture</span>
+      <h2>AKD Enterprise Stack</h2>
+      <p>
+        The full AKD architecture: seven layers from infrastructure up to user-facing
+        applications, with a governance lane running parallel. The blue boxes on the
+        right are <em>example</em> governance gates that apply at each layer — security,
+        approvals, SME review, and CARE design discipline are integrated throughout the
+        stack rather than bolted on at the end.
+      </p>
+    </div>
+
+    <div class="stack-header" aria-hidden="true">
+      <span class="stack-header-label">Layer</span>
+      <span class="stack-header-comp">Components</span>
+      <span class="stack-header-gov">Example governance gates</span>
+    </div>
+
+    <div class="stack-diagram" aria-label="AKD Enterprise Stack with parallel governance lane">
+
+      <!-- Layer 1 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L1</span>
+          <span class="stack-layer-name">Application Components</span>
+          <span class="stack-layer-sub">AKD SDK</span>
+        </div>
+        <ul class="stack-components">
+          <li>Agent Test &amp; Validation Environment</li>
+          <li>Agentic Apps (e.g., AKD UI)</li>
+          <li>AI Conversational Search · RAG Chatbots</li>
+          <li>Traditional Search Interface</li>
+        </ul>
+        <div class="stack-gov">
+          <span class="stack-gov-label">Example gate</span>
+          <b>Security &amp; Public Use Policy Approval</b>
+        </div>
+      </div>
+
+      <!-- Layer 2 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L2</span>
+          <span class="stack-layer-name">Auth &amp; Authorization</span>
+        </div>
+        <ul class="stack-components">
+          <li>Authentication / SSO</li>
+          <li>Quota Management</li>
+          <li>Access Control (Authorization)</li>
+        </ul>
+        <div class="stack-gov stack-gov--empty" aria-hidden="true">—</div>
+      </div>
+
+      <!-- Layer 3 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L3</span>
+          <span class="stack-layer-name">Search &amp; Discovery</span>
+        </div>
+        <ul class="stack-components">
+          <li>Agent Registry</li>
+          <li>Tools Registry</li>
+          <li>Notebook Registry</li>
+          <li>Documents · Code Registry</li>
+        </ul>
+        <div class="stack-gov">
+          <span class="stack-gov-label">Example gate</span>
+          <b>Registry Approval Processes</b>
+        </div>
+      </div>
+
+      <!-- Layer 4 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L4</span>
+          <span class="stack-layer-name">Agentic Layer</span>
+        </div>
+        <ul class="stack-components">
+          <li>Agentic (LLM + Tools) Engine</li>
+          <li>Agent Composition Engine</li>
+          <li>Conversational RAG Engine</li>
+        </ul>
+        <div class="stack-gov">
+          <span class="stack-gov-label">Example gate</span>
+          <b>SME Approval</b>
+        </div>
+      </div>
+
+      <!-- Layer 5 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L5</span>
+          <span class="stack-layer-name">Services</span>
+          <span class="stack-layer-sub">APIs</span>
+        </div>
+        <ul class="stack-components">
+          <li>JupyterHub</li>
+          <li>LLM Inference (Ollama · Bedrock · vLLM)</li>
+          <li>AI Sandbox (e.g., E2B.dev)</li>
+          <li>Scientific Guardrails for AI (Factuality · Compliance)</li>
+          <li>Reusable Scientific Tools</li>
+          <li>SDK APIs</li>
+        </ul>
+        <div class="stack-gov">
+          <span class="stack-gov-label">Example gate</span>
+          <b>Compliance &amp; Cost Checks</b>
+        </div>
+      </div>
+
+      <!-- Layer 6 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L6</span>
+          <span class="stack-layer-name">Science Artifacts &amp; KB</span>
+        </div>
+        <ul class="stack-components">
+          <li>Notebooks</li>
+          <li>Documents</li>
+          <li>Metadata</li>
+          <li>Code Repositories</li>
+          <li>CARE-Designed Agents &amp; Tool Prompts</li>
+        </ul>
+        <div class="stack-gov">
+          <span class="stack-gov-label">Example gate</span>
+          <b>Access Control List</b>
+        </div>
+      </div>
+
+      <!-- Layer 7 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L7</span>
+          <span class="stack-layer-name">Infrastructure</span>
+        </div>
+        <ul class="stack-components">
+          <li>NASA Science Cloud</li>
+          <li>On-Prem (FM Models &amp; Inferencing)</li>
+          <li>Personal Cloud</li>
+        </ul>
+        <div class="stack-gov stack-gov--empty" aria-hidden="true">—</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---- Column header strip ---- */
+  .stack-header {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    padding: 0 4px 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .stack-header-label { padding-left: 14px; }
+  .stack-header-comp { padding-left: 14px; }
+  .stack-header-gov {
+    padding-left: 14px;
+    color: var(--accent);
+  }
+
+  /* ---- Stack diagram outer container ---- */
+  .stack-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* ---- Each row: label | components | governance ---- */
+  .stack-layer {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 0;
+    align-items: stretch;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--bg-0);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+    overflow: hidden;
+  }
+
+  /* ---- Layer label column ---- */
+  .stack-layer-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding: 16px 18px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+  }
+
+  .stack-layer-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .stack-layer-name {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    line-height: 1.35;
+  }
+
+  .stack-layer-sub {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* ---- Components list column ---- */
+  .stack-components {
+    list-style: none;
+    margin: 0;
+    padding: 14px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+  }
+
+  .stack-components li {
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 4px 10px;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  /* ---- Governance touchpoint column ---- */
+  .stack-gov {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-left: 3px solid var(--accent);
+    background: oklch(0.97 0.005 262.881);
+  }
+
+  .stack-gov {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .stack-gov-label {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.85;
+  }
+  .stack-gov b {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--accent-4);
+    line-height: 1.45;
+  }
+
+  /* Empty governance cell — for layers where the layer itself is governance
+     (Auth) or no per-instance gate applies (Infra). Keeps the rail visually
+     consistent without forcing a fake gate label. */
+  .stack-gov--empty {
+    border-left-color: var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    justify-content: center;
+  }
+
+
+  /* ---- Responsive: ≤900px — governance becomes an in-card footer ---- */
+  @media (max-width: 900px) {
+    .stack-layer {
+      grid-template-columns: 180px 1fr;
+      grid-template-rows: auto auto;
+    }
+    .stack-gov {
+      grid-column: 1 / -1;          /* span full card width — clearly footer of THIS card */
+      grid-row: 2 / 3;
+      border-left: none;
+      border-top: 1px dashed var(--border);
+      background: oklch(0.985 0.003 262.881);
+      padding: 10px 16px;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+    }
+    .stack-gov-label {
+      font-size: 9px;
+      flex-shrink: 0;
+    }
+    .stack-gov-label::after {
+      content: "→";
+      margin-left: 6px;
+      color: var(--accent);
+    }
+    .stack-gov--empty .stack-gov-label { display: none; }
+  }
+
+  /* ---- Responsive: ≤640px — full vertical stack ---- */
+  @media (max-width: 640px) {
+    .stack-layer {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+    }
+    .stack-layer-label {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+    }
+    .stack-layer-sub {
+      margin-top: 0;
+    }
+    .stack-components {
+      padding: 12px 16px;
+    }
+    .stack-components li {
+      white-space: normal;
+    }
+    .stack-gov {
+      grid-column: 1 / -1;
+      grid-row: auto;
+      border-top: 1px dashed var(--border);
+      padding: 10px 16px;
+    }
+  }
+</style>

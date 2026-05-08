@@ -1,0 +1,210 @@
+---
+import { getCollection } from 'astro:content';
+import AkdRefLink from './AkdRefLink.astro';
+
+const items = (await getCollection('governance'))
+  .sort((a, b) => (a.data.order - b.data.order) || a.data.title.localeCompare(b.data.title));
+---
+<section class="section" id="governance">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">11 · Governance</span>
+      <h2>Governance built in, ready for teams</h2>
+      <p>
+        Governance is not a separate process bolted on at the end — it is built into AKD
+        from day one and ready to support teams from their first design decision.
+        Checkpoints run in parallel with the development pathway, and the same governance
+        applies regardless of how an agent is distributed: AKD Flow workflows, Custom GPTs,
+        community MCP servers, or the akd-ext open-source repository.
+      </p>
+    </div>
+
+    <!-- 4-stage governance pathway -->
+    <div class="gov-pipeline" aria-label="Governance stages aligned with the development lifecycle">
+
+      <div class="pipe-step">
+        <span>Stage 1 · During Design</span>
+        <b>Technical Best Practices</b>
+        <p class="pipe-desc">
+          Governance codifies architectural requirements, mandatory protocols — Science
+          Guardrails, modularity, error handling — and the CARE methodology itself as a
+          stage-gated discipline. Teams apply CARE phase gates and produce design
+          artifacts that meet these architectural standards before moving to build.
+        </p>
+      </div>
+
+      <div class="gov-arrow" aria-hidden="true">→</div>
+
+      <div class="pipe-step">
+        <span>Stage 2 · During Build</span>
+        <b>Benchmark &amp; Guardrail Compliance</b>
+        <p class="pipe-desc">
+          Governance defines the benchmark suite each agent must pass and the guardrail
+          layer — Granite Guardian, Risk Agent, FactReasoner, NASA Risk Taxonomy — that
+          gates outputs. Teams pass benchmark thresholds in AKD Labs and integrate
+          guardrails before the SME review.
+        </p>
+      </div>
+
+      <div class="gov-arrow" aria-hidden="true">→</div>
+
+      <div class="pipe-step">
+        <span>Stage 3 · At Review Gate</span>
+        <b>SME Readiness Review</b>
+        <p class="pipe-desc">
+          An SME lead verifies scientific integrity (non-prescriptive behavior, traceable
+          reasoning), guardrail compliance, and benchmark results before approving
+          promotion to Flow. Teams demonstrate readiness, address findings, and gain
+          sign-off before an agent is published.
+        </p>
+      </div>
+
+      <div class="gov-arrow" aria-hidden="true">→</div>
+
+      <div class="pipe-step">
+        <span>Stage 4 · In Production</span>
+        <b>Operational Blueprint &amp; Community Infrastructure</b>
+        <p class="pipe-desc">
+          Governance defines HITL checkpoints, ethical compliance pathways for
+          AI-generated outputs, and the Agent Hub peer-review and fork model for
+          community contribution and ongoing oversight. Teams operate within HITL gates,
+          surface incidents, and contribute back to the Hub for peer review.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Codified deliverables (compact, from content collection) -->
+    {items.length > 0 && (
+      <div class="gov-deliverables">
+        <h3 class="gov-deliverables-label">Codified deliverables</h3>
+        <ul class="gov-deliverables-list">
+          {items.map((item) => (
+            <li>
+              <span class="gov-item-title">{item.data.title}</span>
+              {item.data.summary && (
+                <span class="gov-item-summary"> — {item.data.summary}</span>
+              )}
+              {item.data.akdRef && (
+                <AkdRefLink kind={item.data.akdRef.kind} path={item.data.akdRef.path} />
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  /* ---- 4-stage horizontal pipeline ---- */
+  .gov-pipeline {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .gov-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 18px;
+    font-family: var(--font-mono);
+    padding: 0 6px;
+    align-self: center;
+  }
+
+  /* Reuse same card treatment as Pathway */
+  .pipe-step {
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 22px 18px;
+    background: var(--bg-0);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .pipe-step b {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 17px;
+    display: block;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .pipe-step span {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .pipe-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+    flex: 1;
+  }
+
+  /* ---- Codified deliverables sub-section ---- */
+  .gov-deliverables {
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+    padding-top: 28px;
+  }
+  .gov-deliverables-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin: 0 0 14px;
+  }
+  .gov-deliverables-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .gov-deliverables-list li {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+  .gov-item-title {
+    font-weight: 500;
+    color: var(--text);
+  }
+  .gov-item-summary {
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 1024px) {
+    .gov-pipeline {
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .gov-arrow { display: none; }
+  }
+  @media (max-width: 720px) {
+    .gov-pipeline {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

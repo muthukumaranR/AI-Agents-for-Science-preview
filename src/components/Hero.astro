@@ -1,0 +1,126 @@
+---
+const baseUrl = import.meta.env.BASE_URL;
+---
+<header class="hero" id="top">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <!-- Floating mockflow decoration — adapted from ad-nextjs-ui landingPage.tsx -->
+  <div class="mockflow-layer" aria-hidden="true">
+    <img src={`${baseUrl}images/landing-mockflow2.png`} alt="" class="mf mf1" />
+    <img src={`${baseUrl}images/landing-mockflow1.png`} alt="" class="mf mf2" />
+    <img src={`${baseUrl}images/landing-mockflow3.png`} alt="" class="mf mf3" />
+    <img src={`${baseUrl}images/landing-mockflow3.png`} alt="" class="mf mf4" />
+  </div>
+  <div class="container hero-inner">
+    <span class="hero-tag"><span class="dot"></span>NASA IMPACT · Public Release</span>
+
+    <h1>
+      Accelerated Knowledge Discovery:<br/>
+      <span class="accent">AI Agents for Science</span>
+    </h1>
+
+    <p class="lede">
+      A NASA IMPACT ecosystem for designing, building, validating, and deploying AI
+      agents for closed-loop scientific workflows. Human-in-the-loop oversight and
+      science guardrails are built in.
+    </p>
+
+  </div>
+</header>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 110px 0 90px;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(circle at 50% 30%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(circle at 50% 30%, #000 30%, transparent 75%);
+    z-index: 0;
+  }
+  .mockflow-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .mf {
+    position: absolute;
+    width: 200px;
+    opacity: 0.45;
+  }
+  .mf1 {
+    top: 8%;
+    left: -6%;
+    animation: fade-in-scale 6s ease-in-out infinite;
+  }
+  .mf2 {
+    bottom: -15%;
+    left: 14%;
+    animation: float 8s ease-in-out infinite 1s;
+  }
+  .mf3 {
+    top: -12%;
+    left: 52%;
+    animation: float 7s ease-in-out infinite;
+  }
+  .mf4 {
+    top: 42%;
+    right: -6%;
+    animation: float 5s ease-in-out infinite 0.6s;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 980px;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: var(--bg-0);
+    margin-bottom: 28px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .hero-tag .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 22px;
+  }
+  .hero h1 .accent {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero p.lede {
+    font-size: clamp(16px, 1.3vw, 19px);
+    color: var(--text-dim);
+    max-width: 720px;
+    margin-bottom: 0;
+  }
+
+</style>

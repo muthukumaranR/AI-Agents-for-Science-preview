@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import AkdRefLink from './AkdRefLink.astro';
+
+const workflows = (await getCollection('workflows'))
+  .sort((a, b) => (a.data.order - b.data.order) || a.data.name.localeCompare(b.data.name));
+
+const baseUrl = import.meta.env.BASE_URL;
+---
+{workflows.length > 0 && (
+  <section class="section" id="workflows">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">06 · Multi-Agent Workflows</span>
+        <h2>Chains of agents, with humans at the gates.</h2>
+        <p>
+          AKD workflows chain agents together into end-to-end research pipelines, with
+          explicit human approval gates between stages. Workflows are composed in
+          AKD Flow and run with full visibility into intermediate artifacts.
+        </p>
+      </div>
+      <div class="workflows-list">
+        {workflows.map((wf) => (
+          <article class="workflow-item card">
+            <h3><a class="card-title-link" href={`${baseUrl}workflows/${wf.slug}`}>{wf.data.name}</a></h3>
+            <p>{wf.data.tagline}</p>
+            {wf.data.agents.length > 0 && (
+              <ul class="agent-refs">
+                {wf.data.agents.map((a) => <li>{a}</li>)}
+              </ul>
+            )}
+            {wf.data.akdRef && (
+              <AkdRefLink kind={wf.data.akdRef.kind} path={wf.data.akdRef.path} />
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .workflows-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .workflow-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .workflow-item h3 {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    margin: 0;
+  }
+  .card-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+  .card-title-link:hover { color: var(--accent); }
+  .workflow-item p { font-size: 14px; margin: 0; flex: 1; }
+
+  .agent-refs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .agent-refs li {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px 10px;
+    background: var(--surface);
+  }
+
+  @media (max-width: 1024px) {
+    .workflows-list { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .workflows-list { grid-template-columns: 1fr; }
+  }
+</style>

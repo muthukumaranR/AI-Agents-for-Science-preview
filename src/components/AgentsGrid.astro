@@ -1,0 +1,129 @@
+---
+import { getCollection } from 'astro:content';
+import AkdRefLink from './AkdRefLink.astro';
+
+const agents = (await getCollection('agents'))
+  .sort((a, b) => (a.data.order - b.data.order) || a.data.name.localeCompare(b.data.name));
+
+const baseUrl = import.meta.env.BASE_URL;
+---
+{agents.length > 0 && (
+  <section class="section" id="agents">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">05 · Featured Agents</span>
+        <h2>Specialized decision-support agents.</h2>
+        <p>
+          Each AKD agent is a focused decision-support system designed under CARE,
+          built on AKD primitives, and protected by guardrails. Scientists remain in
+          the loop and approve every consequential step.
+        </p>
+      </div>
+      <div class="agents-grid">
+        {agents.map((agent) => (
+          <article class="card agent-card">
+            <h3><a class="card-title-link" href={`${baseUrl}agents/${agent.slug}`}>{agent.data.name}</a></h3>
+            <p class="tagline">{agent.data.tagline}</p>
+            {agent.data.tags.length > 0 && (
+              <ul class="tag-list">
+                {agent.data.tags.map((t) => <li>{t}</li>)}
+              </ul>
+            )}
+            <a class="agent-read-more" href={`${baseUrl}agents/${agent.slug}`}>
+              Details <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        ))}
+      </div>
+      <p class="disclaimer">
+        All agents operate as decision-support systems with explicit human-in-the-loop oversight.
+      </p>
+    </div>
+  </section>
+)}
+
+<style>
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .agent-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 200px;
+  }
+  .agent-card h3 {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    margin: 0;
+  }
+  .card-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+  .card-title-link:hover { color: var(--accent); }
+  .agent-card .tagline {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin: 0;
+    flex: 1;
+    line-height: 1.5;
+  }
+
+  .agent-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    padding-bottom: 2px;
+    align-self: flex-start;
+    margin-top: auto;
+    transition: border-bottom-color 0.18s ease;
+  }
+  .agent-read-more:hover {
+    border-bottom-color: var(--accent);
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .tag-list li {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px 10px;
+    background: var(--surface);
+  }
+
+  .disclaimer {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 1024px) {
+    .agents-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .agents-grid { grid-template-columns: 1fr; }
+  }
+</style>
