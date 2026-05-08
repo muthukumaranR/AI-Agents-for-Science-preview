@@ -14,7 +14,7 @@ const items = (await getCollection('governance'))
       </div>
       <div class="governance-grid">
         {items.map((item) => (
-          <article class="governance-card">
+          <article class="card governance-card">
             <h3>{item.data.title}</h3>
             <p>{item.data.summary}</p>
             {item.data.akdRef && (
@@ -35,32 +35,10 @@ const items = (await getCollection('governance'))
   }
 
   .governance-card {
-    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 28px 26px;
-    background: var(--bg-0);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
-    transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
-    overflow: hidden;
   }
-  .governance-card:hover {
-    border-color: var(--border-strong);
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07), 0 8px 24px rgba(0,0,0,0.07);
-  }
-  .governance-card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity: 0;
-    transition: opacity .25s ease;
-  }
-  .governance-card:hover::before { opacity: 0.35; }
   .governance-card h3 {
     font-family: var(--font-serif);
     font-size: 18px;

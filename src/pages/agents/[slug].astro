@@ -1,0 +1,151 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import AkdRefLink from '../../components/AkdRefLink.astro';
+
+export async function getStaticPaths() {
+  const agents = await getCollection('agents');
+  return agents.map((agent) => ({
+    params: { slug: agent.slug },
+    props: { agent },
+  }));
+}
+
+const { agent } = Astro.props;
+const { Content } = await agent.render();
+const baseUrl = import.meta.env.BASE_URL;
+---
+<Base
+  title={`${agent.data.name} · AI Agents for Science`}
+  description={agent.data.tagline}
+>
+  <Nav />
+  <main class="container detail-page">
+    <a class="back-link" href={`${baseUrl}#agents`}>← Back to Agents</a>
+
+    <header class="detail-hero">
+      <span class="eyebrow">Agent</span>
+      <h1>{agent.data.name}</h1>
+      <p class="lede">{agent.data.tagline}</p>
+      {(agent.data.designers.length > 0 || agent.data.developers.length > 0) && (
+        <div class="attribution">
+          {agent.data.designers.length > 0 && (
+            <p><strong>Designers:</strong> {agent.data.designers.join(', ')}</p>
+          )}
+          {agent.data.developers.length > 0 && (
+            <p><strong>Developers:</strong> {agent.data.developers.join(', ')}</p>
+          )}
+        </div>
+      )}
+    </header>
+
+    <p class="agent-description">{agent.data.description}</p>
+
+    {agent.data.tags.length > 0 && (
+      <ul class="tag-list">
+        {agent.data.tags.map((t) => <li>{t}</li>)}
+      </ul>
+    )}
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <footer class="detail-footer">
+      {agent.data.akdRef && (
+        <AkdRefLink kind={agent.data.akdRef.kind} path={agent.data.akdRef.path} />
+      )}
+      {agent.data.repo && (
+        <a class="akd-ref" href={agent.data.repo} target="_blank" rel="noopener">
+          Repository ↗
+        </a>
+      )}
+    </footer>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .detail-page {
+    padding: 60px 0 80px;
+    max-width: 800px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 32px;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    transition: color 0.18s ease;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .detail-hero { margin-bottom: 24px; }
+
+  .detail-hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin: 12px 0 16px;
+    color: var(--text);
+  }
+
+  .detail-hero .lede {
+    font-size: 20px;
+    color: var(--text-dim);
+    margin: 0 0 24px;
+  }
+
+  .attribution {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: 32px;
+    font-size: 14px;
+  }
+  .attribution p { margin: 0; color: var(--text-dim); }
+  .attribution strong { color: var(--text); }
+
+  .agent-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+  }
+  .tag-list li {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px 10px;
+    background: var(--surface);
+  }
+
+  .detail-footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+</style>
