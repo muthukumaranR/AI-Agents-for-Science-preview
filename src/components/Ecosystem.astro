@@ -42,6 +42,7 @@ export const ECOSYSTEM_AKD_REFS = [
           <li>Traditional Search Interface</li>
         </ul>
         <div class="stack-gov">
+          <span class="stack-gov-label">Example gate</span>
           <b>Security &amp; Public Use Policy Approval</b>
         </div>
       </div>
@@ -72,7 +73,10 @@ export const ECOSYSTEM_AKD_REFS = [
           <li>Notebook Registry</li>
           <li>Documents · Code Registry</li>
         </ul>
-        <div class="stack-gov"><b>Registry Approval Processes</b></div>
+        <div class="stack-gov">
+          <span class="stack-gov-label">Example gate</span>
+          <b>Registry Approval Processes</b>
+        </div>
       </div>
 
       <!-- Layer 4 -->
@@ -86,7 +90,10 @@ export const ECOSYSTEM_AKD_REFS = [
           <li>Agent Composition Engine</li>
           <li>Conversational RAG Engine</li>
         </ul>
-        <div class="stack-gov"><b>SME Approval</b></div>
+        <div class="stack-gov">
+          <span class="stack-gov-label">Example gate</span>
+          <b>SME Approval</b>
+        </div>
       </div>
 
       <!-- Layer 5 -->
@@ -104,7 +111,10 @@ export const ECOSYSTEM_AKD_REFS = [
           <li>Reusable Scientific Tools</li>
           <li>SDK APIs</li>
         </ul>
-        <div class="stack-gov"><b>Compliance &amp; Cost Checks</b></div>
+        <div class="stack-gov">
+          <span class="stack-gov-label">Example gate</span>
+          <b>Compliance &amp; Cost Checks</b>
+        </div>
       </div>
 
       <!-- Layer 6 -->
@@ -120,7 +130,10 @@ export const ECOSYSTEM_AKD_REFS = [
           <li>Code Repositories</li>
           <li>CARE-Designed Agents &amp; Tool Prompts</li>
         </ul>
-        <div class="stack-gov"><b>Access Control List</b></div>
+        <div class="stack-gov">
+          <span class="stack-gov-label">Example gate</span>
+          <b>Access Control List</b>
+        </div>
       </div>
 
       <!-- Layer 7 -->
@@ -250,6 +263,19 @@ export const ECOSYSTEM_AKD_REFS = [
     background: oklch(0.97 0.005 262.881);
   }
 
+  .stack-gov {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .stack-gov-label {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.85;
+  }
   .stack-gov b {
     font-family: var(--font-mono);
     font-size: 11px;
@@ -272,19 +298,33 @@ export const ECOSYSTEM_AKD_REFS = [
   }
 
 
-  /* ---- Responsive: ≤900px — governance wraps below components ---- */
+  /* ---- Responsive: ≤900px — governance becomes an in-card footer ---- */
   @media (max-width: 900px) {
     .stack-layer {
       grid-template-columns: 180px 1fr;
       grid-template-rows: auto auto;
     }
     .stack-gov {
-      grid-column: 2 / 3;
+      grid-column: 1 / -1;          /* span full card width — clearly footer of THIS card */
       grid-row: 2 / 3;
-      border-left: 3px solid var(--accent);
-      border-top: 1px solid var(--border);
-      background: oklch(0.97 0.005 262.881);
+      border-left: none;
+      border-top: 1px dashed var(--border);
+      background: oklch(0.985 0.003 262.881);
+      padding: 10px 16px;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
     }
+    .stack-gov-label {
+      font-size: 9px;
+      flex-shrink: 0;
+    }
+    .stack-gov-label::after {
+      content: "→";
+      margin-left: 6px;
+      color: var(--accent);
+    }
+    .stack-gov--empty .stack-gov-label { display: none; }
   }
 
   /* ---- Responsive: ≤640px — full vertical stack ---- */
@@ -311,9 +351,10 @@ export const ECOSYSTEM_AKD_REFS = [
       white-space: normal;
     }
     .stack-gov {
-      grid-column: 1 / 2;
+      grid-column: 1 / -1;
       grid-row: auto;
-      border-top: 1px solid var(--border);
+      border-top: 1px dashed var(--border);
+      padding: 10px 16px;
     }
   }
 </style>
