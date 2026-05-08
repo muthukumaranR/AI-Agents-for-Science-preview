@@ -13,6 +13,41 @@
       </p>
     </div>
 
+    <aside class="pathway-services" aria-label="AKD services available to teams">
+      <div class="services-head">
+        <span class="services-eyebrow">AKD services teams can use</span>
+        <p>
+          Available across every stage — at design time, while building, during review, and in production. Drop these into your agent instead of rebuilding from scratch.
+        </p>
+      </div>
+      <ul class="services-list">
+        <li>
+          <b>Granite Guardian</b>
+          <span>Foundation-model content moderation — jailbreak, harm, bias, plus RAG groundedness, relevance, and answer-relevance checks. Runs via Ollama.</span>
+        </li>
+        <li>
+          <b>Risk Agent</b>
+          <span>LLM-judge that evaluates outputs against the IBM Risk Atlas and the NASA-IMPACT Science Literature Risk taxonomy. Domain-aware risk classification.</span>
+        </li>
+        <li>
+          <b>FactReasoner</b>
+          <span>Targeted factuality reasoning over claims, attribution, and supporting evidence in agent outputs.</span>
+        </li>
+        <li>
+          <b>Reusable Scientific Tools</b>
+          <span>MCP-wrapped search, retrieval, and analysis tools agents compose instead of re-implementing.</span>
+        </li>
+        <li>
+          <b>Compliance Checking</b>
+          <span>Automated guardrail layer enforcing science-specific constraints on both inputs and outputs.</span>
+        </li>
+        <li>
+          <b>Science Guardrails (umbrella)</b>
+          <span>Defense-in-depth: layered input, intermediate-step, and output verification — not a single gate.</span>
+        </li>
+      </ul>
+    </aside>
+
     <div class="pathway-diagram" aria-label="Agent development pathways">
 
       <!-- Row 0: Common start -->
@@ -158,9 +193,72 @@
 </section>
 
 <style>
+  /* ---- AKD services panel (above the pathway) ---- */
+  .pathway-services {
+    margin-top: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 22px 24px 24px;
+    background: var(--bg-0);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+  }
+  .services-head {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .services-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .services-head p {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.55;
+  }
+  .services-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .services-list li {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .services-list b {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .services-list span {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  @media (max-width: 1024px) {
+    .services-list { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .services-list { grid-template-columns: 1fr; }
+  }
+
   /* ---- Layout skeleton ---- */
   .pathway-diagram {
-    margin-top: 24px;
+    margin-top: 32px;
     display: flex;
     flex-direction: column;
     gap: 0;
