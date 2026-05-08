@@ -10,152 +10,284 @@ export const ECOSYSTEM_AKD_REFS = [
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">05 · Software Ecosystem</span>
-      <h2>The AKD stack — from primitives to production.</h2>
+      <h2>AKD Enterprise Stack</h2>
       <p>
-        A coherent set of open-source libraries and platforms supporting the full
-        lifecycle: building primitives, extending with agent SDKs, benchmarking,
-        publishing, and orchestrating agents into production-ready workflows.
+        The full AKD architecture: seven layers from infrastructure up to user-facing
+        applications, with a governance lane running parallel — security, approvals,
+        SME review, and CARE design discipline are integrated at every layer rather
+        than bolted on at the end.
       </p>
     </div>
 
-    <div class="cards cards-3">
-      <article class="card eco-card">
-        <span class="tag">Meta Repo · Wiki</span>
-        <h3>AKD Suite</h3>
-        <p>
-          The top-level meta-repository and wiki for the AKD SDK. Combines the
-          multi-agent framework, workflow-oriented web product, and experimental
-          lab into a single ecosystem. The entry point for understanding how all
-          components fit together.
-        </p>
-        <a class="gh-link" href="https://github.com/NASA-IMPACT/akd-suite" target="_blank" rel="noopener">
-          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-          NASA-IMPACT/akd-suite
-        </a>
-      </article>
+    <div class="stack-diagram" aria-label="AKD Enterprise Stack with parallel governance lane">
 
-      <article class="card eco-card">
-        <span class="tag">Library · Python · Primitives</span>
-        <h3>AKD Core</h3>
-        <p>
-          Core Python library defining how AKD agents and tools are built. Provides
-          primitives for streaming workflows, human-in-the-loop pause points, planner
-          registries, guardrail protocols, and LLM-agnostic provider support.
-        </p>
-        <a class="gh-link" href="https://github.com/NASA-IMPACT/akd-core" target="_blank" rel="noopener">
-          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-          NASA-IMPACT/akd-core
-        </a>
-      </article>
+      <!-- Layer 1 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L1</span>
+          <span class="stack-layer-name">Application Components</span>
+          <span class="stack-layer-sub">AKD SDK</span>
+        </div>
+        <ul class="stack-components">
+          <li>Agent Test &amp; Validation Environment</li>
+          <li>Agentic Apps (e.g., AKD UI)</li>
+          <li>AI Conversational Search · RAG Chatbots</li>
+          <li>Traditional Search Interface</li>
+        </ul>
+        <div class="stack-gov">
+          <b>Security &amp; Public Use Policy Approval</b>
+        </div>
+      </div>
 
-      <article class="card eco-card">
-        <span class="tag">Library · Python · Domain Agents</span>
-        <h3>AKD Ext</h3>
-        <p>
-          Extension layer for domain agents and tools. Provides MCP glue, automatic
-          tool conversion, hosted MCP integration, file attachment support, and
-          published domain agents for Earth science, astrophysics, code search,
-          and more.
-        </p>
-        <a class="gh-link" href="https://github.com/NASA-IMPACT/akd-ext" target="_blank" rel="noopener">
-          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-          NASA-IMPACT/akd-ext
-        </a>
-      </article>
+      <!-- Layer 2 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L2</span>
+          <span class="stack-layer-name">Auth &amp; Authorization</span>
+        </div>
+        <ul class="stack-components">
+          <li>Authentication / SSO</li>
+          <li>Quota Management</li>
+          <li>Access Control (Authorization)</li>
+        </ul>
+        <div class="stack-gov"><b>Budget Approvals</b></div>
+      </div>
 
-      <article class="card eco-card">
-        <span class="tag">Platform · Production</span>
-        <h3>AKD Flow</h3>
-        <p>
-          Public multi-agent workflow product at <strong>flow.akd.odsi.io</strong>. Users plan,
-          run, review, and share agent-based research workflows through a natural-language
-          planner and a visual workflow canvas — with streaming updates and guardrail badges.
-        </p>
-        <a class="gh-link" href="https://github.com/NASA-IMPACT/akd/tree/main/flow" target="_blank" rel="noopener">
-          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-          NASA-IMPACT/akd · flow
-        </a>
-      </article>
+      <!-- Layer 3 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L3</span>
+          <span class="stack-layer-name">Search &amp; Discovery</span>
+        </div>
+        <ul class="stack-components">
+          <li>Agent Registry</li>
+          <li>Tools Registry</li>
+          <li>Notebook Registry</li>
+          <li>Documents · Code Registry</li>
+        </ul>
+        <div class="stack-gov"><b>Registry Approval Processes</b></div>
+      </div>
 
-      <article class="card eco-card">
-        <span class="tag">Platform · Dev &amp; Benchmarking</span>
-        <h3>AKD Labs</h3>
-        <p>
-          Multi-tenant development and benchmarking environment at <strong>labs.akd.odsi.io</strong>.
-          Teams build, debug, test, and validate experimental agents before publishing
-          them to AKD Flow. Includes full trace logs and a benchmark runner.
-        </p>
-        <a class="gh-link" href="https://github.com/NASA-IMPACT/akd-labs" target="_blank" rel="noopener">
-          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-          NASA-IMPACT/akd-labs
-        </a>
-      </article>
+      <!-- Layer 4 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L4</span>
+          <span class="stack-layer-name">Agentic Layer</span>
+        </div>
+        <ul class="stack-components">
+          <li>Agentic (LLM + Tools) Engine</li>
+          <li>Agent Composition Engine</li>
+          <li>Conversational RAG Engine</li>
+        </ul>
+        <div class="stack-gov"><b>SME Approval</b></div>
+      </div>
 
-      <article class="card eco-card">
-        <span class="tag">Library · Trust &amp; Safety</span>
-        <h3>Guardrails</h3>
-        <p>
-          Reusable input/output safety providers: IBM Granite Guardian for content
-          moderation (jailbreak, bias, RAG-specific checks via Ollama) and the Risk
-          Agent — an LLM-judge evaluating outputs against the IBM Risk Atlas and a
-          NASA-IMPACT Science Literature Risk taxonomy.
-        </p>
-        <a class="gh-link" href="https://github.com/NASA-IMPACT/akd/tree/main/guardrails" target="_blank" rel="noopener">
-          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-          NASA-IMPACT/akd · guardrails
-        </a>
-      </article>
+      <!-- Layer 5 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L5</span>
+          <span class="stack-layer-name">Services</span>
+          <span class="stack-layer-sub">APIs</span>
+        </div>
+        <ul class="stack-components">
+          <li>JupyterHub</li>
+          <li>LLM Inference (Ollama · Bedrock · vLLM)</li>
+          <li>AI Sandbox (e.g., E2B.dev)</li>
+          <li>Scientific Guardrails for AI (Factuality · Compliance)</li>
+          <li>Reusable Scientific Tools</li>
+          <li>SDK APIs</li>
+        </ul>
+        <div class="stack-gov"><b>Cost Calculator</b></div>
+      </div>
+
+      <!-- Layer 6 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L6</span>
+          <span class="stack-layer-name">Science Artifacts &amp; KB</span>
+        </div>
+        <ul class="stack-components">
+          <li>Notebooks</li>
+          <li>Documents</li>
+          <li>Metadata</li>
+          <li>Code Repositories</li>
+          <li>CARE-Designed Agents &amp; Tool Prompts</li>
+        </ul>
+        <div class="stack-gov"><b>Access Control List</b></div>
+      </div>
+
+      <!-- Layer 7 -->
+      <div class="stack-layer">
+        <div class="stack-layer-label">
+          <span class="stack-layer-num">L7</span>
+          <span class="stack-layer-name">Infrastructure</span>
+        </div>
+        <ul class="stack-components">
+          <li>NASA Science Cloud</li>
+          <li>On-Prem (FM Models &amp; Inferencing)</li>
+          <li>Personal Cloud</li>
+        </ul>
+        <div class="stack-gov"><b>CARE Design Process &amp; Benchmarks</b></div>
+      </div>
+
     </div>
+
+    <p class="stack-credit">Figure credit: Ajinkya Kulkarni</p>
   </div>
 </section>
 
 <style>
-  .cards {
-    display: grid;
-    gap: 18px;
-  }
-  .cards-3 { grid-template-columns: repeat(3, 1fr); }
-
-  .card p { font-size: 14.5px; line-height: 1.6; }
-
-  .eco-card {
+  /* ---- Stack diagram outer container ---- */
+  .stack-diagram {
+    margin-top: 28px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 8px;
   }
-  .eco-card .tag {
+
+  /* ---- Each row: label | components | governance ---- */
+  .stack-layer {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 0;
+    align-items: stretch;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--bg-0);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+    overflow: hidden;
+  }
+
+  /* ---- Layer label column ---- */
+  .stack-layer-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding: 16px 18px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+  }
+
+  .stack-layer-num {
     font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.18em;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent);
   }
-  .eco-card h3 {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    font-size: 22px;
-    margin: 0;
-  }
-  .eco-card p { font-size: 14.5px; margin: 0; flex: 1; }
 
-  .gh-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+  .stack-layer-name {
     font-family: var(--font-mono);
     font-size: 12px;
-    color: var(--accent);
-    border-top: 1px solid var(--border);
-    padding-top: 14px;
-    transition: color .2s ease;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    line-height: 1.35;
   }
-  .gh-link:hover { color: var(--text); }
-  .gh-link svg { width: 14px; height: 14px; }
 
-  @media (max-width: 1024px) {
-    .cards-3 { grid-template-columns: repeat(2, 1fr); }
+  .stack-layer-sub {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 2px;
   }
-  @media (max-width: 720px) {
-    .cards-3 { grid-template-columns: 1fr; }
+
+  /* ---- Components list column ---- */
+  .stack-components {
+    list-style: none;
+    margin: 0;
+    padding: 14px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+  }
+
+  .stack-components li {
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 4px 10px;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  /* ---- Governance touchpoint column ---- */
+  .stack-gov {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-left: 3px solid var(--accent);
+    background: oklch(0.97 0.005 262.881);
+  }
+
+  .stack-gov b {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--accent-4);
+    line-height: 1.45;
+  }
+
+  /* ---- Figure credit ---- */
+  .stack-credit {
+    margin-top: 14px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* ---- Responsive: ≤900px — governance wraps below components ---- */
+  @media (max-width: 900px) {
+    .stack-layer {
+      grid-template-columns: 180px 1fr;
+      grid-template-rows: auto auto;
+    }
+    .stack-gov {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      border-left: 3px solid var(--accent);
+      border-top: 1px solid var(--border);
+      background: oklch(0.97 0.005 262.881);
+    }
+  }
+
+  /* ---- Responsive: ≤640px — full vertical stack ---- */
+  @media (max-width: 640px) {
+    .stack-layer {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+    }
+    .stack-layer-label {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+    }
+    .stack-layer-sub {
+      margin-top: 0;
+    }
+    .stack-components {
+      padding: 12px 16px;
+    }
+    .stack-components li {
+      white-space: normal;
+    }
+    .stack-gov {
+      grid-column: 1 / 2;
+      grid-row: auto;
+      border-top: 1px solid var(--border);
+    }
   }
 </style>

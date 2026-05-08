@@ -7,9 +7,9 @@
       <h2>Pathways teams can take</h2>
       <p>
         AKD supports two parallel development pathways depending on whether an agent needs
-        custom tools, APIs, or integrations. Both begin with the CARE design methodology and
-        converge at AKD Flow, where published agents are composed into multi-agent workflows
-        for scientists.
+        custom tools, APIs, or integrations. Both begin with the CARE design methodology.
+        Approved agents are distributed across multiple endpoints — Flow, Custom GPT directory,
+        community MCP servers, and the akd-ext open-source repo — not just one.
       </p>
     </div>
 
@@ -103,23 +103,53 @@
         </div>
       </div>
 
-      <!-- Row 2: Convergence -->
+      <!-- Row 2: Distribution endpoints -->
       <div class="pathway-row pathway-row--end">
         <div class="merge-indicator" aria-hidden="true">
           <span class="fork-line fork-line--left"></span>
-          <span class="fork-node">↓ converge</span>
+          <span class="fork-node">↓ distribute</span>
           <span class="fork-line fork-line--right"></span>
         </div>
-        <div class="pipe-step pipe-step--featured">
-          <span>Final Stage · All Paths</span>
-          <b>Multi-Agent Workflows</b>
-          <p class="pipe-desc">
-            Published agents from both pathways become composable nodes in the AKD Flow
-            workflow canvas. Scientists use the natural-language planner to assemble
-            multi-agent pipelines, run workflows with streaming updates and guardrail
-            badges, and share reproducible results.
-          </p>
-          <a class="pipe-link" href="https://flow.akd.odsi.io" target="_blank" rel="noopener">flow.akd.odsi.io ↗</a>
+        <div class="endpoints-grid">
+          <div class="pipe-step pipe-step--endpoint">
+            <span class="endpoint-tag">Endpoint</span>
+            <b>AKD Flow Workflows</b>
+            <p class="pipe-desc">
+              Composed multi-agent pipelines on the AKD Flow canvas — scientists
+              assemble approved agents, run workflows with streaming updates and
+              guardrail badges, and share reproducible results.
+            </p>
+            <a class="pipe-link" href="https://flow.akd.odsi.io" target="_blank" rel="noopener">flow.akd.odsi.io ↗</a>
+          </div>
+          <div class="pipe-step pipe-step--endpoint">
+            <span class="endpoint-tag">Endpoint</span>
+            <b>Custom GPT Directory</b>
+            <p class="pipe-desc">
+              Tool-independent agents published directly as Custom GPTs using the
+              CARE-developed system prompt — no custom code required. Examples:
+              Scientific Illustrator, Paper Writing Assistant, Data Governance Agent.
+            </p>
+            <a class="pipe-link" href="https://github.com/NASA-IMPACT/akd-suite/tree/main/agents" target="_blank" rel="noopener">agents/ ↗</a>
+          </div>
+          <div class="pipe-step pipe-step--endpoint">
+            <span class="endpoint-tag">Endpoint</span>
+            <b>Community MCP Servers</b>
+            <p class="pipe-desc">
+              Teams hosting their own MCP servers with agents that integrate via the
+              AKD framework. Community-contributed agents are governed by the same
+              CARE and SME-review process as first-party agents.
+            </p>
+          </div>
+          <div class="pipe-step pipe-step--endpoint">
+            <span class="endpoint-tag">Endpoint</span>
+            <b>akd-ext Open-Source Repo</b>
+            <p class="pipe-desc">
+              Published agent code on GitHub — available for forking, peer review,
+              and integration into other projects. The canonical reference for
+              tool-integrated domain agents across the AKD ecosystem.
+            </p>
+            <a class="pipe-link" href="https://github.com/NASA-IMPACT/akd-suite/tree/main/akd-ext" target="_blank" rel="noopener">akd-ext ↗</a>
+          </div>
         </div>
       </div>
 
@@ -280,7 +310,40 @@
     color: var(--accent-4);
   }
 
+  /* ---- Distribution endpoints grid ---- */
+  .endpoints-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    width: 100%;
+  }
+
+  .pipe-step--endpoint {
+    border-color: var(--border-strong);
+  }
+  .pipe-step--endpoint::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.4;
+  }
+
+  .endpoint-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
   /* ---- Responsive ---- */
+  @media (max-width: 1100px) {
+    .endpoints-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
   @media (max-width: 860px) {
     .pathway-row--branches {
       grid-template-columns: 1fr;
@@ -292,6 +355,11 @@
     .fork-indicator,
     .merge-indicator {
       max-width: 100%;
+    }
+  }
+  @media (max-width: 580px) {
+    .endpoints-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
