@@ -3,16 +3,35 @@ import { getEntry } from 'astro:content';
 
 const entry = await getEntry('pages', 'care');
 if (!entry) throw new Error('Missing pages/care content entry');
-const { Content } = await entry.render();
+const baseUrl = import.meta.env.BASE_URL;
 ---
 <section class="section care" id="care">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">03 · Methodology</span>
       <h2>{entry.data.title}</h2>
+      <p>{entry.data.description}</p>
     </div>
-    <div class="prose">
-      <Content />
-    </div>
+    <a class="read-more" href={`${baseUrl}care/`}>
+      Read the full methodology <span aria-hidden="true">→</span>
+    </a>
   </div>
 </section>
+
+<style>
+  .read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    padding-bottom: 2px;
+    transition: border-bottom-color 0.18s ease;
+  }
+  .read-more:hover {
+    border-bottom-color: var(--accent);
+  }
+</style>

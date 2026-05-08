@@ -33,34 +33,6 @@ const baseUrl = import.meta.env.BASE_URL;
       <a class="btn btn-ghost" href="#care">Learn CARE →</a>
     </div>
 
-    <div class="hero-meta" role="list">
-      <div role="listitem">
-        <div class="k">Methodology</div>
-        <div class="v">CARE</div>
-      </div>
-      <div role="listitem">
-        <div class="k">Pattern</div>
-        <div class="v">Closed-Loop</div>
-      </div>
-      <div role="listitem">
-        <div class="k">Oversight</div>
-        <div class="v">Human-in-the-Loop</div>
-      </div>
-      <div role="listitem">
-        <div class="k">Posture</div>
-        <div class="v">Open Science</div>
-      </div>
-    </div>
-
-    <!-- Open Project Banner -->
-    <aside class="open-banner" aria-label="Open project invitation">
-      <span class="pill">Open Project</span>
-      <p>
-        Explore the AI Agents for Science repository, contribute agents, review
-        documentation, and help build open, trustworthy AI infrastructure for science.
-      </p>
-      <a class="btn btn-primary" href="https://github.com/NASA-IMPACT/AI-Agents-for-Science" target="_blank" rel="noopener">Get Involved →</a>
-    </aside>
   </div>
 </header>
 
@@ -160,70 +132,4 @@ const baseUrl = import.meta.env.BASE_URL;
     margin-bottom: 40px;
   }
 
-  /* Stat strip under hero */
-  .hero-meta {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    margin-top: 24px;
-  }
-  .hero-meta div {
-    background: var(--bg-0);
-    padding: 18px 22px;
-  }
-  .hero-meta .k {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 6px;
-  }
-  .hero-meta .v {
-    font-family: var(--font-serif);
-    font-size: 18px;
-    color: var(--text);
-  }
-
-  /* Open Project banner */
-  .open-banner {
-    position: relative;
-    z-index: 1;
-    margin-top: 30px;
-    padding: 28px 32px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    background: var(--surface);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 24px;
-    align-items: center;
-  }
-  .open-banner .pill {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--bg-0);
-    background: var(--accent);
-    padding: 6px 12px;
-    border-radius: 999px;
-    white-space: nowrap;
-    font-weight: 600;
-  }
-  .open-banner p { color: var(--text); margin: 0; font-size: 15.5px; }
-  .open-banner :global(.btn) { white-space: nowrap; }
-
-  @media (max-width: 1024px) {
-    .hero-meta { grid-template-columns: repeat(2, 1fr); }
-    .open-banner { grid-template-columns: 1fr; text-align: left; }
-  }
-  @media (max-width: 720px) {
-    .hero-meta { grid-template-columns: 1fr; }
-  }
 </style>
