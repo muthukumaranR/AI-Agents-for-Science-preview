@@ -61,6 +61,7 @@
             implementation, and benchmarking — passing a stage gate at each step and
             producing reusable design artifacts before any code is written.
           </p>
+          <p class="gov-tag"><span>Governance:</span> CARE phase gates — joint SME / developer / agent approval at each phase</p>
           <a class="pipe-link" href="https://github.com/NASA-IMPACT/akd-suite/tree/main/akd-care" target="_blank" rel="noopener">akd-care ↗</a>
         </div>
         <div class="fork-indicator" aria-hidden="true">
@@ -84,6 +85,7 @@
               context documents, and select the model. No custom code required. Examples:
               Scientific Illustrator, Paper Writing Assistant, NASA Data Governance agent.
             </p>
+            <p class="gov-tag"><span>Governance:</span> Public-use policy approval; baseline guardrail prompt patterns embedded by CARE</p>
             <a class="pipe-link" href="https://github.com/NASA-IMPACT/akd-suite/tree/main/agents" target="_blank" rel="noopener">agents/ ↗</a>
           </div>
           <div class="branch-arrow" aria-hidden="true">↓</div>
@@ -100,6 +102,7 @@
               wrappers, MCP integrations, and API clients. Examples: Earth Science Data
               Search (CMR), Code Search, Astro Data Search.
             </p>
+            <p class="gov-tag"><span>Governance:</span> Tools whitelist; static MCP-server config; guardrail integration required</p>
             <a class="pipe-link" href="https://github.com/NASA-IMPACT/akd-suite/tree/main/akd-ext" target="_blank" rel="noopener">akd-ext ↗</a>
           </div>
           <div class="branch-arrow" aria-hidden="true">↓</div>
@@ -111,10 +114,11 @@
               system prompts and tool configurations, and run benchmarks against a
               prepared test suite. Experimental agents remain internal.
             </p>
+            <p class="gov-tag"><span>Governance:</span> Internal-only scope; benchmark thresholds enforced before review</p>
             <a class="pipe-link" href="https://labs.akd.odsi.io" target="_blank" rel="noopener">labs.akd.odsi.io ↗</a>
           </div>
           <div class="branch-arrow" aria-hidden="true">↓</div>
-          <div class="pipe-step">
+          <div class="pipe-step pipe-step--gov-gate">
             <span>Phase 4b</span>
             <b>SME Review Gate</b>
             <p class="pipe-desc">
@@ -122,6 +126,7 @@
               (non-prescriptive behavior, traceable reasoning), guardrail compliance, and
               benchmark results before promotion to Flow is approved.
             </p>
+            <p class="gov-tag gov-tag--strong"><span>Governance:</span> This stage <em>is</em> the gate — no agent reaches Flow without SME sign-off</p>
           </div>
           <div class="branch-arrow" aria-hidden="true">↓</div>
           <div class="pipe-step">
@@ -132,6 +137,7 @@
               repository, making them available in the workflow canvas for scientists
               to compose into multi-agent pipelines.
             </p>
+            <p class="gov-tag"><span>Governance:</span> Operational guardrails active in production; HITL checkpoints in every workflow run</p>
             <a class="pipe-link" href="https://flow.akd.odsi.io" target="_blank" rel="noopener">flow.akd.odsi.io ↗</a>
           </div>
           <div class="branch-arrow" aria-hidden="true">↓</div>
@@ -402,6 +408,35 @@
     margin-top: 4px;
     align-self: flex-start;
     transition: border-bottom-color 0.18s ease, color 0.18s ease;
+  }
+
+  /* ---- Governance tag inside each pipe-step ---- */
+  .gov-tag {
+    margin: 4px 0 0;
+    padding: 8px 10px;
+    border-left: 3px solid var(--accent);
+    background: oklch(0.97 0.005 262.881);
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-dim);
+  }
+  .gov-tag span {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-right: 4px;
+  }
+  .gov-tag--strong {
+    border-left-width: 4px;
+    background: oklch(0.95 0.012 262.881);
+    color: var(--text);
+    font-weight: 500;
+  }
+  .pipe-step--gov-gate {
+    border-left: 3px solid var(--accent);
   }
   .pipe-link:hover {
     border-bottom-color: var(--accent);

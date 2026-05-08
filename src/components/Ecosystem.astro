@@ -57,7 +57,7 @@ export const ECOSYSTEM_AKD_REFS = [
           <li>Quota Management</li>
           <li>Access Control (Authorization)</li>
         </ul>
-        <div class="stack-gov"><b>Budget Approvals</b></div>
+        <div class="stack-gov stack-gov--empty" aria-hidden="true">—</div>
       </div>
 
       <!-- Layer 3 -->
@@ -104,7 +104,7 @@ export const ECOSYSTEM_AKD_REFS = [
           <li>Reusable Scientific Tools</li>
           <li>SDK APIs</li>
         </ul>
-        <div class="stack-gov"><b>Cost Calculator</b></div>
+        <div class="stack-gov"><b>Compliance &amp; Cost Checks</b></div>
       </div>
 
       <!-- Layer 6 -->
@@ -134,7 +134,7 @@ export const ECOSYSTEM_AKD_REFS = [
           <li>On-Prem (FM Models &amp; Inferencing)</li>
           <li>Personal Cloud</li>
         </ul>
-        <div class="stack-gov"><b>CARE Design Process &amp; Benchmarks</b></div>
+        <div class="stack-gov stack-gov--empty" aria-hidden="true">—</div>
       </div>
 
     </div>
@@ -257,6 +257,18 @@ export const ECOSYSTEM_AKD_REFS = [
     letter-spacing: 0.04em;
     color: var(--accent-4);
     line-height: 1.45;
+  }
+
+  /* Empty governance cell — for layers where the layer itself is governance
+     (Auth) or no per-instance gate applies (Infra). Keeps the rail visually
+     consistent without forcing a fake gate label. */
+  .stack-gov--empty {
+    border-left-color: var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    justify-content: center;
   }
 
 
