@@ -4,6 +4,21 @@ import { getEntry } from 'astro:content';
 const entry = await getEntry('pages', 'care');
 if (!entry) throw new Error('Missing pages/care content entry');
 const baseUrl = import.meta.env.BASE_URL;
+
+const roles = [
+  {
+    label: 'Subject Matter Experts',
+    desc: 'Provide domain authority — surface nuanced constraints and validate scientific truth.',
+  },
+  {
+    label: 'Developers',
+    desc: 'Implementation authority — ensure tool realism, feasibility, and engineering rigor.',
+  },
+  {
+    label: 'Helper LLM Agents',
+    desc: 'Facilitation infrastructure — phase-aligned questions, drafted specs, proposed revisions.',
+  },
+];
 ---
 <section class="section care" id="care">
   <div class="container">
@@ -12,6 +27,26 @@ const baseUrl = import.meta.env.BASE_URL;
       <h2>{entry.data.title}</h2>
       <p>{entry.data.description}</p>
     </div>
+    <ul class="care-roles">
+      {roles.map((r) => (
+        <li>
+          <h3>{r.label}</h3>
+          <p>{r.desc}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="care-phases-line">
+      <span class="phases-eyebrow">Five phases</span>
+      <span>Scope &amp; Decompose</span>
+      <span aria-hidden="true">·</span>
+      <span>Key Information Elicitation</span>
+      <span aria-hidden="true">·</span>
+      <span>Reasoning Policy &amp; Guardrails</span>
+      <span aria-hidden="true">·</span>
+      <span>Implementation</span>
+      <span aria-hidden="true">·</span>
+      <span>Benchmarking &amp; Verification</span>
+    </p>
     <a class="read-more" href={`${baseUrl}care/`}>
       Read the full methodology <span aria-hidden="true">→</span>
     </a>
@@ -19,6 +54,52 @@ const baseUrl = import.meta.env.BASE_URL;
 </section>
 
 <style>
+  .care-roles {
+    list-style: none;
+    padding: 0;
+    margin: 36px 0 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .care-roles li {
+    padding: 22px 22px 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--bg-0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+  .care-roles h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 17px;
+    margin: 0 0 8px;
+    color: var(--text);
+  }
+  .care-roles p {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .care-phases-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin: 0 0 28px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .care-phases-line .phases-eyebrow {
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+
   .read-more {
     display: inline-flex;
     align-items: center;
@@ -33,5 +114,12 @@ const baseUrl = import.meta.env.BASE_URL;
   }
   .read-more:hover {
     border-bottom-color: var(--accent);
+  }
+
+  @media (max-width: 1024px) {
+    .care-roles { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .care-roles { grid-template-columns: 1fr; }
   }
 </style>

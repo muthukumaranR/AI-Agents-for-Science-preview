@@ -4,6 +4,21 @@ import { getEntry } from 'astro:content';
 const entry = await getEntry('pages', 'vision');
 if (!entry) throw new Error('Missing pages/vision content entry');
 const baseUrl = import.meta.env.BASE_URL;
+
+const objectives = [
+  {
+    label: 'Reclaim scientist time',
+    desc: 'Reduce friction on data wrangling so human intellect lands on hypothesis and analysis — where it matters most.',
+  },
+  {
+    label: 'Cross-disciplinary orchestration',
+    desc: 'Connect disparate science repositories and publications into a unified knowledge stream for researchers.',
+  },
+  {
+    label: 'Harmonized AI integration',
+    desc: 'A common AI Agent SDK with built-in science guardrails across NASA’s data systems and partner labs.',
+  },
+];
 ---
 <section class="section" id="vision">
   <div class="container">
@@ -12,6 +27,14 @@ const baseUrl = import.meta.env.BASE_URL;
       <h2>{entry.data.title}</h2>
       <p>{entry.data.description}</p>
     </div>
+    <ul class="vision-objectives">
+      {objectives.map((o) => (
+        <li>
+          <h3>{o.label}</h3>
+          <p>{o.desc}</p>
+        </li>
+      ))}
+    </ul>
     <a class="read-more" href={`${baseUrl}vision/`}>
       Read the full vision <span aria-hidden="true">→</span>
     </a>
@@ -19,6 +42,35 @@ const baseUrl = import.meta.env.BASE_URL;
 </section>
 
 <style>
+  .vision-objectives {
+    list-style: none;
+    padding: 0;
+    margin: 36px 0 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .vision-objectives li {
+    padding: 22px 22px 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--bg-0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+  .vision-objectives h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 17px;
+    margin: 0 0 8px;
+    color: var(--text);
+  }
+  .vision-objectives p {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.55;
+  }
+
   .read-more {
     display: inline-flex;
     align-items: center;
@@ -33,5 +85,12 @@ const baseUrl = import.meta.env.BASE_URL;
   }
   .read-more:hover {
     border-bottom-color: var(--accent);
+  }
+
+  @media (max-width: 1024px) {
+    .vision-objectives { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .vision-objectives { grid-template-columns: 1fr; }
   }
 </style>
