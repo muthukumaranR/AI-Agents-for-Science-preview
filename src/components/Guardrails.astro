@@ -34,25 +34,26 @@
       </div>
 
       <div class="guard-cards">
+        <p class="guard-cards-note">A non-exhaustive sample of guardrail components teams compose into agents — order is not prescriptive.</p>
         <div class="pill-card">
-          <h4>Granite Guardian</h4>
-          <p>Foundation-model-based safety checks integrated into the AKD guardrail layer.</p>
+          <h4>FactReasoner</h4>
+          <p>Targeted factuality reasoning over claims, attribution, and supporting evidence.</p>
+        </div>
+        <div class="pill-card">
+          <h4>Defense-in-Depth</h4>
+          <p>Layered checks across input, intermediate steps, and output — not a single gate.</p>
         </div>
         <div class="pill-card">
           <h4>Risk Agent</h4>
           <p>Reasoning component that classifies and explains risks in agent outputs.</p>
         </div>
         <div class="pill-card">
-          <h4>FactReasoner</h4>
-          <p>Targeted factuality reasoning over claims, attribution, and supporting evidence.</p>
-        </div>
-        <div class="pill-card">
           <h4>NASA Science-Specific Risk Taxonomy</h4>
           <p>Domain-aware risk categories tailored to scientific contexts and agent failure modes.</p>
         </div>
         <div class="pill-card">
-          <h4>Defense-in-Depth</h4>
-          <p>Layered checks across input, intermediate steps, and output — not a single gate.</p>
+          <h4>Granite Guardian</h4>
+          <p>Foundation-model-based safety checks integrated into the AKD guardrail layer.</p>
         </div>
       </div>
     </div>
@@ -104,6 +105,14 @@
   }
   .guard-cards {
     display: grid; gap: 14px;
+  }
+  .guard-cards-note {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    margin: 0 0 4px;
+    line-height: 1.5;
   }
   .guard-cards .pill-card {
     border: 1px solid var(--border);
