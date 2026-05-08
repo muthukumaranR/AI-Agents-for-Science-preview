@@ -18,6 +18,10 @@ const objectives = [
     label: 'Harmonized AI integration',
     desc: 'A common AI Agent SDK with built-in science guardrails across NASA’s data systems and partner labs.',
   },
+  {
+    label: 'Teams, community, and open source',
+    desc: 'Components are open-sourced and shared across organizations — agents, tools, guardrails, and workflows are composed by colleagues, peer-reviewed by community contributors, and reused across teams.',
+  },
 ];
 ---
 <section class="section" id="vision">
@@ -26,16 +30,6 @@ const objectives = [
       <span class="eyebrow">01 · Vision</span>
       <h2>{entry.data.title}</h2>
       <p>{entry.data.description}</p>
-    </div>
-
-    <div class="vision-team-callout" aria-label="Ecosystem built for teams, community, and open collaboration">
-      <span class="callout-tag">Teams · community · open source</span>
-      <p>
-        AKD is built for teams. Components are open-sourced and shared across
-        organizations — agents, tools, guardrails, and workflows are composed
-        by colleagues, peer-reviewed by community contributors, and reused
-        across teams rather than maintained as personal artifacts.
-      </p>
     </div>
 
     <ul class="vision-objectives">
@@ -53,42 +47,12 @@ const objectives = [
 </section>
 
 <style>
-  .vision-team-callout {
-    margin-top: 28px;
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: var(--radius-md);
-    padding: 18px 22px 20px;
-    background: oklch(0.98 0.008 262.881);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 14px;
-  }
-  .callout-tag {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    flex-shrink: 0;
-  }
-  .vision-team-callout p {
-    margin: 0;
-    font-size: 14.5px;
-    line-height: 1.6;
-    color: var(--text);
-    flex: 1;
-    min-width: 280px;
-  }
-
   .vision-objectives {
     list-style: none;
     padding: 0;
-    margin: 28px 0 28px;
+    margin: 36px 0 28px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 18px;
   }
   .vision-objectives li {
@@ -128,10 +92,10 @@ const objectives = [
     border-bottom-color: var(--accent);
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1100px) {
     .vision-objectives { grid-template-columns: repeat(2, 1fr); }
   }
-  @media (max-width: 720px) {
+  @media (max-width: 600px) {
     .vision-objectives { grid-template-columns: 1fr; }
   }
 </style>
