@@ -11,29 +11,33 @@ const baseUrl = import.meta.env.BASE_URL;
     <img src={`${baseUrl}images/landing-mockflow3.png`} alt="" class="mf mf4" />
   </div>
   <div class="container hero-inner">
-    <span class="hero-tag"><span class="dot"></span>NASA IMPACT · Public Release</span>
+    <div class="hero-cols">
+      <div class="hero-headline">
+        <span class="hero-tag"><span class="dot"></span>NASA IMPACT · Public Release</span>
+        <h1>
+          Accelerated Knowledge Discovery:<br/>
+          <span class="accent">AI Agents for Science</span>
+        </h1>
+      </div>
 
-    <h1>
-      Accelerated Knowledge Discovery:<br/>
-      <span class="accent">AI Agents for Science</span>
-    </h1>
-
-    <p class="lede">
-      Accelerated Knowledge Discovery (AKD) enhances the role of artificial
-      intelligence (AI) capabilities in scientific workflows from a basic utility
-      to a full cognitive partner. By integrating specialized AI Agents into
-      scientific processes, AKD aims to enable a <strong>Closed-Loop Scientific
-      Workflow (CLSW)</strong> in which AI helps scientists to reason through
-      various stages of a scientific workflow to accelerate the pace of science
-      itself.
-    </p>
-    <p class="lede">
-      The <strong>AI Agents for Science</strong> initiative aspires to design
-      and develop a thriving ecosystem of harmonized agentic AI components to
-      broadly support science communities via open collaborations and
-      contributions.
-    </p>
-
+      <div class="hero-body">
+        <p class="lede">
+          Accelerated Knowledge Discovery (AKD) enhances the role of artificial
+          intelligence (AI) capabilities in scientific workflows from a basic utility
+          to a full cognitive partner. By integrating specialized AI Agents into
+          scientific processes, AKD aims to enable a <strong>Closed-Loop Scientific
+          Workflow (CLSW)</strong> in which AI helps scientists to reason through
+          various stages of a scientific workflow to accelerate the pace of science
+          itself.
+        </p>
+        <p class="lede">
+          The <strong>AI Agents for Science</strong> initiative aspires to design
+          and develop a thriving ecosystem of harmonized agentic AI components to
+          broadly support science communities via open collaborations and
+          contributions.
+        </p>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -90,8 +94,25 @@ const baseUrl = import.meta.env.BASE_URL;
   .hero-inner {
     position: relative;
     z-index: 1;
-    max-width: 980px;
+    max-width: var(--maxw);
   }
+
+  /* Two-column grid: h1 gets more horizontal space than the lede */
+  .hero-cols {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .hero-headline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-body {
+    padding-top: 8px;
+  }
+
   .hero-tag {
     display: inline-flex;
     align-items: center;
@@ -105,7 +126,7 @@ const baseUrl = import.meta.env.BASE_URL;
     text-transform: uppercase;
     color: var(--text-dim);
     background: var(--bg-0);
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.04);
   }
   .hero-tag .dot {
@@ -117,24 +138,33 @@ const baseUrl = import.meta.env.BASE_URL;
   .hero h1 {
     font-family: var(--font-serif);
     font-weight: 400;
-    font-size: clamp(34px, 4.2vw, 56px);
-    line-height: 1.08;
+    font-size: clamp(36px, 4.6vw, 64px);
+    line-height: 1.05;
     letter-spacing: -0.02em;
-    margin: 0 0 18px;
+    margin: 0;
   }
   .hero h1 .accent {
     font-style: italic;
     color: var(--accent);
   }
   .hero p.lede {
-    font-size: clamp(15px, 1.1vw, 17px);
-    line-height: 1.55;
+    font-size: clamp(15px, 1.05vw, 16.5px);
+    line-height: 1.6;
     color: var(--text-dim);
-    max-width: 760px;
-    margin: 0 0 12px;
+    margin: 0 0 14px;
   }
   .hero p.lede:last-of-type {
     margin-bottom: 0;
   }
 
+  /* Stack to single column on narrow viewports */
+  @media (max-width: 920px) {
+    .hero-cols {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .hero-body {
+      padding-top: 0;
+    }
+  }
 </style>
