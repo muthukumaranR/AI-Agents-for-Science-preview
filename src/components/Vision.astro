@@ -5,22 +5,31 @@ const entry = await getEntry('pages', 'vision');
 if (!entry) throw new Error('Missing pages/vision content entry');
 const baseUrl = import.meta.env.BASE_URL;
 
-const objectives = [
+const pillars = [
   {
-    label: 'Reclaim scientist time',
-    desc: 'Reduce friction on data wrangling so human intellect lands on hypothesis and analysis — where it matters most.',
+    n: 1,
+    label: 'Co-design from the start',
+    desc: 'Using the CARE methodology, triadic collaboration is fostered among developers, scientists, and AI agents to ensure every tool is scientifically grounded and technically sound.',
   },
   {
-    label: 'Cross-disciplinary orchestration',
-    desc: 'Connect disparate science repositories and publications into a unified knowledge stream for researchers.',
+    n: 2,
+    label: 'Demystify the agent',
+    desc: 'The Software Development Kit (SDK) allows any user to design, build, and share ideas through accessible platforms like AKD Labs — lowering the barrier to entry for the entire community.',
   },
   {
-    label: 'Harmonized AI integration',
-    desc: 'A common AI Agent SDK with built-in science guardrails across NASA’s data systems and partner labs.',
+    n: 3,
+    label: 'Provide science guardrails',
+    desc: 'To ensure safety and integrity, specialized Risk Agents are integrated to provide a "defense-in-depth" safety net against hallucinations and ethical risks.',
   },
   {
-    label: 'Teams, community, and open source',
-    desc: 'Components are open-sourced and shared across organizations — agents, tools, guardrails, and workflows are composed by colleagues, peer-reviewed by community contributors, and reused across teams.',
+    n: 4,
+    label: 'Standardize the process',
+    desc: 'Agent development is consistent, reproducible, and scalable because design processes are vetted by members of the scientific community.',
+  },
+  {
+    n: 5,
+    label: 'Build a collaborative community',
+    desc: 'By creating an open ecosystem, agents evolve and improve through shared contributions, ultimately accelerating the pace of science for everyone.',
   },
 ];
 ---
@@ -28,18 +37,25 @@ const objectives = [
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">01 · Vision</span>
-      <h2>{entry.data.title}</h2>
-      <p>{entry.data.description}</p>
+      <h2>Building AI Agents for Science</h2>
+      <p>
+        Accelerated Knowledge Discovery (AKD) drives this transformation through
+        five strategic pillars — each mapping to a working component of the
+        ecosystem, from design methodology to deployed agents to community
+        contribution.
+      </p>
     </div>
 
-    <ul class="vision-objectives">
-      {objectives.map((o) => (
+    <ul class="vision-pillars">
+      {pillars.map((p) => (
         <li>
-          <h3>{o.label}</h3>
-          <p>{o.desc}</p>
+          <span class="pillar-num">Pillar {p.n}</span>
+          <h3>{p.label}</h3>
+          <p>{p.desc}</p>
         </li>
       ))}
     </ul>
+
     <a class="read-more" href={`${baseUrl}vision/`}>
       Read the full vision <span aria-hidden="true">→</span>
     </a>
@@ -47,30 +63,41 @@ const objectives = [
 </section>
 
 <style>
-  .vision-objectives {
+  .vision-pillars {
     list-style: none;
     padding: 0;
     margin: 36px 0 28px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 18px;
   }
-  .vision-objectives li {
-    padding: 22px 22px 24px;
+  .vision-pillars li {
+    padding: 18px 20px 22px;
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     background: var(--bg-0);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
-  .vision-objectives h3 {
+  .pillar-num {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .vision-pillars h3 {
     font-family: var(--font-serif);
     font-weight: 500;
-    font-size: 17px;
-    margin: 0 0 8px;
+    font-size: 16.5px;
+    margin: 0 0 4px;
     color: var(--text);
+    line-height: 1.25;
   }
-  .vision-objectives p {
-    font-size: 14px;
+  .vision-pillars p {
+    font-size: 13.5px;
     color: var(--text-dim);
     margin: 0;
     line-height: 1.55;
@@ -90,12 +117,5 @@ const objectives = [
   }
   .read-more:hover {
     border-bottom-color: var(--accent);
-  }
-
-  @media (max-width: 1100px) {
-    .vision-objectives { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 600px) {
-    .vision-objectives { grid-template-columns: 1fr; }
   }
 </style>
