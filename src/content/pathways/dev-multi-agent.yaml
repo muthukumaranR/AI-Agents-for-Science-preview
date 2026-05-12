@@ -15,6 +15,7 @@ steps:
   - b3-orch
   - readiness-review
   - flow-ui
+  - flow-integrations
   - ep-flow
 services:
   - svc-tools

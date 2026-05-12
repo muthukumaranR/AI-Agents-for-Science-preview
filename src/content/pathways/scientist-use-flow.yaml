@@ -8,6 +8,7 @@ persona: scientist
 goal: use-flow
 steps:
   - flow-ui
+  - flow-integrations
   - ep-flow
 services: []
 order: 40

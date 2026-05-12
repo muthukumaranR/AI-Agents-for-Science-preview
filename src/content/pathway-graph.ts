@@ -11,6 +11,7 @@ export type Row =
   | 'branch-3'
   | 'gate'
   | 'flow-ui'
+  | 'flow-sub'
   | 'endpoints';
 
 export interface Step {
@@ -81,10 +82,10 @@ export const STEPS = [
   },
   {
     id: 'b2-akdext',
-    label: '2 · Tool-Enabled Agent → akd-ext Implementation',
-    sublabel: 'Build the agent in our open-source akd-ext repo: write tool wrappers, MCP integrations, and API clients so the agent can search data, run code, or call external systems.',
+    label: '2 · Tool-Enabled Agent → Build in Agent Toolkit',
+    sublabel: 'Implement the agent in our open-source Agent Toolkit (akd-ext): write tool wrappers, MCP integrations, and API clients so the agent can search data, run code, or call external systems.',
     description:
-      'More complex agents require external tools, APIs, or data systems for execution along with rigorous prompt design and reasoning. Implement the agent in akd-ext: author tool wrappers, MCP integrations, and API clients. Examples: Earth Science Data Search (CMR), Code Search, Astro Data Search.',
+      'More complex agents require external tools, APIs, or data systems for execution along with rigorous prompt design and reasoning. Implement the agent in the Agent Toolkit (akd-ext): author tool wrappers, MCP integrations, and API clients. Examples: Earth Science Data Search (CMR), Code Search, Astro Data Search.',
     row: 'branch-2',
     governance: 'Tools whitelist; static MCP-server config; guardrail integration required',
     link: { href: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/akd-ext', label: 'akd-ext ↗' },
@@ -128,6 +129,14 @@ export const STEPS = [
     link: { href: 'https://flow.akd.odsi.io', label: 'flow.akd.odsi.io ↗' },
   },
   {
+    id: 'flow-integrations',
+    label: 'Integrated Chatbots',
+    sublabel: 'Agents surfaced as chatbots inside the tools scientists already use — Teams, Slack, ChatGSFC, and other NASA collaboration platforms.',
+    description:
+      'Once an agent is in production, it can be surfaced as an integrated chatbot inside existing platforms — Microsoft Teams, Slack, ChatGSFC, and other NASA collaboration tools — bringing agent capabilities directly into scientist workflows without forcing them to switch applications. Same approved agent, multiple surfaces.',
+    row: 'flow-sub',
+  },
+  {
     id: 'ep-flow',
     label: 'AKD Flow Workflows',
     sublabel: 'Composed multi-agent pipelines at flow.akd.odsi.io. Scientists run them with streaming updates and guardrail badges.',
@@ -152,9 +161,9 @@ export const STEPS = [
   },
   {
     id: 'ep-repo',
-    label: 'akd-ext Open-Source Repo',
-    sublabel: 'Published agent code on GitHub — available for forking, peer review, and reuse by other teams.',
-    description: 'Published agent code on GitHub — available for forking, peer review, and integration into other projects. The canonical reference for tool-integrated domain agents across the AKD ecosystem.',
+    label: 'Agent Toolkit (akd-ext)',
+    sublabel: 'The open-source toolkit and reference agents — available for forking, peer review, and reuse by other science teams.',
+    description: 'The open-source Agent Toolkit (akd-ext) on GitHub — agent SDK, tool wrappers, MCP integration helpers, and published reference agents. Available for forking, peer review, and integration into other projects. The canonical reference for tool-integrated domain agents across the AKD ecosystem.',
     row: 'endpoints',
     link: { href: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/akd-ext', label: 'akd-ext ↗' },
   },
@@ -202,6 +211,7 @@ export const GOALS = [
   { id: 'ship-custom-gpt', label: 'Ship a Custom GPT' },
   { id: 'build-tool-agent', label: 'Build a tool-using agent' },
   { id: 'compose-multi-agent', label: 'Compose a multi-agent workflow' },
+  { id: 'host-mcp-server', label: 'Host a Community MCP server' },
   { id: 'guardrails-as-service', label: 'Add guardrails as a service' },
   { id: 'use-flow', label: 'Use Flow — run or compose workflows' },
   { id: 'stand-up-platform', label: 'Stand up an end-to-end platform' },
@@ -213,6 +223,7 @@ export type PathSlug =
   | 'dev-ship-gpt'
   | 'dev-tool-agent'
   | 'dev-multi-agent'
+  | 'sysdev-mcp'
   | 'scientist-use-flow'
   | 'guardrails-service'
   | 'pm-platform'
@@ -224,6 +235,7 @@ export const MATRIX: Record<PersonaId, Record<GoalId, PathSlug>> = {
     'ship-custom-gpt': 'dev-ship-gpt',
     'build-tool-agent': 'dev-tool-agent',
     'compose-multi-agent': 'dev-multi-agent',
+    'host-mcp-server': 'sysdev-mcp',
     'guardrails-as-service': 'guardrails-service',
     'use-flow': 'scientist-use-flow',
     'stand-up-platform': 'pm-platform',
@@ -232,6 +244,7 @@ export const MATRIX: Record<PersonaId, Record<GoalId, PathSlug>> = {
     'ship-custom-gpt': 'dev-ship-gpt',
     'build-tool-agent': 'dev-tool-agent',
     'compose-multi-agent': 'dev-multi-agent',
+    'host-mcp-server': 'sysdev-mcp',
     'guardrails-as-service': 'guardrails-service',
     'use-flow': 'scientist-use-flow',
     'stand-up-platform': 'pm-platform',
@@ -240,6 +253,7 @@ export const MATRIX: Record<PersonaId, Record<GoalId, PathSlug>> = {
     'ship-custom-gpt': 'dev-ship-gpt',
     'build-tool-agent': 'dev-tool-agent',
     'compose-multi-agent': 'dev-multi-agent',
+    'host-mcp-server': 'sysdev-mcp',
     'guardrails-as-service': 'guardrails-service',
     'use-flow': 'scientist-use-flow',
     'stand-up-platform': 'pm-platform',
@@ -248,6 +262,7 @@ export const MATRIX: Record<PersonaId, Record<GoalId, PathSlug>> = {
     'ship-custom-gpt': 'pm-platform',
     'build-tool-agent': 'pm-platform',
     'compose-multi-agent': 'pm-platform',
+    'host-mcp-server': 'pm-platform',
     'guardrails-as-service': 'guardrails-service',
     'use-flow': 'scientist-use-flow',
     'stand-up-platform': 'pm-platform',

@@ -16,6 +16,7 @@ steps:
   - b2-labs
   - readiness-review
   - flow-ui
+  - flow-integrations
   - ep-flow
   - ep-repo
 services:

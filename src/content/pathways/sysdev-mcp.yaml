@@ -1,0 +1,28 @@
+slug: sysdev-mcp
+title: Host a Community MCP server
+eyebrow: System dev · MCP
+blurb: >-
+  I'm building infrastructure. Walk me through hosting an AKD-built
+  agent as a Community MCP server my team controls, with our own
+  endpoints and our own guardrail config.
+persona: developer
+goal: host-mcp-server
+steps:
+  - care
+  - care-path-a
+  - care-path-b
+  - care-output
+  - op-decision
+  - b2-akdext
+  - b2-labs
+  - readiness-review
+  - flow-ui
+  - flow-integrations
+  - ep-mcp
+  - ep-repo
+services:
+  - svc-tools
+  - svc-compliance
+  - svc-science-guardrails
+  - svc-granite-guardian
+order: 35

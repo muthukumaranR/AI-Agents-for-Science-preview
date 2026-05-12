@@ -14,6 +14,7 @@ const branch2 = stepsByRow('branch-2');
 const branch3 = stepsByRow('branch-3');
 const gateStep = stepsByRow('gate')[0];
 const flowUiStep = stepsByRow('flow-ui')[0];
+const flowSub = stepsByRow('flow-sub');
 const endpoints = stepsByRow('endpoints');
 
 const labsStep = branch2.find((s) => s.id === 'b2-labs')!;
@@ -29,7 +30,7 @@ const shortenLabel = (label: string) => {
 
   <!-- Stage 1 · CARE Design Process -->
   <div class="pipeline-stage">
-    <span class="pipeline-stage__label">Phase 1 · Design</span>
+    <span class="pipeline-stage__label">Design the agent</span>
     <article class="pipe-card pipe-card--featured" data-step-id={designStep.id} role="group" aria-labelledby={`step-${designStep.id}-label`} title={designStep.description}>
       <span class="pipe-card__eyebrow">Step 1</span>
       <b id={`step-${designStep.id}-label`} class="pipe-card__title">{designStep.label}</b>
@@ -41,7 +42,7 @@ const shortenLabel = (label: string) => {
 
   <!-- Stage 2 · Two ways to run CARE (parallel lanes) -->
   <div class="pipeline-stage pipeline-stage--multi">
-    <span class="pipeline-stage__label">Path A or B</span>
+    <span class="pipeline-stage__label">How will you run CARE?</span>
     <article class="pipe-card pipe-card--branch" data-step-id={pathA.id} role="group" aria-labelledby={`step-${pathA.id}-label`} title={pathA.description}>
       <span class="pipe-card__eyebrow">Path A</span>
       <b id={`step-${pathA.id}-label`} class="pipe-card__title">CARE Studio in AKD Labs UI</b>
@@ -56,7 +57,7 @@ const shortenLabel = (label: string) => {
 
   <!-- Stage 3 · CARE Output -->
   <div class="pipeline-stage">
-    <span class="pipeline-stage__label">Artifacts</span>
+    <span class="pipeline-stage__label">What CARE produces</span>
     <article class="pipe-card" data-step-id={outputStep.id} role="group" aria-labelledby={`step-${outputStep.id}-label`} title={outputStep.description}>
       <span class="pipe-card__eyebrow">Step 2</span>
       <b id={`step-${outputStep.id}-label`} class="pipe-card__title">{outputStep.label}</b>
@@ -68,12 +69,17 @@ const shortenLabel = (label: string) => {
 
   <span class="pipeline-arrow" aria-hidden="true">→</span>
 
-  <!-- Stage 4 · Decision -->
+  <!-- Stage 4 · Decision (3 options shown as branching chips) -->
   <div class="pipeline-stage">
-    <span class="pipeline-stage__label">Choose</span>
+    <span class="pipeline-stage__label">Pick a runtime</span>
     <article class="pipe-card pipe-card--decision" data-step-id={decisionStep.id} role="group" aria-labelledby={`step-${decisionStep.id}-label`} title={decisionStep.description}>
       <span class="pipe-card__eyebrow">Step 3</span>
       <b id={`step-${decisionStep.id}-label`} class="pipe-card__title">Choose Operationalization Path</b>
+      <ul class="pipe-card__options">
+        <li><span class="opt-num">1</span> Tool-independent</li>
+        <li><span class="opt-num">2</span> Tool-enabled</li>
+        <li><span class="opt-num">3</span> Multi-agent</li>
+      </ul>
     </article>
   </div>
 
@@ -81,7 +87,7 @@ const shortenLabel = (label: string) => {
 
   <!-- Stage 5 · Branches (3 parallel lanes; Labs nested in B2) -->
   <div class="pipeline-stage pipeline-stage--multi pipeline-stage--branches">
-    <span class="pipeline-stage__label">3 paths</span>
+    <span class="pipeline-stage__label">How will the agent run?</span>
     <article class="pipe-card pipe-card--branch" data-step-id="b1-simple" role="group" aria-labelledby="step-b1-simple-label" title={branch1[0].description}>
       <span class="pipe-card__eyebrow">Branch 1 · Simple</span>
       <b id="step-b1-simple-label" class="pipe-card__title">{shortenLabel(branch1[0].label)}</b>
@@ -110,7 +116,7 @@ const shortenLabel = (label: string) => {
 
   <!-- Stage 6 · SME Gate -->
   <div class="pipeline-stage">
-    <span class="pipeline-stage__label">Phase 4 · Gate</span>
+    <span class="pipeline-stage__label">Pass SME review</span>
     <article class="pipe-card pipe-card--gate" data-step-id={gateStep.id} role="group" aria-labelledby={`step-${gateStep.id}-label`} title={gateStep.description}>
       <span class="pipe-card__eyebrow">B2 + B3 · SME review</span>
       <b id={`step-${gateStep.id}-label`} class="pipe-card__title">SME Readiness Review (gate)</b>
@@ -120,20 +126,27 @@ const shortenLabel = (label: string) => {
 
   <span class="pipeline-arrow" aria-hidden="true">→</span>
 
-  <!-- Stage 7 · Flow UI -->
-  <div class="pipeline-stage">
-    <span class="pipeline-stage__label">Production</span>
+  <!-- Stage 7 · Production (Flow UI + integrated chatbots in existing tools) -->
+  <div class="pipeline-stage pipeline-stage--multi">
+    <span class="pipeline-stage__label">Run in production</span>
     <article class="pipe-card pipe-card--featured" data-step-id={flowUiStep.id} role="group" aria-labelledby={`step-${flowUiStep.id}-label`} title={flowUiStep.description}>
       <span class="pipe-card__eyebrow">Step 5</span>
       <b id={`step-${flowUiStep.id}-label`} class="pipe-card__title">{flowUiStep.label}</b>
     </article>
+    {flowSub.map((s) => (
+      <article class="pipe-card pipe-card--sub" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`} title={s.description}>
+        <span class="pipe-card__eyebrow">Also via</span>
+        <b id={`step-${s.id}-label`} class="pipe-card__title">{s.label}</b>
+        <p class="pipe-card__sub">Teams · Slack · ChatGSFC · NASA tools</p>
+      </article>
+    ))}
   </div>
 
   <span class="pipeline-arrow pipeline-arrow--fork" aria-hidden="true">↦</span>
 
   <!-- Stage 8 · Endpoints -->
   <div class="pipeline-stage pipeline-stage--multi pipeline-stage--endpoints">
-    <span class="pipeline-stage__label">Distribute</span>
+    <span class="pipeline-stage__label">Where scientists find it</span>
     {endpoints.map((s) => (
       <article class="pipe-card pipe-card--endpoint" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`} title={s.description}>
         <span class="pipe-card__eyebrow">Endpoint</span>
@@ -277,6 +290,28 @@ const shortenLabel = (label: string) => {
     border-radius: 3px;
     background: var(--surface);
     color: var(--text);
+  }
+
+  /* Decision options (the 3 branches you can pick) */
+  .pipe-card__options { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column; gap: 4px; }
+  .pipe-card__options li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text);
+    border-left: 2px solid var(--accent);
+    padding: 3px 6px;
+    background: oklch(1 0 0 / 0.6);
+    border-radius: 0 3px 3px 0;
+  }
+  .opt-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    width: 14px;
+    text-align: center;
   }
 
   /* Branch 2 lane wrapper (b2 + Labs nested) */

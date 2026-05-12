@@ -8,7 +8,7 @@ import PathwayDiagram from './pathway/PathwayDiagram.astro';
       <span class="eyebrow">04 · Agent Development Pathway</span>
       <h2>From idea to published agent — pick your path.</h2>
       <p>
-        Design with <b>CARE</b>, pick one of three operationalization branches, pass an SME review, ship. Click a tour or pick a role + goal to highlight your path.
+        Design with <b>CARE</b>, pick one of three operationalization branches, pass an SME review, ship. Click a tour or pick a role + goal to highlight your path. <span class="hover-hint">Hover any card to see its full description.</span>
       </p>
     </div>
 
@@ -21,6 +21,14 @@ import PathwayDiagram from './pathway/PathwayDiagram.astro';
   /* Pathway section uses a wider container so the 8-stage pipeline fits
      without horizontal scroll on standard desktop monitors. */
   .section--pathway .container--wide { max-width: 1400px; }
+  .section--pathway .hover-hint {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin-left: 4px;
+  }
+  .section--pathway .hover-hint::before { content: '↪ '; }
 </style>
 
 <script>
