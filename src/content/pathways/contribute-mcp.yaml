@@ -1,12 +1,12 @@
-slug: sysdev-mcp
-title: Host a Community MCP server
-eyebrow: System dev · MCP
+slug: contribute-mcp
+title: Contribute a Community MCP server
+eyebrow: Community · Open source
 blurb: >-
-  I'm building infrastructure. Walk me through hosting an AKD-built
-  agent as a Community MCP server my team controls, with our own
-  endpoints and our own guardrail config.
+  I want to share an agent I built. Walk me through publishing it as
+  a Community MCP server so other science teams can install it, audit
+  the code, and plug it into their own workflows.
 persona: developer
-goal: host-mcp-server
+goal: contribute-mcp-server
 steps:
   - care
   - care-path-a

@@ -108,7 +108,7 @@ const pathways = defineCollection({
         'ship-custom-gpt',
         'build-tool-agent',
         'compose-multi-agent',
-        'host-mcp-server',
+        'contribute-mcp-server',
         'guardrails-as-service',
         'use-flow',
         'stand-up-platform',

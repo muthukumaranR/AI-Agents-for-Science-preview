@@ -211,7 +211,7 @@ export const GOALS = [
   { id: 'ship-custom-gpt', label: 'Ship a Custom GPT' },
   { id: 'build-tool-agent', label: 'Build a tool-using agent' },
   { id: 'compose-multi-agent', label: 'Compose a multi-agent workflow' },
-  { id: 'host-mcp-server', label: 'Host a Community MCP server' },
+  { id: 'contribute-mcp-server', label: 'Contribute a Community MCP server' },
   { id: 'guardrails-as-service', label: 'Add guardrails as a service' },
   { id: 'use-flow', label: 'Use Flow — run or compose workflows' },
   { id: 'stand-up-platform', label: 'Stand up an end-to-end platform' },
@@ -223,7 +223,7 @@ export type PathSlug =
   | 'dev-ship-gpt'
   | 'dev-tool-agent'
   | 'dev-multi-agent'
-  | 'sysdev-mcp'
+  | 'contribute-mcp'
   | 'scientist-use-flow'
   | 'guardrails-service'
   | 'pm-platform'
@@ -235,7 +235,7 @@ export const MATRIX: Record<PersonaId, Record<GoalId, PathSlug>> = {
     'ship-custom-gpt': 'dev-ship-gpt',
     'build-tool-agent': 'dev-tool-agent',
     'compose-multi-agent': 'dev-multi-agent',
-    'host-mcp-server': 'sysdev-mcp',
+    'contribute-mcp-server': 'contribute-mcp',
     'guardrails-as-service': 'guardrails-service',
     'use-flow': 'scientist-use-flow',
     'stand-up-platform': 'pm-platform',
@@ -244,7 +244,7 @@ export const MATRIX: Record<PersonaId, Record<GoalId, PathSlug>> = {
     'ship-custom-gpt': 'dev-ship-gpt',
     'build-tool-agent': 'dev-tool-agent',
     'compose-multi-agent': 'dev-multi-agent',
-    'host-mcp-server': 'sysdev-mcp',
+    'contribute-mcp-server': 'contribute-mcp',
     'guardrails-as-service': 'guardrails-service',
     'use-flow': 'scientist-use-flow',
     'stand-up-platform': 'pm-platform',
@@ -253,7 +253,7 @@ export const MATRIX: Record<PersonaId, Record<GoalId, PathSlug>> = {
     'ship-custom-gpt': 'dev-ship-gpt',
     'build-tool-agent': 'dev-tool-agent',
     'compose-multi-agent': 'dev-multi-agent',
-    'host-mcp-server': 'sysdev-mcp',
+    'contribute-mcp-server': 'contribute-mcp',
     'guardrails-as-service': 'guardrails-service',
     'use-flow': 'scientist-use-flow',
     'stand-up-platform': 'pm-platform',
@@ -262,7 +262,7 @@ export const MATRIX: Record<PersonaId, Record<GoalId, PathSlug>> = {
     'ship-custom-gpt': 'pm-platform',
     'build-tool-agent': 'pm-platform',
     'compose-multi-agent': 'pm-platform',
-    'host-mcp-server': 'pm-platform',
+    'contribute-mcp-server': 'pm-platform',
     'guardrails-as-service': 'guardrails-service',
     'use-flow': 'scientist-use-flow',
     'stand-up-platform': 'pm-platform',
