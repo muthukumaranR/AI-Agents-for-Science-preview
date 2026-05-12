@@ -69,11 +69,11 @@ const shortenLabel = (label: string) => {
 
   <span class="pipeline-arrow" aria-hidden="true">→</span>
 
-  <!-- Stage 4 · Decision (3 options shown as branching chips) -->
-  <div class="pipeline-stage">
-    <span class="pipeline-stage__label">Pick a runtime</span>
+  <!-- Stage 4 · Pick & run (decision card + 3 parallel branches, merged) -->
+  <div class="pipeline-stage pipeline-stage--multi pipeline-stage--branches">
+    <span class="pipeline-stage__label">How will the agent run?</span>
     <article class="pipe-card pipe-card--decision" data-step-id={decisionStep.id} role="group" aria-labelledby={`step-${decisionStep.id}-label`} title={decisionStep.description}>
-      <span class="pipe-card__eyebrow">Step 3</span>
+      <span class="pipe-card__eyebrow">Step 3 · Pick a runtime</span>
       <b id={`step-${decisionStep.id}-label`} class="pipe-card__title">Choose Operationalization Path</b>
       <ul class="pipe-card__options">
         <li><span class="opt-num">1</span> Tool-independent</li>
@@ -81,13 +81,7 @@ const shortenLabel = (label: string) => {
         <li><span class="opt-num">3</span> Multi-agent</li>
       </ul>
     </article>
-  </div>
-
-  <span class="pipeline-arrow pipeline-arrow--fork" aria-hidden="true">↦</span>
-
-  <!-- Stage 5 · Branches (3 parallel lanes; Labs nested in B2) -->
-  <div class="pipeline-stage pipeline-stage--multi pipeline-stage--branches">
-    <span class="pipeline-stage__label">How will the agent run?</span>
+    <span class="lane-fork" aria-hidden="true">↓ fork into 3</span>
     <article class="pipe-card pipe-card--branch" data-step-id="b1-simple" role="group" aria-labelledby="step-b1-simple-label" title={branch1[0].description}>
       <span class="pipe-card__eyebrow">Branch 1 · Simple</span>
       <b id="step-b1-simple-label" class="pipe-card__title">{shortenLabel(branch1[0].label)}</b>
@@ -317,6 +311,20 @@ const shortenLabel = (label: string) => {
   /* Branch 2 lane wrapper (b2 + Labs nested) */
   .branch-lane { display: flex; flex-direction: column; gap: 4px; }
   .lane-arrow { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); text-align: center; line-height: 1; }
+
+  /* Fork separator inside the merged decision-and-branches stage */
+  .lane-fork {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+    padding: 4px 2px;
+    margin: 2px 0;
+    border-top: 1px dashed var(--border);
+    border-bottom: 1px dashed var(--border);
+  }
 
   /* Governance dot */
   .gov-dot {

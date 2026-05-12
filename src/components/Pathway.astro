@@ -7,8 +7,11 @@ import PathwayDiagram from './pathway/PathwayDiagram.astro';
     <div class="section-head">
       <span class="eyebrow">04 · Agent Development Pathway</span>
       <h2>From idea to published agent — pick your path.</h2>
-      <p>
-        Design with <b>CARE</b>, pick one of three operationalization branches, pass an SME review, ship. Click a tour or pick a role + goal to highlight your path. <span class="hover-hint">Hover any card to see its full description.</span>
+      <p class="pathway-lede">
+        AKD is a <b>composable framework</b> for AI agents in NASA science. Each agent is designed with <b>CARE</b>, assembled from shared building blocks — prompts, tools, context, and pluggable guardrail and reasoning services — reviewed by a domain expert, then run on whichever surface scientists already work in: <b>AKD Flow</b>, integrated chatbots in <b>Teams</b> or <b>ChatGSFC</b>, <b>Community MCP servers</b>, or <b>Custom GPTs</b>.
+      </p>
+      <p class="pathway-lede pathway-lede--small">
+        The same blocks compose every agent; the same agent reaches scientists wherever they work. Pick a tour or set Role + Goal below to highlight one path through it. <span class="hover-hint">Hover any card to see its full description.</span>
       </p>
     </div>
 
@@ -21,6 +24,14 @@ import PathwayDiagram from './pathway/PathwayDiagram.astro';
   /* Pathway section uses a wider container so the 8-stage pipeline fits
      without horizontal scroll on standard desktop monitors. */
   .section--pathway .container--wide { max-width: 1400px; }
+  .section--pathway .pathway-lede {
+    max-width: 920px;
+  }
+  .section--pathway .pathway-lede--small {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
   .section--pathway .hover-hint {
     font-family: var(--font-mono);
     font-size: 11px;
