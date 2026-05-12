@@ -74,6 +74,12 @@ cards.forEach((c) => {
   c.addEventListener('click', () => {
     const slug = c.dataset.pathSlug;
     if (slug) applyPath(slug);
+    // The 'Get started' CTA lives at the very top of the section; when clicked,
+    // smooth-scroll the strip into view so the user sees the diagram update.
+    if (c.hasAttribute('data-cta-getstarted')) {
+      const strip = document.querySelector<HTMLElement>('[data-pathway-strip]');
+      strip?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   });
 });
 personaSel?.addEventListener('change', tryMatrix);
