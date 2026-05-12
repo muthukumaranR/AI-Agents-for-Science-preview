@@ -51,7 +51,7 @@ export const STEPS = [
   },
   {
     id: 'care-path-b',
-    label: 'Path B · CARE phase prompts (ChatGPT / ChatGSFC / Claude)',
+    label: 'Path B · CARE phase prompts (ChatGPT / ChatGSFC)',
     sublabel: 'Run the 5 CARE phases by copying our open-source prompts into any frontier LLM. Lower friction — no special tooling.',
     description: 'Copy the open-source CARE phase prompts from GitHub into any frontier chat assistant. Produces the same four artifacts (prompt, tools, context, guardrails) without requiring AKD Labs access.',
     row: 'design-sub',
@@ -72,10 +72,10 @@ export const STEPS = [
   },
   {
     id: 'b1-simple',
-    label: '1 · Chat assistant → ChatGPT / Claude / ChatGSFC',
-    sublabel: 'Paste the CARE prompt into ChatGPT, Claude, or ChatGSFC and you have a working chat assistant — no code required.',
+    label: '1 · Chat assistant → ChatGPT / ChatGSFC',
+    sublabel: 'Paste the CARE prompt into ChatGPT or ChatGSFC and you have a working chat assistant — no code required.',
     description:
-      'A Chat assistant is an AKD-designed agent that lives inside a chat platform (ChatGPT, Claude, or ChatGSFC). The platform provides the runtime, the chat UI, and the safety baseline; you contribute the CARE-developed system prompt, domain context, and (optionally) lightweight Actions or plugins. Examples: Scientific Illustrator, Paper Writing Assistant, NASA Data Governance.',
+      'A Chat assistant is an AKD-designed agent that lives inside a chat platform (ChatGPT or ChatGSFC). The platform provides the runtime, the chat UI, and the safety baseline; you contribute the CARE-developed system prompt, domain context, and (optionally) lightweight Actions or plugins. Examples: Scientific Illustrator, Paper Writing Assistant, NASA Data Governance.',
     row: 'branch-1',
     governance: 'Public-use policy approval; baseline guardrail prompt patterns embedded by CARE',
     link: { href: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/agents', label: 'agents/ ↗' },
@@ -133,7 +133,7 @@ export const STEPS = [
     label: 'Integrated Chatbots',
     sublabel: 'Agents surfaced as chatbots inside the collaboration tools scientists already use — Microsoft Teams, Slack, and other NASA workplaces.',
     description:
-      'Once an agent is in production, it can be surfaced as an integrated chatbot inside collaboration tools — Microsoft Teams, Slack, and other NASA workplace platforms — bringing agent capabilities directly into scientist workflows without forcing them to switch applications. (Hosted chatbots in ChatGPT / Claude / ChatGSFC live in the Distribute stage.)',
+      'Once an agent is in production, it can be surfaced as an integrated chatbot inside collaboration tools — Microsoft Teams, Slack, and other NASA workplace platforms — bringing agent capabilities directly into scientist workflows without forcing them to switch applications. (Hosted chatbots in ChatGPT / ChatGSFC live in the Distribute stage.)',
     row: 'flow-sub',
   },
   {
@@ -146,9 +146,9 @@ export const STEPS = [
   },
   {
     id: 'ep-gpt',
-    label: 'Hosted Chatbots (ChatGPT · Claude · ChatGSFC)',
+    label: 'Hosted Chatbots (ChatGPT · ChatGSFC)',
     sublabel: 'Same CARE prompt, surfaced inside each platform\'s chat-assistant directory — no code, no API, no extra hosting.',
-    description: 'Tool-independent agents published as hosted chatbots inside ChatGPT (as a Custom GPT), Claude (as a Project), or ChatGSFC (as an assistant). Each platform takes the CARE-developed system prompt + uploaded domain context and exposes the agent through its own chat-assistant directory. Examples: Scientific Illustrator, Paper Writing Assistant, Data Governance Agent.',
+    description: 'Tool-independent agents published as hosted chatbots inside ChatGPT (as a Custom GPT) or ChatGSFC (as an assistant). Each platform takes the CARE-developed system prompt + uploaded domain context and exposes the agent through its own chat-assistant directory. Examples: Scientific Illustrator, Paper Writing Assistant, Data Governance Agent.',
     row: 'endpoints',
     link: { href: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/agents', label: 'agents/ ↗' },
   },

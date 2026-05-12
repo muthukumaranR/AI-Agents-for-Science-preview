@@ -4,7 +4,7 @@ eyebrow: Builder · Chat assistant
 blurb: >-
   I have a science-assistant idea I want to ship through a chat platform.
   Walk me from CARE through Branch 1 to publishing it as a chat assistant
-  on ChatGPT, Claude, or ChatGSFC — no code required.
+  on ChatGPT or ChatGSFC — no code required.
 persona: developer
 goal: ship-custom-gpt
 steps:
