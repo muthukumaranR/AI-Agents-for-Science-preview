@@ -61,6 +61,31 @@ export function parseListField(text, field) {
 }
 
 /**
+ * Extract STEP and SERVICE IDs from the pathway-graph.ts source by parsing it
+ * as text. We cannot dynamic-`import()` a .ts file under pure Node ESM (CI),
+ * so we scan the file for the two `as const satisfies readonly …[]` array
+ * literals and pull each `id: '…'` from inside.
+ *
+ * @param {string} src
+ * @returns {{ steps: Set<string>, services: Set<string> }}
+ */
+export function extractGraphIds(src) {
+  const stepsMatch = src.match(/export const STEPS\s*=\s*\[([\s\S]*?)\]\s*as const satisfies/);
+  if (!stepsMatch) throw new Error('[pathway-id-validator] could not find STEPS array in pathway-graph.ts');
+  const servicesMatch = src.match(/export const SERVICES\s*=\s*\[([\s\S]*?)\]\s*as const satisfies/);
+  if (!servicesMatch) throw new Error('[pathway-id-validator] could not find SERVICES array in pathway-graph.ts');
+  const idRe = /\bid:\s*['"]([^'"]+)['"]/g;
+  const collect = (body) => {
+    /** @type {Set<string>} */
+    const out = new Set();
+    let m;
+    while ((m = idRe.exec(body)) !== null) out.add(m[1]);
+    return out;
+  };
+  return { steps: collect(stepsMatch[1]), services: collect(servicesMatch[1]) };
+}
+
+/**
  * @param {Array<{source:string, steps:string[], services:string[]}>} entries
  * @param {Set<string>} validSteps
  * @param {Set<string>} validServices
@@ -114,9 +139,9 @@ export default function pathwayIdValidator() {
           logger.info('No pathway entries to validate.');
           return;
         }
-        const graphMod = await import(new URL('src/content/pathway-graph.ts', resolvedRoot).href);
-        const validSteps = graphMod.STEP_IDS;
-        const validServices = graphMod.SERVICE_IDS;
+        const graphPath = fileURLToPath(new URL('src/content/pathway-graph.ts', resolvedRoot));
+        const graphSrc = await readFile(graphPath, 'utf8');
+        const { steps: validSteps, services: validServices } = extractGraphIds(graphSrc);
         const errors = checkPathwayIds(entries, validSteps, validServices);
         if (errors.length > 0) {
           for (const e of errors) logger.error(e.message);
