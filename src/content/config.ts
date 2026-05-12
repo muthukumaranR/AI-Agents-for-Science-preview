@@ -93,4 +93,32 @@ const team = defineCollection({
   }),
 });
 
-export const collections = { agents, workflows, governance, pages, partners, team, 'case-studies': caseStudies };
+const pathways = defineCollection({
+  type: 'data',
+  schema: z.object({
+    slug: z.string(),
+    title: z.string(),
+    eyebrow: z.string(),
+    blurb: z.string().max(280),
+    persona: z
+      .enum(['developer', 'scientist', 'partner', 'decision-maker'])
+      .optional(),
+    goal: z
+      .enum([
+        'ship-custom-gpt',
+        'build-tool-agent',
+        'compose-multi-agent',
+        'guardrails-as-service',
+        'use-flow',
+        'stand-up-platform',
+      ])
+      .optional(),
+    steps: z.array(z.string()).default([]),
+    services: z.array(z.string()).default([]),
+    order: z.number().int().default(100),
+    featured: z.boolean().default(true),
+    startHere: z.boolean().default(false),
+  }),
+});
+
+export const collections = { agents, workflows, governance, pages, partners, team, pathways, 'case-studies': caseStudies };
