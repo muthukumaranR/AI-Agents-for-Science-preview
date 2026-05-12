@@ -1,0 +1,19 @@
+slug: dev-ship-gpt
+title: Ship a Custom GPT
+eyebrow: Builder · Tool-independent
+blurb: >-
+  I have a science-assistant idea that doesn't need external tools. Walk me from
+  CARE through Branch 1 to the Custom GPT directory.
+persona: developer
+goal: ship-custom-gpt
+steps:
+  - care
+  - care-path-a
+  - care-path-b
+  - care-output
+  - op-decision
+  - b1-simple
+  - ep-gpt
+services:
+  - svc-science-guardrails
+order: 10

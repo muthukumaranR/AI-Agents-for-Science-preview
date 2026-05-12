@@ -1,0 +1,28 @@
+slug: dev-tool-agent
+title: Build a tool-using agent
+eyebrow: Builder · Tool-using
+blurb: >-
+  My agent needs to search data, call APIs, or run code. Walk me from CARE
+  through Branch 2 — akd-ext, Labs, SME review — to AKD Flow.
+persona: developer
+goal: build-tool-agent
+steps:
+  - care
+  - care-path-a
+  - care-path-b
+  - care-output
+  - op-decision
+  - b2-akdext
+  - b2-labs
+  - readiness-review
+  - flow-ui
+  - ep-flow
+  - ep-repo
+services:
+  - svc-tools
+  - svc-factreasoner
+  - svc-compliance
+  - svc-science-guardrails
+  - svc-granite-guardian
+  - svc-risk-agent
+order: 20

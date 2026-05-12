@@ -1,0 +1,19 @@
+slug: guardrails-service
+title: Use guardrails as a service
+eyebrow: Service
+blurb: >-
+  I already have an agent system. Show me which guardrail services I can plug
+  in and where they attach.
+persona: developer
+goal: guardrails-as-service
+steps:
+  - b2-akdext
+  - b3-orch
+  - ep-mcp
+services:
+  - svc-factreasoner
+  - svc-risk-agent
+  - svc-compliance
+  - svc-science-guardrails
+  - svc-granite-guardian
+order: 50

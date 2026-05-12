@@ -1,0 +1,32 @@
+slug: pm-platform
+title: Stand up an end-to-end platform
+eyebrow: Program manager
+blurb: >-
+  I want to bring AKD to my organization. Walk through every component
+  end-to-end with governance gates and where each service plugs in.
+persona: decision-maker
+goal: stand-up-platform
+steps:
+  - care
+  - care-path-a
+  - care-path-b
+  - care-output
+  - op-decision
+  - b1-simple
+  - b2-akdext
+  - b2-labs
+  - b3-orch
+  - readiness-review
+  - flow-ui
+  - ep-flow
+  - ep-gpt
+  - ep-mcp
+  - ep-repo
+services:
+  - svc-tools
+  - svc-factreasoner
+  - svc-risk-agent
+  - svc-compliance
+  - svc-science-guardrails
+  - svc-granite-guardian
+order: 60

@@ -1,0 +1,15 @@
+slug: start-here
+title: New here? Smallest first step
+eyebrow: ★ Start here
+blurb: >-
+  You don't have to build a full agent on day one. Browse the published
+  agents, contribute a CARE prompt via the open-source repo, or open an
+  issue with a science problem you'd like an agent to solve.
+steps:
+  - care-path-b
+  - b1-simple
+  - ep-gpt
+  - ep-repo
+services: []
+order: 1
+startHere: true
