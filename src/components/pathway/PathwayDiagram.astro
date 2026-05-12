@@ -32,7 +32,7 @@ const endpoints = stepsByRow('endpoints');
   </ul>
 </aside>
 
-<div class="pathway-diagram" aria-label="Agent development pathway" data-pathway-diagram>
+<div class="pathway-diagram" aria-label="Agent development pathway" aria-describedby="pathway-active-desc" data-pathway-diagram>
 
   <!-- Row: design (CARE with two sub-paths inside) -->
   <div class="pathway-row pathway-row--start">
@@ -239,7 +239,9 @@ const endpoints = stepsByRow('endpoints');
     .endpoints-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 860px) {
-    .pathway-row--branches { grid-template-columns: 1fr; }
+    .pathway-row--branches { grid-template-columns: 1fr; gap: 24px; }
+    .branch { gap: 10px; }
+    .branch-label { align-self: center; }
   }
   @media (max-width: 580px) {
     .endpoints-grid { grid-template-columns: 1fr; }
