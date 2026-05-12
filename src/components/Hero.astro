@@ -13,26 +13,38 @@ const baseUrl = import.meta.env.BASE_URL;
   <div class="container hero-inner">
     <div class="hero-cols">
       <div class="hero-headline">
-        <span class="hero-tag"><span class="dot"></span>NASA IMPACT · Public Release</span>
+        <span class="hero-tag"><span class="dot"></span>AI Agents for Science · NASA-IMPACT</span>
         <h1>
-          Accelerated Knowledge Discovery:<br/>
-          <span class="accent">AI Agents for Science</span>
+          How should we build<br/>
+          <span class="accent">AI Agents for Science?</span>
         </h1>
       </div>
 
       <div class="hero-body">
         <p class="lede">
-          The <strong>AI Agents for Science</strong> initiative elevates AI from
-          a limited tool into a comprehensive cognitive partner in scientific
-          workflows. By helping scientists reclaim the 70–80% of the time they
-          currently spend on manual, repetitive research tasks, agentic AI
-          empowers researchers to redirect their focus toward high-level
-          knowledge discovery and innovation.
+          We want to transform AI into a full cognitive research partner. The
+          <strong>Accelerated Knowledge Discovery (AKD)</strong> project drives
+          this transformation through five strategic pillars.
         </p>
-        <p class="lede">
-          <strong>Accelerated Knowledge Discovery (AKD)</strong> drives this
-          transformation through five strategic pillars.
-        </p>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">10</div>
+        <div class="label">Published agents</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">3</div>
+        <div class="label">Workflows</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">5</div>
+        <div class="label">CARE phases</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">8</div>
+        <div class="label">Partner orgs</div>
       </div>
     </div>
   </div>
@@ -154,6 +166,30 @@ const baseUrl = import.meta.env.BASE_URL;
     margin-bottom: 0;
   }
 
+  .hero-stats {
+    display: flex;
+    gap: 36px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .hero-stat .num {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1;
+  }
+  .hero-stat .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 6px;
+  }
+
   /* Stack to single column on narrow viewports */
   @media (max-width: 920px) {
     .hero-cols {
@@ -163,5 +199,10 @@ const baseUrl = import.meta.env.BASE_URL;
     .hero-body {
       padding-top: 0;
     }
+    .hero-stats {
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .hero-stat .num { font-size: 24px; }
   }
 </style>
