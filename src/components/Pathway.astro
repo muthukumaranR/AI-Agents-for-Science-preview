@@ -5,21 +5,10 @@ import PathwayDiagram from './pathway/PathwayDiagram.astro';
 <section class="section section--pathway" id="pathway">
   <div class="container container--wide">
     <div class="section-head">
-      <div class="section-head__top">
-        <span class="eyebrow">04 · Agent Development Pathway</span>
-        <button
-          type="button"
-          class="cta-get-started"
-          data-path-slug="start-here"
-          data-cta-getstarted
-          aria-label="Get started — load the introductory tour"
-        >
-          Get started <span aria-hidden="true">→</span>
-        </button>
-      </div>
+      <span class="eyebrow">04 · Agent Development Pathway</span>
       <h2>From idea to published agent — pick your path.</h2>
       <p class="pathway-lede">
-        AKD is a <b>composable framework</b> for AI agents in NASA science. Each agent is designed with <b>CARE</b>, assembled from shared building blocks — prompts, tools, context, and pluggable guardrail and reasoning services — reviewed by a domain expert, then run on whichever surface scientists already work in: <b>AKD Flow</b>, integrated chatbots in <b>Teams</b> or <b>ChatGSFC</b>, <b>Community MCP servers</b>, or <b>Custom GPTs</b>.
+        AKD is a <b>composable framework</b> for AI agents in NASA science. Each agent is designed with <b>CARE</b>, assembled from shared building blocks — prompts, tools, context, and pluggable guardrail and reasoning services — reviewed by a domain expert, then run on whichever surface scientists already work in: <b>AKD Flow</b>, integrated chatbots in <b>Teams</b> or <b>Slack</b>, <b>Community MCP servers</b>, or <b>hosted chatbots</b> in <b>ChatGPT</b>, <b>Claude</b>, or <b>ChatGSFC</b>.
       </p>
       <p class="pathway-lede pathway-lede--small">
         The same blocks compose every agent; the same agent reaches scientists wherever they work. Pick a tour or set Role + Goal below to highlight one path through it. <span class="hover-hint">Hover any card to see its full description.</span>
@@ -51,41 +40,6 @@ import PathwayDiagram from './pathway/PathwayDiagram.astro';
     margin-left: 4px;
   }
   .section--pathway .hover-hint::before { content: '↪ '; }
-
-  .section--pathway .section-head__top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 8px;
-  }
-  .section--pathway .cta-get-started {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 9px 16px;
-    border: 1px solid var(--accent);
-    border-radius: var(--radius-sm);
-    background: var(--accent);
-    color: var(--bg-0);
-    cursor: pointer;
-    transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
-    white-space: nowrap;
-    box-shadow: 0 1px 3px rgba(99, 102, 241, 0.2);
-  }
-  .section--pathway .cta-get-started:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(99, 102, 241, 0.3);
-  }
-  .section--pathway .cta-get-started:active { transform: translateY(0); }
-  .section--pathway .cta-get-started span { margin-left: 4px; transition: margin 0.15s ease; }
-  .section--pathway .cta-get-started:hover span { margin-left: 8px; }
-
-  @media (max-width: 560px) {
-    .section--pathway .section-head__top { flex-direction: column; align-items: flex-start; }
-  }
 </style>
 
 <script>

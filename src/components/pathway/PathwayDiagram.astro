@@ -76,20 +76,20 @@ const shortenLabel = (label: string) => {
       <span class="pipe-card__eyebrow">Step 3 · Pick a runtime</span>
       <b id={`step-${decisionStep.id}-label`} class="pipe-card__title">Choose Operationalization Path</b>
       <ul class="pipe-card__options">
-        <li><span class="opt-num">1</span> Tool-independent</li>
-        <li><span class="opt-num">2</span> Tool-enabled</li>
-        <li><span class="opt-num">3</span> Multi-agent</li>
+        <li><span class="opt-num">1</span> Chat assistant</li>
+        <li><span class="opt-num">2</span> Custom agent</li>
+        <li><span class="opt-num">3</span> Agent workflow</li>
       </ul>
     </article>
     <span class="lane-fork" aria-hidden="true">↓ fork into 3</span>
     <article class="pipe-card pipe-card--branch" data-step-id="b1-simple" role="group" aria-labelledby="step-b1-simple-label" title={branch1[0].description}>
-      <span class="pipe-card__eyebrow">Branch 1 · Simple</span>
+      <span class="pipe-card__eyebrow">Branch 1 · Chat assistant</span>
       <b id="step-b1-simple-label" class="pipe-card__title">{shortenLabel(branch1[0].label)}</b>
       {branch1[0].governance && <span class="gov-dot" title={branch1[0].governance}>●</span>}
     </article>
     <div class="branch-lane">
       <article class="pipe-card pipe-card--branch" data-step-id={b2Initial.id} role="group" aria-labelledby={`step-${b2Initial.id}-label`} title={b2Initial.description}>
-        <span class="pipe-card__eyebrow">Branch 2 · Tool-enabled</span>
+        <span class="pipe-card__eyebrow">Branch 2 · Custom agent</span>
         <b id={`step-${b2Initial.id}-label`} class="pipe-card__title">{shortenLabel(b2Initial.label)}</b>
         {b2Initial.governance && <span class="gov-dot" title={b2Initial.governance}>●</span>}
       </article>
@@ -100,7 +100,7 @@ const shortenLabel = (label: string) => {
       </article>
     </div>
     <article class="pipe-card pipe-card--branch" data-step-id="b3-orch" role="group" aria-labelledby="step-b3-orch-label" title={branch3[0].description}>
-      <span class="pipe-card__eyebrow">Branch 3 · Multi-agent</span>
+      <span class="pipe-card__eyebrow">Branch 3 · Agent workflow</span>
       <b id="step-b3-orch-label" class="pipe-card__title">{shortenLabel(branch3[0].label)}</b>
       {branch3[0].governance && <span class="gov-dot" title={branch3[0].governance}>●</span>}
     </article>
@@ -120,31 +120,32 @@ const shortenLabel = (label: string) => {
 
   <span class="pipeline-arrow" aria-hidden="true">→</span>
 
-  <!-- Stage 7 · Production (Flow UI + integrated chatbots in existing tools) -->
-  <div class="pipeline-stage pipeline-stage--multi">
-    <span class="pipeline-stage__label">Run in production</span>
+  <!-- Stage 6 · Production runtime (where the agent actually executes) -->
+  <div class="pipeline-stage">
+    <span class="pipeline-stage__label">Runs on AKD Flow</span>
     <article class="pipe-card pipe-card--featured" data-step-id={flowUiStep.id} role="group" aria-labelledby={`step-${flowUiStep.id}-label`} title={flowUiStep.description}>
-      <span class="pipe-card__eyebrow">Step 5</span>
+      <span class="pipe-card__eyebrow">Step 5 · Runtime</span>
       <b id={`step-${flowUiStep.id}-label`} class="pipe-card__title">{flowUiStep.label}</b>
+      <p class="pipe-card__sub">The canonical production environment for every approved agent.</p>
     </article>
-    {flowSub.map((s) => (
-      <article class="pipe-card pipe-card--sub" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`} title={s.description}>
-        <span class="pipe-card__eyebrow">Also via</span>
-        <b id={`step-${s.id}-label`} class="pipe-card__title">{s.label}</b>
-        <p class="pipe-card__sub">Teams · Slack · ChatGSFC · NASA tools</p>
-      </article>
-    ))}
   </div>
 
   <span class="pipeline-arrow pipeline-arrow--fork" aria-hidden="true">↦</span>
 
-  <!-- Stage 8 · Endpoints -->
+  <!-- Stage 7 · Surfaces where scientists actually reach the agent -->
   <div class="pipeline-stage pipeline-stage--multi pipeline-stage--endpoints">
-    <span class="pipeline-stage__label">Where scientists find it</span>
+    <span class="pipeline-stage__label">Where scientists meet it</span>
     {endpoints.map((s) => (
       <article class="pipe-card pipe-card--endpoint" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`} title={s.description}>
-        <span class="pipe-card__eyebrow">Endpoint</span>
+        <span class="pipe-card__eyebrow">Surface</span>
         <b id={`step-${s.id}-label`} class="pipe-card__title">{s.label}</b>
+      </article>
+    ))}
+    {flowSub.map((s) => (
+      <article class="pipe-card pipe-card--endpoint" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`} title={s.description}>
+        <span class="pipe-card__eyebrow">Surface</span>
+        <b id={`step-${s.id}-label`} class="pipe-card__title">{s.label}</b>
+        <p class="pipe-card__sub">Teams · Slack · NASA collab tools</p>
       </article>
     ))}
   </div>

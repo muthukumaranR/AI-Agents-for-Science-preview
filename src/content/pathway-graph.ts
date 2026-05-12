@@ -72,20 +72,20 @@ export const STEPS = [
   },
   {
     id: 'b1-simple',
-    label: '1 · Simple Prompt Agent → Simple-Agent Flow',
-    sublabel: 'Paste the CARE prompt into ChatGPT, ChatGSFC, or Claude and you have a working agent — no code required.',
+    label: '1 · Chat assistant → ChatGPT / Claude / ChatGSFC',
+    sublabel: 'Paste the CARE prompt into ChatGPT, Claude, or ChatGSFC and you have a working chat assistant — no code required.',
     description:
-      'Simple Agents are tool-independent AI agents designed through the AKD CARE process — no custom APIs, MCP servers, or external integrations required. Paste the CARE-developed prompt as GPT instructions, upload domain context, and select the recommended model. Examples: Scientific Illustrator, Paper Writing Assistant, NASA Data Governance.',
+      'A Chat assistant is an AKD-designed agent that lives inside a chat platform (ChatGPT, Claude, or ChatGSFC). The platform provides the runtime, the chat UI, and the safety baseline; you contribute the CARE-developed system prompt, domain context, and (optionally) lightweight Actions or plugins. Examples: Scientific Illustrator, Paper Writing Assistant, NASA Data Governance.',
     row: 'branch-1',
     governance: 'Public-use policy approval; baseline guardrail prompt patterns embedded by CARE',
     link: { href: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/agents', label: 'agents/ ↗' },
   },
   {
     id: 'b2-akdext',
-    label: '2 · Tool-Enabled Agent → Build in Agent Toolkit',
+    label: '2 · Custom agent → Build in Agent Toolkit',
     sublabel: 'Implement the agent in our open-source Agent Toolkit (akd-ext): write tool wrappers, MCP integrations, and API clients so the agent can search data, run code, or call external systems.',
     description:
-      'More complex agents require external tools, APIs, or data systems for execution along with rigorous prompt design and reasoning. Implement the agent in the Agent Toolkit (akd-ext): author tool wrappers, MCP integrations, and API clients. Examples: Earth Science Data Search (CMR), Code Search, Astro Data Search.',
+      'A Custom agent is one you build end-to-end in our Agent Toolkit (akd-ext) — author the system prompt, wrap the tools you need, configure MCP integrations and API clients, and the agent runs on AKD Flow under our full governance pipeline. Use this branch when the agent needs deeper tool control than a chat platform offers, or when it has to integrate with NASA data systems. Examples: Earth Science Data Search (CMR), Code Search, Astro Data Search.',
     row: 'branch-2',
     governance: 'Tools whitelist; static MCP-server config; guardrail integration required',
     link: { href: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/akd-ext', label: 'akd-ext ↗' },
@@ -102,9 +102,9 @@ export const STEPS = [
   },
   {
     id: 'b3-orch',
-    label: '3 · Multi-Agent Workflow → Orchestration',
-    sublabel: 'Compose multiple agents into a pipeline. The orchestration layer manages handoffs between agents and tool calls.',
-    description: 'Multi-agent workflows chain published agents through an orchestration layer. The layer manages handoffs, tool calls, and intermediate state, and surfaces traceable progress to scientists in AKD Flow.',
+    label: '3 · Agent workflow → Compose in Flow',
+    sublabel: 'Compose multiple already-approved agents into a workflow. AKD Flow orchestrates the handoffs between them.',
+    description: 'An Agent workflow is a composition of already-published agents chained through an orchestration layer in AKD Flow. The layer manages handoffs, tool calls, and intermediate state, and surfaces traceable progress to scientists. Use this branch when no single agent can do the job — you need a pipeline of specialized agents working together.',
     row: 'branch-3',
     governance: 'Orchestration policy and handoff guardrails required',
   },
@@ -131,9 +131,9 @@ export const STEPS = [
   {
     id: 'flow-integrations',
     label: 'Integrated Chatbots',
-    sublabel: 'Agents surfaced as chatbots inside the tools scientists already use — Teams, Slack, ChatGSFC, and other NASA collaboration platforms.',
+    sublabel: 'Agents surfaced as chatbots inside the collaboration tools scientists already use — Microsoft Teams, Slack, and other NASA workplaces.',
     description:
-      'Once an agent is in production, it can be surfaced as an integrated chatbot inside existing platforms — Microsoft Teams, Slack, ChatGSFC, and other NASA collaboration tools — bringing agent capabilities directly into scientist workflows without forcing them to switch applications. Same approved agent, multiple surfaces.',
+      'Once an agent is in production, it can be surfaced as an integrated chatbot inside collaboration tools — Microsoft Teams, Slack, and other NASA workplace platforms — bringing agent capabilities directly into scientist workflows without forcing them to switch applications. (Hosted chatbots in ChatGPT / Claude / ChatGSFC live in the Distribute stage.)',
     row: 'flow-sub',
   },
   {
@@ -146,9 +146,9 @@ export const STEPS = [
   },
   {
     id: 'ep-gpt',
-    label: 'Custom GPT / Claude Project Directory',
-    sublabel: 'Tool-independent agents published as Custom GPTs or Claude Projects — no code required to use them.',
-    description: 'Tool-independent agents published directly as Custom GPTs or Claude Projects using the CARE-developed system prompt — no custom code required. Examples: Scientific Illustrator, Paper Writing Assistant, Data Governance Agent.',
+    label: 'Hosted Chatbots (ChatGPT · Claude · ChatGSFC)',
+    sublabel: 'Same CARE prompt, surfaced inside each platform\'s chat-assistant directory — no code, no API, no extra hosting.',
+    description: 'Tool-independent agents published as hosted chatbots inside ChatGPT (as a Custom GPT), Claude (as a Project), or ChatGSFC (as an assistant). Each platform takes the CARE-developed system prompt + uploaded domain context and exposes the agent through its own chat-assistant directory. Examples: Scientific Illustrator, Paper Writing Assistant, Data Governance Agent.',
     row: 'endpoints',
     link: { href: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/agents', label: 'agents/ ↗' },
   },
@@ -208,9 +208,9 @@ export const PERSONAS = [
 ] as const;
 
 export const GOALS = [
-  { id: 'ship-custom-gpt', label: 'Ship a Custom GPT' },
-  { id: 'build-tool-agent', label: 'Build a tool-using agent' },
-  { id: 'compose-multi-agent', label: 'Compose a multi-agent workflow' },
+  { id: 'ship-custom-gpt', label: 'Ship a chat assistant' },
+  { id: 'build-tool-agent', label: 'Build a custom agent' },
+  { id: 'compose-multi-agent', label: 'Compose an agent workflow' },
   { id: 'contribute-mcp-server', label: 'Contribute a Community MCP server' },
   { id: 'guardrails-as-service', label: 'Add guardrails as a service' },
   { id: 'use-flow', label: 'Use Flow — run or compose workflows' },

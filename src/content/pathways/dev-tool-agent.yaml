@@ -1,9 +1,10 @@
 slug: dev-tool-agent
-title: Build a tool-using agent
-eyebrow: Builder · Tool-using
+title: Build a custom agent
+eyebrow: Builder · Custom agent
 blurb: >-
-  My agent needs to search data, call APIs, or run code. Walk me from CARE
-  through Branch 2 — akd-ext, Labs, SME review — to AKD Flow.
+  My agent needs deep tool control and integrations with NASA data systems.
+  Walk me from CARE through Branch 2 — Agent Toolkit, Labs, SME review —
+  to AKD Flow.
 persona: developer
 goal: build-tool-agent
 steps:

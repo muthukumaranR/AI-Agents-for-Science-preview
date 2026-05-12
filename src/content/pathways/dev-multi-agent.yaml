@@ -1,9 +1,9 @@
 slug: dev-multi-agent
-title: Compose a multi-agent workflow
-eyebrow: Builder · Multi-agent
+title: Compose an agent workflow
+eyebrow: Builder · Agent workflow
 blurb: >-
-  I want to chain multiple agents together. Walk me through Branch 3 —
-  orchestration, handoffs, SME review, AKD Flow.
+  I want to chain multiple already-approved agents into a workflow. Walk
+  me through Branch 3 — orchestration, handoffs, SME review, AKD Flow.
 persona: developer
 goal: compose-multi-agent
 steps:

@@ -1,9 +1,10 @@
 slug: dev-ship-gpt
-title: Ship a Custom GPT
-eyebrow: Builder · Tool-independent
+title: Ship a chat assistant
+eyebrow: Builder · Chat assistant
 blurb: >-
-  I have a science-assistant idea that doesn't need external tools. Walk me from
-  CARE through Branch 1 to the Custom GPT directory.
+  I have a science-assistant idea I want to ship through a chat platform.
+  Walk me from CARE through Branch 1 to publishing it as a chat assistant
+  on ChatGPT, Claude, or ChatGSFC — no code required.
 persona: developer
 goal: ship-custom-gpt
 steps:

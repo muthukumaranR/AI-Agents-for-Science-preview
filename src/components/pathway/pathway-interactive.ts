@@ -86,6 +86,17 @@ personaSel?.addEventListener('change', tryMatrix);
 goalSel?.addEventListener('change', tryMatrix);
 clearBtns.forEach((b) => b.addEventListener('click', clearPath));
 
-// Honor hash on load
-const match = /^#path=([a-z0-9-]+)$/.exec(location.hash);
-if (match && PATHS[match[1]]) applyPath(match[1]);
+function applyFromHash() {
+  const m = /^#path=([a-z0-9-]+)$/.exec(location.hash);
+  if (m && PATHS[m[1]]) {
+    applyPath(m[1]);
+    // Smooth-scroll to the strip if user came from outside the section
+    // (e.g. clicked the sticky-nav 'Get started' CTA).
+    const strip = document.querySelector<HTMLElement>('[data-pathway-strip]');
+    strip?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// Honor hash on load + on subsequent hash navigations
+applyFromHash();
+window.addEventListener('hashchange', applyFromHash);
