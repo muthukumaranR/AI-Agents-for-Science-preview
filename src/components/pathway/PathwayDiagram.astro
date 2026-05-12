@@ -5,6 +5,8 @@ const stepsByRow = (row: Step['row']) => STEPS.filter((s) => s.row === row);
 
 const designStep = stepsByRow('design')[0];
 const designSub = stepsByRow('design-sub');
+const pathA = designSub.find((s) => s.id === 'care-path-a')!;
+const pathB = designSub.find((s) => s.id === 'care-path-b')!;
 const outputStep = stepsByRow('output')[0];
 const decisionStep = stepsByRow('decision')[0];
 const branch1 = stepsByRow('branch-1');
@@ -16,31 +18,43 @@ const endpoints = stepsByRow('endpoints');
 
 const labsStep = branch2.find((s) => s.id === 'b2-labs')!;
 const b2Initial = branch2.find((s) => s.id === 'b2-akdext')!;
+
+const shortenLabel = (label: string) => {
+  const parts = label.split(' · ');
+  return parts.length > 1 ? parts.slice(1).join(' · ') : label;
+};
 ---
 
 <div class="pathway-pipeline" aria-label="Agent development pathway" aria-describedby="pathway-active-desc" data-pathway-diagram>
 
-  <!-- Stage 1 · CARE Design -->
+  <!-- Stage 1 · CARE Design Process -->
   <div class="pipeline-stage">
     <span class="pipeline-stage__label">Phase 1 · Design</span>
     <article class="pipe-card pipe-card--featured" data-step-id={designStep.id} role="group" aria-labelledby={`step-${designStep.id}-label`} title={designStep.description}>
       <span class="pipe-card__eyebrow">Step 1</span>
       <b id={`step-${designStep.id}-label`} class="pipe-card__title">{designStep.label}</b>
-      <p class="pipe-card__sub">{designStep.sublabel}</p>
-      <div class="pipe-card__subpaths">
-        {designSub.map((sub) => (
-          <div class="subpath" data-step-id={sub.id} title={sub.sublabel}>
-            <b>{sub.label.replace(' · ', ' · ').split(' · ')[0]}</b>
-            <span>{sub.label.split(' · ').slice(1).join(' · ')}</span>
-          </div>
-        ))}
-      </div>
+      <p class="pipe-card__sub">A 5-phase stage-gated process where SMEs, developers, and helper LLM agents specify what the agent should do.</p>
     </article>
   </div>
 
-  <span class="pipeline-arrow" aria-hidden="true">→</span>
+  <span class="pipeline-arrow pipeline-arrow--fork" aria-hidden="true">↦</span>
 
-  <!-- Stage 2 · CARE Output -->
+  <!-- Stage 2 · Two ways to run CARE (parallel lanes) -->
+  <div class="pipeline-stage pipeline-stage--multi">
+    <span class="pipeline-stage__label">Path A or B</span>
+    <article class="pipe-card pipe-card--branch" data-step-id={pathA.id} role="group" aria-labelledby={`step-${pathA.id}-label`} title={pathA.description}>
+      <span class="pipe-card__eyebrow">Path A</span>
+      <b id={`step-${pathA.id}-label`} class="pipe-card__title">CARE Studio in AKD Labs UI</b>
+    </article>
+    <article class="pipe-card pipe-card--branch" data-step-id={pathB.id} role="group" aria-labelledby={`step-${pathB.id}-label`} title={pathB.description}>
+      <span class="pipe-card__eyebrow">Path B</span>
+      <b id={`step-${pathB.id}-label`} class="pipe-card__title">CARE phase prompts (ChatGPT / Claude)</b>
+    </article>
+  </div>
+
+  <span class="pipeline-arrow pipeline-arrow--merge" aria-hidden="true">→</span>
+
+  <!-- Stage 3 · CARE Output -->
   <div class="pipeline-stage">
     <span class="pipeline-stage__label">Artifacts</span>
     <article class="pipe-card" data-step-id={outputStep.id} role="group" aria-labelledby={`step-${outputStep.id}-label`} title={outputStep.description}>
@@ -54,32 +68,29 @@ const b2Initial = branch2.find((s) => s.id === 'b2-akdext')!;
 
   <span class="pipeline-arrow" aria-hidden="true">→</span>
 
-  <!-- Stage 3 · Decision -->
+  <!-- Stage 4 · Decision -->
   <div class="pipeline-stage">
     <span class="pipeline-stage__label">Choose</span>
     <article class="pipe-card pipe-card--decision" data-step-id={decisionStep.id} role="group" aria-labelledby={`step-${decisionStep.id}-label`} title={decisionStep.description}>
       <span class="pipe-card__eyebrow">Step 3</span>
-      <b id={`step-${decisionStep.id}-label`} class="pipe-card__title">{decisionStep.label}</b>
-      <p class="pipe-card__sub">Tool-independent · Tool-enabled · Multi-agent</p>
+      <b id={`step-${decisionStep.id}-label`} class="pipe-card__title">Choose Operationalization Path</b>
     </article>
   </div>
 
   <span class="pipeline-arrow pipeline-arrow--fork" aria-hidden="true">↦</span>
 
-  <!-- Stage 4 · Branches (3 parallel lanes; Labs nested in B2) -->
-  <div class="pipeline-stage pipeline-stage--branches">
-    <span class="pipeline-stage__label">3 operationalization paths</span>
+  <!-- Stage 5 · Branches (3 parallel lanes; Labs nested in B2) -->
+  <div class="pipeline-stage pipeline-stage--multi pipeline-stage--branches">
+    <span class="pipeline-stage__label">3 paths</span>
+    <article class="pipe-card pipe-card--branch" data-step-id="b1-simple" role="group" aria-labelledby="step-b1-simple-label" title={branch1[0].description}>
+      <span class="pipe-card__eyebrow">Branch 1 · Simple</span>
+      <b id="step-b1-simple-label" class="pipe-card__title">{shortenLabel(branch1[0].label)}</b>
+      {branch1[0].governance && <span class="gov-dot" title={branch1[0].governance}>●</span>}
+    </article>
     <div class="branch-lane">
-      <article class="pipe-card pipe-card--branch" data-step-id="b1-simple" role="group" aria-labelledby="step-b1-simple-label" title={branch1[0].description}>
-        <span class="pipe-card__eyebrow">Branch 1 · Simple</span>
-        <b id="step-b1-simple-label" class="pipe-card__title">{branch1[0].label.split(' · ').slice(1).join(' · ') || branch1[0].label}</b>
-        {branch1[0].governance && <span class="gov-dot" title={branch1[0].governance}>●</span>}
-      </article>
-    </div>
-    <div class="branch-lane branch-lane--b2">
       <article class="pipe-card pipe-card--branch" data-step-id={b2Initial.id} role="group" aria-labelledby={`step-${b2Initial.id}-label`} title={b2Initial.description}>
         <span class="pipe-card__eyebrow">Branch 2 · Tool-enabled</span>
-        <b id={`step-${b2Initial.id}-label`} class="pipe-card__title">{b2Initial.label.split(' · ').slice(1).join(' · ') || b2Initial.label}</b>
+        <b id={`step-${b2Initial.id}-label`} class="pipe-card__title">{shortenLabel(b2Initial.label)}</b>
         {b2Initial.governance && <span class="gov-dot" title={b2Initial.governance}>●</span>}
       </article>
       <span class="lane-arrow" aria-hidden="true">↓</span>
@@ -88,23 +99,21 @@ const b2Initial = branch2.find((s) => s.id === 'b2-akdext')!;
         <b id={`step-${labsStep.id}-label`} class="pipe-card__title">{labsStep.label}</b>
       </article>
     </div>
-    <div class="branch-lane">
-      <article class="pipe-card pipe-card--branch" data-step-id="b3-orch" role="group" aria-labelledby="step-b3-orch-label" title={branch3[0].description}>
-        <span class="pipe-card__eyebrow">Branch 3 · Multi-agent</span>
-        <b id="step-b3-orch-label" class="pipe-card__title">{branch3[0].label.split(' · ').slice(1).join(' · ') || branch3[0].label}</b>
-        {branch3[0].governance && <span class="gov-dot" title={branch3[0].governance}>●</span>}
-      </article>
-    </div>
+    <article class="pipe-card pipe-card--branch" data-step-id="b3-orch" role="group" aria-labelledby="step-b3-orch-label" title={branch3[0].description}>
+      <span class="pipe-card__eyebrow">Branch 3 · Multi-agent</span>
+      <b id="step-b3-orch-label" class="pipe-card__title">{shortenLabel(branch3[0].label)}</b>
+      {branch3[0].governance && <span class="gov-dot" title={branch3[0].governance}>●</span>}
+    </article>
   </div>
 
   <span class="pipeline-arrow" aria-hidden="true">→</span>
 
-  <!-- Stage 5 · SME Gate (B1 bypasses; B2/B3 must pass) -->
+  <!-- Stage 6 · SME Gate -->
   <div class="pipeline-stage">
     <span class="pipeline-stage__label">Phase 4 · Gate</span>
     <article class="pipe-card pipe-card--gate" data-step-id={gateStep.id} role="group" aria-labelledby={`step-${gateStep.id}-label`} title={gateStep.description}>
       <span class="pipe-card__eyebrow">B2 + B3 · SME review</span>
-      <b id={`step-${gateStep.id}-label`} class="pipe-card__title">{gateStep.label}</b>
+      <b id={`step-${gateStep.id}-label`} class="pipe-card__title">SME Readiness Review (gate)</b>
       <span class="gov-dot gov-dot--strong" title={gateStep.governance}>●</span>
     </article>
   </div>
@@ -123,7 +132,7 @@ const b2Initial = branch2.find((s) => s.id === 'b2-akdext')!;
   <span class="pipeline-arrow pipeline-arrow--fork" aria-hidden="true">↦</span>
 
   <!-- Stage 8 · Endpoints -->
-  <div class="pipeline-stage pipeline-stage--endpoints">
+  <div class="pipeline-stage pipeline-stage--multi pipeline-stage--endpoints">
     <span class="pipeline-stage__label">Distribute</span>
     {endpoints.map((s) => (
       <article class="pipe-card pipe-card--endpoint" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`} title={s.description}>
@@ -158,8 +167,8 @@ const b2Initial = branch2.find((s) => s.id === 'b2-akdext')!;
     margin-top: 24px;
     display: flex;
     flex-direction: row;
-    align-items: stretch;
-    gap: 4px;
+    align-items: flex-start;     /* cards align to top, no vertical stretch */
+    gap: 6px;
     padding: 8px 4px 12px;
     overflow-x: auto;
     overflow-y: visible;
@@ -171,18 +180,15 @@ const b2Initial = branch2.find((s) => s.id === 'b2-akdext')!;
   .pipeline-stage {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    min-width: 128px;
-    width: 128px;
+    gap: 8px;
+    width: 132px;
+    min-width: 132px;
     flex-shrink: 0;
     scroll-snap-align: start;
   }
-  .pipeline-stage--branches { width: 178px; min-width: 178px; gap: 8px; }
-  .pipeline-stage--endpoints { width: 160px; min-width: 160px; gap: 6px; }
-
-  .branch-lane { display: flex; flex-direction: column; gap: 4px; }
-  .lane-arrow { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); text-align: center; padding: 0; line-height: 1; }
-  .pipe-card--sub { background: var(--surface); }
+  .pipeline-stage--multi { width: 158px; min-width: 158px; }
+  .pipeline-stage--branches { width: 170px; min-width: 170px; }
+  .pipeline-stage--endpoints { width: 152px; min-width: 152px; }
 
   .pipeline-stage__label {
     font-family: var(--font-mono);
@@ -190,22 +196,21 @@ const b2Initial = branch2.find((s) => s.id === 'b2-akdext')!;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent);
-    padding: 0 2px;
-    min-height: 12px;
-    text-align: left;
+    padding: 0 2px 2px;
+    min-height: 14px;
   }
 
   .pipeline-arrow {
-    align-self: center;
+    align-self: flex-start;
     flex-shrink: 0;
     color: var(--text-muted);
     font-size: 14px;
-    padding: 0;
-    margin: 0;
-    margin-top: 18px; /* offset to align with card middles, since stages have a label row above */
     line-height: 1;
+    padding: 0;
+    margin-top: 56px;   /* aligns roughly with first card's vertical midpoint (label + half card) */
   }
-  .pipeline-arrow--fork { font-size: 16px; color: var(--accent); }
+  .pipeline-arrow--fork,
+  .pipeline-arrow--merge { color: var(--accent); font-size: 16px; }
 
   /* ── Cards ─────────────────────────────────────────────── */
   .pipe-card {
@@ -213,48 +218,39 @@ const b2Initial = branch2.find((s) => s.id === 'b2-akdext')!;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     background: var(--bg-0);
-    padding: 9px 11px;
+    padding: 10px 12px;
     display: flex;
     flex-direction: column;
     gap: 3px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.04);
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    flex: 1;
-    min-height: 88px;
   }
   .pipe-card:hover { border-color: var(--accent); cursor: help; }
   .pipe-card__eyebrow {
     font-family: var(--font-mono);
     font-size: 9px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .pipe-card__title {
     font-family: var(--font-serif);
     font-weight: 500;
     font-size: 12.5px;
-    line-height: 1.25;
+    line-height: 1.3;
     color: var(--text);
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
   .pipe-card__sub {
     font-size: 10.5px;
     color: var(--text-muted);
-    line-height: 1.4;
+    line-height: 1.45;
     margin: 2px 0 0;
     font-style: italic;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
-  .pipe-card--featured {
-    border-color: var(--border-strong);
-  }
+  .pipe-card--featured { border-color: var(--border-strong); }
   .pipe-card--featured::before {
     content: '';
     position: absolute;
@@ -266,8 +262,9 @@ const b2Initial = branch2.find((s) => s.id === 'b2-akdext')!;
   }
   .pipe-card--decision { background: oklch(0.985 0.005 262.881); }
   .pipe-card--gate { border-left: 3px solid var(--accent); }
-  .pipe-card--branch { min-height: 64px; }
-  .pipe-card--endpoint { border-color: var(--border-strong); min-height: 64px; }
+  .pipe-card--branch { /* normal sizing */ }
+  .pipe-card--sub { background: var(--surface); }
+  .pipe-card--endpoint { border-color: var(--border-strong); }
   .pipe-card--endpoint .pipe-card__eyebrow { color: var(--accent); }
 
   /* Output chips */
@@ -282,19 +279,9 @@ const b2Initial = branch2.find((s) => s.id === 'b2-akdext')!;
     color: var(--text);
   }
 
-  /* CARE sub-paths inside the CARE card */
-  .pipe-card__subpaths { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
-  .subpath {
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    background: var(--surface);
-    padding: 5px 7px;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-  }
-  .subpath b { font-family: var(--font-serif); font-weight: 500; font-size: 10.5px; }
-  .subpath span { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; color: var(--text-muted); }
+  /* Branch 2 lane wrapper (b2 + Labs nested) */
+  .branch-lane { display: flex; flex-direction: column; gap: 4px; }
+  .lane-arrow { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); text-align: center; line-height: 1; }
 
   /* Governance dot */
   .gov-dot {
@@ -308,31 +295,31 @@ const b2Initial = branch2.find((s) => s.id === 'b2-akdext')!;
   .gov-dot--strong { font-size: 14px; }
 
   /* ── Highlight & dim states ────────────────────────────── */
-  .pipe-card.active, .subpath.active, .services-list li.active {
+  .pipe-card.active, .services-list li.active {
     border-color: var(--accent);
     box-shadow: 0 0 0 1px var(--accent) inset, 0 4px 14px rgba(99, 102, 241, 0.10);
   }
-  .pipe-card.dim, .subpath.dim, .services-list li.dim,
-  .pipe-card.dim *, .subpath.dim *, .services-list li.dim * {
+  .pipe-card.dim, .services-list li.dim,
+  .pipe-card.dim *, .services-list li.dim * {
     opacity: 0.32;
     filter: grayscale(0.3);
     transition: opacity 0.18s ease, filter 0.18s ease;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .pipe-card.dim, .subpath.dim, .services-list li.dim,
-    .pipe-card.dim *, .subpath.dim *, .services-list li.dim * { transition: none; }
+    .pipe-card.dim, .services-list li.dim,
+    .pipe-card.dim *, .services-list li.dim * { transition: none; }
   }
   @media print {
-    .pipe-card.dim, .subpath.dim, .services-list li.dim,
-    .pipe-card.dim *, .subpath.dim *, .services-list li.dim * {
+    .pipe-card.dim, .services-list li.dim,
+    .pipe-card.dim *, .services-list li.dim * {
       opacity: 1 !important;
       filter: none !important;
     }
     .pathway-pipeline { overflow: visible !important; flex-wrap: wrap; }
   }
 
-  /* ── Services panel (unchanged) ────────────────────────── */
+  /* ── Services panel ────────────────────────────────────── */
   .pathway-services { margin-top: 32px; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px 24px 24px; background: var(--bg-0); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); }
   .services-head { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
   .services-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }

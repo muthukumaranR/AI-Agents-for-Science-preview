@@ -2,8 +2,8 @@
 import PathwayChooser from './pathway/PathwayChooser.astro';
 import PathwayDiagram from './pathway/PathwayDiagram.astro';
 ---
-<section class="section" id="pathway">
-  <div class="container">
+<section class="section section--pathway" id="pathway">
+  <div class="container container--wide">
     <div class="section-head">
       <span class="eyebrow">04 · Agent Development Pathway</span>
       <h2>From idea to published agent — pick your path.</h2>
@@ -16,6 +16,12 @@ import PathwayDiagram from './pathway/PathwayDiagram.astro';
     <PathwayDiagram />
   </div>
 </section>
+
+<style>
+  /* Pathway section uses a wider container so the 8-stage pipeline fits
+     without horizontal scroll on standard desktop monitors. */
+  .section--pathway .container--wide { max-width: 1400px; }
+</style>
 
 <script>
   import './pathway/pathway-interactive.ts';
