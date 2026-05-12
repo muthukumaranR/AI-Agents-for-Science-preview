@@ -1,7 +1,7 @@
 ---
 name: Astro Data Search Agent
-tagline: Discovers astronomical datasets across NASA astrophysics archives.
-description: Accepts a science target, wavelength, and epoch and returns archive matches with supporting references from NASA astrophysics data systems.
+tagline: An AKD agent for discovering astronomical datasets across NASA's astrophysics archives.
+description: Understands object names and coordinates to route queries to the appropriate archives, and supports a diverse range of search patterns including those driven by literature, coordinates, archives, or specific events.
 tags: [search, astrophysics, astronomy]
 order: 40
 akdRef: { kind: agents, path: agents/astro-search }
@@ -9,6 +9,6 @@ designers: [Ash Danehkar]
 developers: [Gaurab Panthee, Nishan Pantha]
 ---
 
-The Astro Data Search Agent is a Tool-Integrated agent designed through the AKD-CARE process for discovering astronomical datasets across NASA astrophysics archives. Accepts a science target, wavelength, and epoch and returns archive matches with supporting references from NASA astrophysics data systems.
+The Astro Search Agent is an AKD agent for discovering astronomical datasets across NASA's astrophysics archives. The agent understands object names and coordinates to route queries to the appropriate archives, and it supports a diverse range of search patterns, including those driven by literature, coordinates, archives, or specific events.
 
-The agent is part of the broader AKD agents collection, supporting the scientific community in navigating complex astrophysics data archives with structured, evidence-based search and transparent discovery.
+Tools and data sources for the agent include SIMBAD, NASA ADS, MAST, HEASARC, IRSA, NED, Gaia, VizieR, and Virtual Observatory services — all routed via the Astroquery MCP server. The agent identifies which of the four search patterns applies, asks focused clarifying questions, resolves object names via SIMBAD, and routes to the right archive (HEASARC for high-energy, MAST for UV/optical space, IRSA for infrared, NED for extragalactic, Gaia for astrometry, ADS for literature).

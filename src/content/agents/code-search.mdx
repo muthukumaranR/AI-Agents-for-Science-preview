@@ -1,7 +1,7 @@
 ---
 name: Code Search Agent
-tagline: Discovers scientific code repositories aligned with a user's technical or scientific task.
-description: Given a task description and constraints, the Code Search Agent surfaces candidate repositories with rationale, helping scientists find relevant codebases without manual searching.
+tagline: An AKD agent for discovering publicly available scientific code repositories that plausibly align with a user's technical or scientific task.
+description: A read-only decision-support system that is non-prescriptive, non-endorsing, and human-in-the-loop by design. Serves scientists and research software engineers across NASA SMD domains.
 tags: [search, code, discovery]
 order: 30
 akdRef: { kind: agents, path: agents/code-search }
@@ -9,6 +9,6 @@ designers: [Nidhi Jha, Ankur Kumar, Emily Foshee, Rachel Slank, Ash Danehkar]
 developers: [Nishan Pantha, Kumar Ramasubramanian, Simran KC, Sajil Awale, Pushwitha Krishnappa]
 ---
 
-The Code Search Agent is a Tool-Integrated agent designed through the AKD-CARE process. It requires external tools, APIs, or data systems for execution along with rigorous prompt design and reasoning.
+The Code Search Agent is an AKD agent for discovering publicly available scientific code repositories that plausibly align with a user's technical or scientific task. It operates as a read-only, decision support system that is non-prescriptive, non-endorsing, and human-in-the-loop by design. The agent serves scientists and research software engineers across NASA SMD domains (Astrophysics, Earth science, Heliophysics, Planetary, Biological and Physical science).
 
-Given a task description and constraints, the Code Search Agent surfaces candidate repositories with rationale, helping scientists find relevant codebases without manual searching. The agent is designed to support the scientific community in discovering and reusing existing scientific code, reducing duplication of effort and accelerating research workflows.
+Tools and data sources for the agent include a NASA-verified repository corpus, the Science Discovery Engine (SDE), NASA ADS (for astrophysics), code-snippet inspection, and supplementary web search. The agent executes a multi-pass discovery process, beginning with an intent parse and primary search against the NASA corpus. It then enriches results via the Science Discovery Engine (SDE), performs optional deep code inspections, and consults ADS literature for astrophysics. Finally, it uses web supplements to fill any remaining gaps before ranking and disclosing the findings.

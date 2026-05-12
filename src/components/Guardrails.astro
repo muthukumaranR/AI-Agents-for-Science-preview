@@ -5,15 +5,15 @@ const baseUrl = import.meta.env.BASE_URL;
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">07 · Trust &amp; Safety</span>
-      <h2>Generic safety + science-specific guardrails</h2>
+      <h2>A reusable input/output safety net</h2>
       <p>
-        AKD pairs generic LLM safety — content moderation and defense-in-depth
-        review — with science-specific guardrails: factuality reasoning over
-        claims and citations, the NASA Science Literature Risk taxonomy, and
-        domain-aware compliance checks. Both layers are separate components in
-        the stack, not behavior bolted onto agents. Teams compose them like any
-        other dependency — declared at design time, run during build, and
-        active at runtime.
+        Scientific guardrails establish a reusable input/output safety net. In AKD,
+        Granite Guardian and Risk Agent serve as critical guardrails. Each guardrail
+        acts as a checkpoint between an AI agent and the outside world. The guardrails
+        inspect both input and output and issue a standardized "pass/fail" report that
+        identifies potential risks and remains attached to the agent's response. Because
+        the reports follow a consistent format, providers are interchangeable and
+        composable across any AKD agent.
       </p>
     </div>
 
@@ -47,11 +47,11 @@ const baseUrl = import.meta.env.BASE_URL;
           <span class="guard-group-label">Generic safety</span>
           <div class="pill-card">
             <h4>Granite Guardian</h4>
-            <p>Foundation-model content moderation — jailbreak, harm, bias, plus RAG groundedness, relevance, and answer-relevance checks. Off-the-shelf component.</p>
+            <p>A fast, content-focused moderation LLM based on the IBM Granite family of models. Assesses jailbreaks, violence, sexual content, profanity, social biases, unethical behaviors, and harm, plus executes RAG-specific checks for groundedness, relevance, and answer relevance.</p>
           </div>
           <div class="pill-card">
             <h4>Defense-in-Depth</h4>
-            <p>Layered checks across input, intermediate steps, and output — not a single gate.</p>
+            <p>The two providers compose into a defense-in-depth pattern: a fast, cheap content filter rejects obvious cases up front for human messages, and a slower, domain-aware judge runs on generated responses.</p>
           </div>
         </div>
 
@@ -59,15 +59,15 @@ const baseUrl = import.meta.env.BASE_URL;
           <span class="guard-group-label">Science-specific</span>
           <div class="pill-card">
             <h4>FactReasoner</h4>
-            <p>Targeted factuality reasoning over claims, attribution, and supporting evidence in agent outputs.</p>
+            <p>Targeted factuality reasoning over claims, attribution, and supporting evidence to mitigate hallucinations and ensure factual accuracy in agent outputs.</p>
           </div>
           <div class="pill-card">
             <h4>Risk Agent</h4>
-            <p>LLM-judge that classifies and explains risks against the IBM Risk Atlas and the NASA Science Literature Risk taxonomy.</p>
+            <p>An LLM judge that evaluates outputs against the IBM Risk Atlas and a NASA Science Literature Risk taxonomy, along with context-specific risks for each agent. Domain-aware, detecting hallucinations, attribution gaps, consistency issues, overgeneralizations, outdated confidence, and multidisciplinary failures. Uses a DAG-based, importance-weighted evaluation graph.</p>
           </div>
           <div class="pill-card">
             <h4>NASA Science Literature Risk Taxonomy</h4>
-            <p>Domain-aware risk categories tailored to scientific contexts and agent failure modes.</p>
+            <p>Domain-aware risk categories tailored to scientific contexts and agent failure modes — embedded into the Risk Agent's evaluation.</p>
           </div>
         </div>
       </div>

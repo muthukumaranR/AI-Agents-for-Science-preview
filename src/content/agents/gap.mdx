@@ -1,13 +1,13 @@
 ---
 name: Gap Analysis · Gap Search Agent
-tagline: Identifies defensible research gaps, contradictions, and candidate research questions from a curated corpus.
-description: Given a user-curated literature corpus, the Gap Agent surfaces gap statements and supporting evidence, helping scientists identify where knowledge is missing or contested.
+tagline: Identifies defensible research gaps, contradictions, and candidate research questions from a user-curated collection of academic papers.
+description: An evidence-grounded, non-authoritative agent with a human-in-the-loop workflow that acts as a neutral evidence synthesizer — providing structured output without independently assessing novelty, resolving contradictions, or judging scientific merit.
 tags: [analysis, literature, reasoning]
 order: 50
 akdRef: { kind: agents, path: agents/gap }
 designers: [Nidhi Jha, Emily Foshee, Ankur Kumar, Venkatesh Kolluru]
 ---
 
-The Gap Analysis / Gap Search Agent is a Simple Agent designed through the AKD-CARE process. It does not require custom APIs, MCP servers, or external system integrations. Instead, it operates through carefully structured prompts, validated reasoning steps, domain-specific instructions, and HITL oversight.
+The Gap Agent is an AKD-designed agent that identifies defensible research gaps, contradictions, and candidate research questions from a user-curated collection of academic papers. This agent is evidence-grounded, non-authoritative, and incorporates a human-in-the-loop workflow. The agent acts as a neutral evidence synthesizer, providing structured output without independently assessing novelty, resolving contradictions, or judging scientific merit. Although the Gap Agent is also Stage 1 of the Closed-Loop CM1 pipeline, it can be used as a standalone tool.
 
-The Gap Agent systematically analyzes a curated literature corpus to surface defensible research gaps, knowledge contradictions, and candidate research questions. It is designed to support scientists in identifying where knowledge is missing or contested without prescribing conclusions — all interpretive decisions remain with the researcher.
+The agent executes a six-stage pipeline with explicit human-approval gates between the stages. These stages include scientific scope inference, structured extraction with paragraph-level traceability, gap-matrix proposal across analytical lenses, gap identification (explicit, inferred, and contradictions), optional research question suggestions, and qualitative tiered prioritization (high/medium/exploratory). Users approve the output of each stage before the agent proceeds.

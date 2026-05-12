@@ -1,14 +1,14 @@
 ---
 name: Planetary Data Search · PDS Agent
-tagline: Discovers datasets and products across NASA's Planetary Data System.
-description: Given a target body, instrument, and time range, the PDS Agent searches NASA's Planetary Data System archives and returns matched products with supporting context.
+tagline: An AKD agent for discovering datasets and products across NASA's Planetary Data System.
+description: Performs catalog-first routing through broad discovery with cross-node PDS tools, then narrows results via node-specific services when needed. Returns both PDS4 and PDS3 versions when available; never downloads, endorses, or interprets results.
 tags: [search, planetary-science, pds]
 order: 20
 akdRef: { kind: agents, path: agents/pds }
 designers: [Rachel Slank]
-developers: [Simran KC]
+developers: [Simran KC, Bernard Benson]
 ---
 
-The Planetary Data Search Agent is a Tool-Integrated agent designed through the AKD-CARE process. It requires external tools and data system integrations for execution, along with rigorous prompt design and reasoning to support scientists searching NASA's Planetary Data System archives.
+The PDS Search Agent is an AKD agent for discovering datasets and products across NASA's Planetary Data System. It performs catalog-first routing through broad discovery with cross-node PDS tools, then narrows results via node-specific services when needed. The agent returns both PDS4 and PDS3 versions of the same data when available. Like the other AKD data discovery agents, it never downloads, endorses, or interprets results.
 
-Given a target body, instrument, and time range, the PDS Agent searches NASA's Planetary Data System archives and returns matched products with supporting context. Scientists retain authority over dataset selection and scientific interpretation.
+The agent uses PDS node websites and node-operated services across GEO, ATM, IMG, PPI, RMS, and SBN. It searches broadly first via the PDS catalog and PDS4 tools, checks for both PDS4 and PDS3 representations, and narrows results with node-specific tools (ODE/GEO for Mars, IMG for imaging, OPUS/RMS for ring-moon systems, SBN for small bodies) when needed.

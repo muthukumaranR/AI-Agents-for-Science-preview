@@ -1,7 +1,7 @@
 ---
 name: Earth Science Data Search · CMR Agent
-tagline: Helps users discover NASA Earth science datasets through structured, evidence-based CMR search.
-description: A decision-support agent that accepts natural-language science queries and returns ranked CMR datasets with full provenance. Built under CARE and protected by AKD guardrails.
+tagline: Helps users discover and understand NASA Earthdata datasets relevant to Earth science questions.
+description: An AKD-designed assistant integrated into NASA's Common Metadata Repository (CMR). A non-decision-making, human-in-the-loop agent that supports transparent discovery of candidate collections in CMR.
 tags: [search, earth-science, cmr]
 order: 10
 akdRef: { kind: agents, path: agents/cmr }
@@ -10,9 +10,9 @@ developers: [Nishan Pantha, Kumar Ramasubramanian, Simran KC, Sajil Awale, Pushw
 repo: https://github.com/NASA-IMPACT/akd-suite/tree/main/agents/cmr
 ---
 
-The Earth Science Data Search Agent is an AKD-designed, CMR-integrated assistant that helps users discover and understand NASA Earthdata datasets relevant to Earth science questions. It is a non-decision-making, human-in-the-loop agent: it does not recommend or endorse datasets, but supports transparent discovery of candidate collections through NASA's Common Metadata Repository.
+The Earth Science Data Search Agent is an AKD-designed assistant integrated into NASA's Common Metadata Repository (CMR) that helps users discover and understand NASA Earthdata datasets relevant to Earth science questions. It is a non-decision-making, human-in-the-loop agent, meaning it does not recommend or endorse datasets, but instead supports transparent discovery of candidate collections in CMR.
 
-A key feature is its CARE reasoning loop: Clarify → Analyze → Rank → Explain. The agent helps users clarify variables, spatial and temporal bounds, and whether indirect discovery is allowed. It then maps the confirmed scope to GCMD keywords and CMR API parameters, searches CMR, ranks collections by metadata relevance only, and explains why each dataset appears. The researcher makes the final decision on dataset suitability.
+The agent helps users clarify variables, spatial and temporal bounds, and whether indirect discovery is allowed. It then maps the confirmed scope to GCMD keywords and CMR API parameters, searches CMR, ranks collections by metadata relevance only, and explains why each dataset appears. The researcher makes the final decision on dataset suitability.
 
 ### Inputs
 

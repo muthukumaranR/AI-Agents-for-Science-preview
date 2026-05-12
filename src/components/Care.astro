@@ -8,15 +8,15 @@ const baseUrl = import.meta.env.BASE_URL;
 const roles = [
   {
     label: 'Subject Matter Experts',
-    desc: 'Provide domain authority — surface nuanced constraints and validate scientific truth.',
+    desc: 'Provide domain authority — surfacing nuanced constraints and validating scientific "truth".',
   },
   {
     label: 'Developers',
-    desc: 'Implementation authority — ensure tool realism, feasibility, and engineering rigor.',
+    desc: 'Act as the implementation authority, ensuring tool realism and feasibility.',
   },
   {
     label: 'Helper LLM Agents',
-    desc: 'Facilitation infrastructure — phase-aligned questions, drafted specs, proposed revisions.',
+    desc: 'Serve as facilitation infrastructure — asking phase-aligned questions, drafting specifications in Markdown, and proposing revisions for human approval.',
   },
 ];
 
@@ -24,27 +24,27 @@ const phases = [
   {
     n: 1,
     label: 'Scope & Decompose',
-    desc: 'Define the target workflow, intended users, and the constraints that shape every later decision.',
+    desc: 'Defines the target workflow, users, and constraints.',
   },
   {
     n: 2,
     label: 'Key Information Elicitation',
-    desc: 'Capture details on tools, domain context, and required output formats from SMEs.',
+    desc: 'Captures details on tools, domain context, and required output formats.',
   },
   {
     n: 3,
     label: 'Reasoning Policy & Guardrails',
-    desc: 'Codify expert-like thinking logic and safety boundaries for uncertainty or tool errors.',
+    desc: 'Codifies "expert-like" thinking logic and safety boundaries for uncertainty or tool errors.',
   },
   {
     n: 4,
     label: 'Implementation',
-    desc: 'Translate approved artifacts into an engineered agent prompt using established patterns.',
+    desc: 'Translates approved artifacts into an engineered agent prompt using established design patterns.',
   },
   {
     n: 5,
     label: 'Benchmarking & Verification',
-    desc: 'Establish realistic query sets and scoring rubrics to detect regressions over time.',
+    desc: 'Establishes realistic query sets and scoring rubrics to detect regressions over time.',
   },
 ];
 ---
