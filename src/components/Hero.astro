@@ -1,9 +1,36 @@
 ---
 const baseUrl = import.meta.env.BASE_URL;
+
+const pillars = [
+  {
+    n: 1,
+    label: 'Co-design from the start',
+    desc: 'Using the CARE methodology, we foster a triadic collaboration between developers, scientists, and AI agents — ensuring every agent is scientifically grounded, technically sound, context-optimized, and efficient.',
+  },
+  {
+    n: 2,
+    label: 'Demystify the AI Agent',
+    desc: 'We enable everyone to design, build, and share by providing a common process, an SDK, and accessible platforms — lowering the barrier to entry for the entire community.',
+  },
+  {
+    n: 3,
+    label: 'Provide science guardrails',
+    desc: 'We integrate specialized Risk Agents that provide science-specific guardrails: factuality reasoning over claims and citations, the NASA Science Risk taxonomy, and domain-aware compliance checks.',
+  },
+  {
+    n: 4,
+    label: 'Standardize the process',
+    desc: 'We implement community-accepted design and development processes across the science community, ensuring that agent behaviour is consistent, reproducible, and scalable.',
+  },
+  {
+    n: 5,
+    label: 'Build a collaborative community',
+    desc: 'By creating an open ecosystem, agents evolve and improve through feedback and shared contributions — accelerating the pace of science for everyone.',
+  },
+];
 ---
 <header class="hero" id="top">
   <div class="hero-grid" aria-hidden="true"></div>
-  <!-- Floating mockflow decoration — adapted from ad-nextjs-ui landingPage.tsx -->
   <div class="mockflow-layer" aria-hidden="true">
     <img src={`${baseUrl}images/landing-mockflow2.png`} alt="" class="mf mf1" />
     <img src={`${baseUrl}images/landing-mockflow1.png`} alt="" class="mf mf2" />
@@ -22,24 +49,27 @@ const baseUrl = import.meta.env.BASE_URL;
         <strong>Accelerated Knowledge Discovery (AKD)</strong> project drives
         this transformation through five strategic pillars.
       </p>
+    </div>
 
+    <ul class="hero-pillars" aria-label="Five strategic pillars">
+      {pillars.map((p) => (
+        <li>
+          <span class="pillar-num">Pillar {p.n}</span>
+          <h3>{p.label}</h3>
+          <p>{p.desc}</p>
+        </li>
+      ))}
+    </ul>
+
+    <div class="hero-foot">
+      <a class="read-more" href={`${baseUrl}vision/`}>
+        Read the full vision <span aria-hidden="true">→</span>
+      </a>
       <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="num">10</div>
-          <div class="label">Published agents</div>
-        </div>
-        <div class="hero-stat">
-          <div class="num">3</div>
-          <div class="label">Workflows</div>
-        </div>
-        <div class="hero-stat">
-          <div class="num">5</div>
-          <div class="label">CARE phases</div>
-        </div>
-        <div class="hero-stat">
-          <div class="num">8</div>
-          <div class="label">Partner orgs</div>
-        </div>
+        <div class="hero-stat"><div class="num">10</div><div class="label">Agents</div></div>
+        <div class="hero-stat"><div class="num">3</div><div class="label">Workflows</div></div>
+        <div class="hero-stat"><div class="num">5</div><div class="label">CARE phases</div></div>
+        <div class="hero-stat"><div class="num">8</div><div class="label">Partners</div></div>
       </div>
     </div>
   </div>
@@ -48,7 +78,7 @@ const baseUrl = import.meta.env.BASE_URL;
 <style>
   .hero {
     position: relative;
-    padding: 72px 0 40px;
+    padding: 56px 0 40px;
     overflow: hidden;
   }
   .hero-grid {
@@ -75,26 +105,11 @@ const baseUrl = import.meta.env.BASE_URL;
     width: 200px;
     opacity: 0.45;
   }
-  .mf1 {
-    top: 8%;
-    left: -6%;
-    animation: fade-in-scale 6s ease-in-out infinite;
-  }
-  .mf2 {
-    bottom: -15%;
-    left: 14%;
-    animation: float 8s ease-in-out infinite 1s;
-  }
-  .mf3 {
-    top: -12%;
-    left: 52%;
-    animation: float 7s ease-in-out infinite;
-  }
-  .mf4 {
-    top: 42%;
-    right: -6%;
-    animation: float 5s ease-in-out infinite 0.6s;
-  }
+  .mf1 { top: 8%; left: -6%; animation: fade-in-scale 6s ease-in-out infinite; }
+  .mf2 { bottom: -15%; left: 14%; animation: float 8s ease-in-out infinite 1s; }
+  .mf3 { top: -12%; left: 52%; animation: float 7s ease-in-out infinite; }
+  .mf4 { top: 42%; right: -6%; animation: float 5s ease-in-out infinite 0.6s; }
+
   .hero-inner {
     position: relative;
     z-index: 1;
@@ -121,7 +136,7 @@ const baseUrl = import.meta.env.BASE_URL;
     text-transform: uppercase;
     color: var(--text-dim);
     background: var(--bg-0);
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.04);
   }
   .hero-tag .dot {
@@ -133,10 +148,10 @@ const baseUrl = import.meta.env.BASE_URL;
   .hero h1 {
     font-family: var(--font-serif);
     font-weight: 500;
-    font-size: clamp(36px, 4.2vw, 60px);
+    font-size: clamp(34px, 3.8vw, 56px);
     line-height: 1.06;
     letter-spacing: -0.02em;
-    margin: 0 0 22px;
+    margin: 0 0 18px;
     text-wrap: balance;
   }
   .hero h1 .accent {
@@ -144,47 +159,113 @@ const baseUrl = import.meta.env.BASE_URL;
     color: var(--accent);
   }
   .hero p.lede {
-    font-size: clamp(16px, 1.15vw, 18px);
+    font-size: clamp(15px, 1.05vw, 17px);
     line-height: 1.55;
     color: var(--text-dim);
     margin: 0;
-    max-width: 640px;
+    max-width: 720px;
   }
 
-  .hero-stats {
-    align-self: stretch;
+  /* Pillar cards inside the hero — compact version of the standard card */
+  .hero-pillars {
+    list-style: none;
+    padding: 0;
+    margin: 32px 0 28px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+  .hero-pillars li {
+    padding: 16px 18px 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--bg-0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04);
     display: flex;
-    gap: 48px;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .pillar-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .hero-pillars h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 15px;
+    margin: 0 0 2px;
+    color: var(--text);
+    line-height: 1.25;
+  }
+  .hero-pillars p {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Wrap when 5 columns can't fit */
+  @media (max-width: 1180px) {
+    .hero-pillars { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 760px) {
+    .hero-pillars { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .hero-pillars { grid-template-columns: 1fr; }
+  }
+
+  /* Footer of the hero: read-more on the left, stats on the right */
+  .hero-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
     flex-wrap: wrap;
-    margin-top: 44px;
-    padding-top: 26px;
+    padding-top: 18px;
     border-top: 1px solid var(--border);
+  }
+  .read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    padding-bottom: 2px;
+    transition: border-bottom-color 0.18s ease;
+  }
+  .read-more:hover { border-bottom-color: var(--accent); }
+
+  .hero-stats {
+    display: flex;
+    gap: 36px;
+    flex-wrap: wrap;
   }
   .hero-stat .num {
     font-family: var(--font-mono);
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 500;
     color: var(--text);
     line-height: 1;
   }
   .hero-stat .label {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 10.5px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--text-dim);
-    margin-top: 6px;
+    margin-top: 4px;
   }
 
   @media (max-width: 720px) {
-    .hero {
-      padding: 48px 0 28px;
-    }
-    .hero-stats {
-      gap: 28px;
-      margin-top: 32px;
-      padding-top: 20px;
-    }
-    .hero-stat .num { font-size: 24px; }
+    .hero { padding: 40px 0 28px; }
+    .hero-stats { gap: 22px; }
+    .hero-stat .num { font-size: 20px; }
   }
 </style>
