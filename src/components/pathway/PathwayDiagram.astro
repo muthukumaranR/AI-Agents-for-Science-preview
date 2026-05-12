@@ -1,0 +1,247 @@
+---
+import { STEPS, SERVICES, type Step } from '../../content/pathway-graph';
+
+const stepsByRow = (row: Step['row']) => STEPS.filter((s) => s.row === row);
+
+const designStep = stepsByRow('design')[0];
+const designSub = stepsByRow('design-sub');
+const outputStep = stepsByRow('output')[0];
+const decisionStep = stepsByRow('decision')[0];
+const branch1 = stepsByRow('branch-1');
+const branch2 = stepsByRow('branch-2');
+const branch3 = stepsByRow('branch-3');
+const gateStep = stepsByRow('gate')[0];
+const flowUiStep = stepsByRow('flow-ui')[0];
+const endpoints = stepsByRow('endpoints');
+---
+
+<aside class="pathway-services" aria-label="AKD services available to teams">
+  <div class="services-head">
+    <span class="services-eyebrow">AKD services teams can use</span>
+    <p>
+      Governance and safety services come built in — available across every stage of the pathway. Teams pick what they need; the list below is a non-exhaustive sample, not an ordered priority.
+    </p>
+  </div>
+  <ul class="services-list">
+    {SERVICES.map((svc) => (
+      <li data-service-id={svc.id}>
+        <b>{svc.label}</b>
+        <span>{svc.description}</span>
+      </li>
+    ))}
+  </ul>
+</aside>
+
+<div class="pathway-diagram" aria-label="Agent development pathway" data-pathway-diagram>
+
+  <!-- Row: design (CARE with two sub-paths inside) -->
+  <div class="pathway-row pathway-row--start">
+    <article class="pipe-step pipe-step--featured" data-step-id={designStep.id} role="group" aria-labelledby={`step-${designStep.id}-label`}>
+      <span>Phase 1 · All Agents</span>
+      <b id={`step-${designStep.id}-label`}>{designStep.label}</b>
+      <p class="pipe-sublabel">{designStep.sublabel}</p>
+      <p class="pipe-desc">{designStep.description}</p>
+      <div class="care-subpaths">
+        {designSub.map((sub) => (
+          <div class="care-subpath" data-step-id={sub.id}>
+            <b>{sub.label}</b>
+            <p>{sub.sublabel}</p>
+          </div>
+        ))}
+      </div>
+      {designStep.governance && (
+        <p class={`gov-tag${designStep.governanceStrong ? ' gov-tag--strong' : ''}`}>
+          <span>Governance:</span> {designStep.governance}
+        </p>
+      )}
+      {designStep.link && (
+        <a class="pipe-link" href={designStep.link.href} target="_blank" rel="noopener">{designStep.link.label}</a>
+      )}
+    </article>
+    <div class="fork-indicator" aria-hidden="true">
+      <span class="fork-line fork-line--left"></span>
+      <span class="fork-node">↓ CARE Output</span>
+      <span class="fork-line fork-line--right"></span>
+    </div>
+  </div>
+
+  <!-- Row: output -->
+  <div class="pathway-row pathway-row--single">
+    <article class="pipe-step pipe-step--output" data-step-id={outputStep.id} role="group" aria-labelledby={`step-${outputStep.id}-label`}>
+      <span>Artifacts</span>
+      <b id={`step-${outputStep.id}-label`}>{outputStep.label}</b>
+      <p class="pipe-sublabel">{outputStep.sublabel}</p>
+      <ul class="output-chips">
+        <li>Prompt</li><li>Tools</li><li>Context</li><li>Guardrails</li>
+      </ul>
+    </article>
+  </div>
+
+  <!-- Row: decision -->
+  <div class="pathway-row pathway-row--decision">
+    <article class="pipe-step pipe-step--decision" data-step-id={decisionStep.id} role="group" aria-labelledby={`step-${decisionStep.id}-label`}>
+      <span>Pick your operationalization</span>
+      <b id={`step-${decisionStep.id}-label`}>{decisionStep.label}</b>
+      <p class="pipe-sublabel">{decisionStep.sublabel}</p>
+    </article>
+    <div class="fork-indicator" aria-hidden="true">
+      <span class="fork-line fork-line--left"></span>
+      <span class="fork-node">↓ choose path</span>
+      <span class="fork-line fork-line--right"></span>
+    </div>
+  </div>
+
+  <!-- Row: 3 branches in parallel -->
+  <div class="pathway-row pathway-row--branches">
+    <div class="branch branch--1">
+      <div class="branch-label">Branch 1 · Simple</div>
+      {branch1.map((s) => (
+        <article class="pipe-step" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`}>
+          <span>{s.label.split(' · ')[0]}</span>
+          <b id={`step-${s.id}-label`}>{s.label}</b>
+          <p class="pipe-sublabel">{s.sublabel}</p>
+          <p class="pipe-desc">{s.description}</p>
+          {s.governance && <p class={`gov-tag${s.governanceStrong ? ' gov-tag--strong' : ''}`}><span>Governance:</span> {s.governance}</p>}
+          {s.link && <a class="pipe-link" href={s.link.href} target="_blank" rel="noopener">{s.link.label}</a>}
+        </article>
+      ))}
+    </div>
+    <div class="branch branch--2">
+      <div class="branch-label">Branch 2 · Tool-enabled</div>
+      {branch2.map((s) => (
+        <article class="pipe-step" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`}>
+          <span>{s.label.split(' · ')[0]}</span>
+          <b id={`step-${s.id}-label`}>{s.label}</b>
+          <p class="pipe-sublabel">{s.sublabel}</p>
+          <p class="pipe-desc">{s.description}</p>
+          {s.governance && <p class={`gov-tag${s.governanceStrong ? ' gov-tag--strong' : ''}`}><span>Governance:</span> {s.governance}</p>}
+          {s.link && <a class="pipe-link" href={s.link.href} target="_blank" rel="noopener">{s.link.label}</a>}
+        </article>
+      ))}
+    </div>
+    <div class="branch branch--3">
+      <div class="branch-label">Branch 3 · Multi-agent</div>
+      {branch3.map((s) => (
+        <article class="pipe-step" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`}>
+          <span>{s.label.split(' · ')[0]}</span>
+          <b id={`step-${s.id}-label`}>{s.label}</b>
+          <p class="pipe-sublabel">{s.sublabel}</p>
+          <p class="pipe-desc">{s.description}</p>
+          {s.governance && <p class={`gov-tag${s.governanceStrong ? ' gov-tag--strong' : ''}`}><span>Governance:</span> {s.governance}</p>}
+          {s.link && <a class="pipe-link" href={s.link.href} target="_blank" rel="noopener">{s.link.label}</a>}
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <!-- Row: gate (full width, branches 2 & 3 converge) -->
+  <div class="pathway-row pathway-row--single">
+    <article class="pipe-step pipe-step--gov-gate" data-step-id={gateStep.id} role="group" aria-labelledby={`step-${gateStep.id}-label`}>
+      <span>Phase 4 · Branches 2 &amp; 3</span>
+      <b id={`step-${gateStep.id}-label`}>{gateStep.label}</b>
+      <p class="pipe-sublabel">{gateStep.sublabel}</p>
+      <p class="pipe-desc">{gateStep.description}</p>
+      {gateStep.governance && <p class={`gov-tag${gateStep.governanceStrong ? ' gov-tag--strong' : ''}`}><span>Governance:</span> {gateStep.governance}</p>}
+    </article>
+  </div>
+
+  <!-- Row: AKD Flow UI (full width) -->
+  <div class="pathway-row pathway-row--single">
+    <article class="pipe-step pipe-step--featured" data-step-id={flowUiStep.id} role="group" aria-labelledby={`step-${flowUiStep.id}-label`}>
+      <span>Production</span>
+      <b id={`step-${flowUiStep.id}-label`}>{flowUiStep.label}</b>
+      <p class="pipe-sublabel">{flowUiStep.sublabel}</p>
+      <p class="pipe-desc">{flowUiStep.description}</p>
+      {flowUiStep.governance && <p class={`gov-tag${flowUiStep.governanceStrong ? ' gov-tag--strong' : ''}`}><span>Governance:</span> {flowUiStep.governance}</p>}
+      {flowUiStep.link && <a class="pipe-link" href={flowUiStep.link.href} target="_blank" rel="noopener">{flowUiStep.link.label}</a>}
+    </article>
+    <div class="merge-indicator" aria-hidden="true">
+      <span class="fork-line fork-line--left"></span>
+      <span class="fork-node">↓ distribute</span>
+      <span class="fork-line fork-line--right"></span>
+    </div>
+  </div>
+
+  <!-- Row: endpoints -->
+  <div class="pathway-row pathway-row--end">
+    <div class="endpoints-grid">
+      {endpoints.map((s) => (
+        <article class="pipe-step pipe-step--endpoint" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`}>
+          <span class="endpoint-tag">Endpoint</span>
+          <b id={`step-${s.id}-label`}>{s.label}</b>
+          <p class="pipe-sublabel">{s.sublabel}</p>
+          <p class="pipe-desc">{s.description}</p>
+          {s.link && <a class="pipe-link" href={s.link.href} target="_blank" rel="noopener">{s.link.label}</a>}
+        </article>
+      ))}
+    </div>
+  </div>
+
+</div>
+
+<style>
+  /* Services panel — copied verbatim from src/components/Pathway.astro:212-273 */
+  .pathway-services { margin-top: 24px; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px 24px 24px; background: var(--bg-0); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); }
+  .services-head { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .services-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .services-head p { font-size: 13.5px; color: var(--text-dim); margin: 0; line-height: 1.55; }
+  .services-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .services-list li { border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+  .services-list b { font-family: var(--font-serif); font-weight: 500; font-size: 14px; color: var(--text); }
+  .services-list span { font-size: 12.5px; color: var(--text-muted); line-height: 1.5; }
+  @media (max-width: 1024px) { .services-list { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .services-list { grid-template-columns: 1fr; } }
+
+  /* Diagram — extended from Pathway.astro:276-507 to 3 branches + new rows */
+  .pathway-diagram { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .pathway-row { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 0; }
+  .pathway-row--single .pipe-step,
+  .pathway-row--start .pipe-step,
+  .pathway-row--decision .pipe-step { width: 100%; max-width: 640px; }
+
+  .pathway-row--branches { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; align-items: start; }
+  .branch { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+  .branch-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 3px 10px; align-self: flex-start; }
+
+  .fork-indicator, .merge-indicator { display: flex; align-items: center; width: 100%; max-width: 640px; margin: 8px 0; }
+  .fork-line { flex: 1; height: 1px; background: var(--border-strong); }
+  .fork-node { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); padding: 0 12px; white-space: nowrap; }
+
+  .pipe-step { position: relative; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px 16px; background: var(--bg-0); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); text-align: left; display: flex; flex-direction: column; gap: 5px; width: 100%; }
+  .pipe-step--featured { border-color: var(--border-strong); }
+  .pipe-step--featured::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; border-radius: var(--radius-md) var(--radius-md) 0 0; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.5; }
+  .pipe-step b { font-family: var(--font-serif); font-weight: 500; font-size: 17px; display: block; color: var(--text); margin-bottom: 2px; }
+  .pipe-step span { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+  .pipe-sublabel { font-size: 12.5px; color: var(--text); line-height: 1.55; margin: 0; font-style: italic; opacity: 0.85; }
+  .pipe-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; margin: 0; flex: 1; }
+  .pipe-link { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--accent); text-decoration: none; border-bottom: 1px solid oklch(0.546 0.245 262.881 / 0.35); padding-bottom: 1px; margin-top: 4px; align-self: flex-start; transition: border-bottom-color 0.18s ease, color 0.18s ease; }
+  .pipe-link:hover { border-bottom-color: var(--accent); color: var(--accent-4); }
+
+  .care-subpaths { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
+  .care-subpath { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 10px; background: var(--surface); }
+  .care-subpath b { font-size: 13px; }
+  .care-subpath p { font-size: 12px; color: var(--text-muted); margin: 4px 0 0; line-height: 1.5; }
+
+  .output-chips { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .output-chips li { font-family: var(--font-mono); font-size: 11px; padding: 3px 9px; border: 1px solid var(--border); border-radius: 3px; background: var(--surface); color: var(--text); }
+
+  .gov-tag { margin: 4px 0 0; padding: 8px 10px; border-left: 3px solid var(--accent); background: oklch(0.97 0.005 262.881); border-radius: 4px; font-size: 12px; line-height: 1.5; color: var(--text-dim); }
+  .gov-tag span { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-right: 4px; }
+  .gov-tag--strong { border-left-width: 4px; background: oklch(0.95 0.012 262.881); color: var(--text); font-weight: 500; }
+  .pipe-step--gov-gate { border-left: 3px solid var(--accent); }
+
+  .endpoints-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; width: 100%; }
+  .pipe-step--endpoint { border-color: var(--border-strong); }
+  .pipe-step--endpoint::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; border-radius: var(--radius-md) var(--radius-md) 0 0; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.4; }
+  .endpoint-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+
+  @media (max-width: 1100px) {
+    .endpoints-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 860px) {
+    .pathway-row--branches { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 580px) {
+    .endpoints-grid { grid-template-columns: 1fr; }
+  }
+</style>
