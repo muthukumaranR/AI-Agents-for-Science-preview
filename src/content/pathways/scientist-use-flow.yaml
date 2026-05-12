@@ -12,3 +12,4 @@ steps:
   - ep-flow
 services: []
 order: 40
+repoUrl: https://github.com/NASA-IMPACT/akd-suite/tree/main/agents

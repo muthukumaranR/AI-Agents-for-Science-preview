@@ -28,3 +28,4 @@ services:
   - svc-granite-guardian
   - svc-risk-agent
 order: 20
+repoUrl: https://github.com/NASA-IMPACT/akd-suite/tree/main/akd-ext

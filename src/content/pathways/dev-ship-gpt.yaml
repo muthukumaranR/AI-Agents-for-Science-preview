@@ -18,3 +18,4 @@ steps:
 services:
   - svc-science-guardrails
 order: 10
+repoUrl: https://github.com/NASA-IMPACT/akd-suite/tree/main/agents

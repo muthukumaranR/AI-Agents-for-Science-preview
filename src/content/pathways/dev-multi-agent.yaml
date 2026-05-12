@@ -23,3 +23,4 @@ services:
   - svc-compliance
   - svc-science-guardrails
 order: 30
+repoUrl: https://github.com/NASA-IMPACT/akd/tree/main/flow
