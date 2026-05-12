@@ -11,40 +11,35 @@ const baseUrl = import.meta.env.BASE_URL;
     <img src={`${baseUrl}images/landing-mockflow3.png`} alt="" class="mf mf4" />
   </div>
   <div class="container hero-inner">
-    <div class="hero-cols">
-      <div class="hero-headline">
-        <span class="hero-tag"><span class="dot"></span>AI Agents for Science · NASA-IMPACT</span>
-        <h1>
-          How should we build<br/>
-          <span class="accent">AI Agents for Science?</span>
-        </h1>
-      </div>
+    <div class="hero-content">
+      <span class="hero-tag"><span class="dot"></span>AI Agents for Science · NASA-IMPACT</span>
+      <h1>
+        How should we build<br/>
+        <span class="accent">AI Agents for Science?</span>
+      </h1>
+      <p class="lede">
+        We want to transform AI into a full cognitive research partner. The
+        <strong>Accelerated Knowledge Discovery (AKD)</strong> project drives
+        this transformation through five strategic pillars.
+      </p>
 
-      <div class="hero-body">
-        <p class="lede">
-          We want to transform AI into a full cognitive research partner. The
-          <strong>Accelerated Knowledge Discovery (AKD)</strong> project drives
-          this transformation through five strategic pillars.
-        </p>
-      </div>
-    </div>
-
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="num">10</div>
-        <div class="label">Published agents</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">3</div>
-        <div class="label">Workflows</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">5</div>
-        <div class="label">CARE phases</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">8</div>
-        <div class="label">Partner orgs</div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">10</div>
+          <div class="label">Published agents</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">3</div>
+          <div class="label">Workflows</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">5</div>
+          <div class="label">CARE phases</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">8</div>
+          <div class="label">Partner orgs</div>
+        </div>
       </div>
     </div>
   </div>
@@ -53,7 +48,7 @@ const baseUrl = import.meta.env.BASE_URL;
 <style>
   .hero {
     position: relative;
-    padding: 56px 0 24px;
+    padding: 72px 0 40px;
     overflow: hidden;
   }
   .hero-grid {
@@ -106,20 +101,11 @@ const baseUrl = import.meta.env.BASE_URL;
     max-width: var(--maxw);
   }
 
-  /* Two-column grid: h1 gets more horizontal space than the lede */
-  .hero-cols {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 48px;
-    align-items: start;
-  }
-  .hero-headline {
+  .hero-content {
+    max-width: 880px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-  }
-  .hero-body {
-    padding-top: 8px;
   }
 
   .hero-tag {
@@ -146,32 +132,32 @@ const baseUrl = import.meta.env.BASE_URL;
   }
   .hero h1 {
     font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: clamp(30px, 3.4vw, 50px);
-    line-height: 1.1;
-    letter-spacing: -0.015em;
-    margin: 0;
+    font-weight: 500;
+    font-size: clamp(36px, 4.2vw, 60px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    margin: 0 0 22px;
+    text-wrap: balance;
   }
   .hero h1 .accent {
     font-style: italic;
     color: var(--accent);
   }
   .hero p.lede {
-    font-size: clamp(15px, 1.05vw, 16.5px);
-    line-height: 1.6;
+    font-size: clamp(16px, 1.15vw, 18px);
+    line-height: 1.55;
     color: var(--text-dim);
-    margin: 0 0 14px;
-  }
-  .hero p.lede:last-of-type {
-    margin-bottom: 0;
+    margin: 0;
+    max-width: 640px;
   }
 
   .hero-stats {
+    align-self: stretch;
     display: flex;
-    gap: 36px;
+    gap: 48px;
     flex-wrap: wrap;
-    margin-top: 40px;
-    padding-top: 24px;
+    margin-top: 44px;
+    padding-top: 26px;
     border-top: 1px solid var(--border);
   }
   .hero-stat .num {
@@ -190,18 +176,14 @@ const baseUrl = import.meta.env.BASE_URL;
     margin-top: 6px;
   }
 
-  /* Stack to single column on narrow viewports */
-  @media (max-width: 920px) {
-    .hero-cols {
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
-    .hero-body {
-      padding-top: 0;
+  @media (max-width: 720px) {
+    .hero {
+      padding: 48px 0 28px;
     }
     .hero-stats {
-      gap: 24px;
+      gap: 28px;
       margin-top: 32px;
+      padding-top: 20px;
     }
     .hero-stat .num { font-size: 24px; }
   }
