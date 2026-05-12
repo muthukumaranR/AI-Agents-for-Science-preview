@@ -244,4 +244,33 @@ const endpoints = stepsByRow('endpoints');
   @media (max-width: 580px) {
     .endpoints-grid { grid-template-columns: 1fr; }
   }
+
+  /* Highlight & dim states */
+  .pipe-step.active,
+  .care-subpath.active,
+  .services-list li.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent) inset, 0 4px 14px rgba(99, 102, 241, 0.10);
+  }
+  .pipe-step.dim,
+  .care-subpath.dim,
+  .services-list li.dim,
+  .pipe-step.dim *, .care-subpath.dim *, .services-list li.dim * {
+    opacity: 0.35;
+    filter: grayscale(0.25);
+    transition: opacity 0.18s ease, filter 0.18s ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pipe-step.dim, .care-subpath.dim, .services-list li.dim,
+    .pipe-step.dim *, .care-subpath.dim *, .services-list li.dim * {
+      transition: none;
+    }
+  }
+  @media print {
+    .pipe-step.dim, .care-subpath.dim, .services-list li.dim,
+    .pipe-step.dim *, .care-subpath.dim *, .services-list li.dim * {
+      opacity: 1 !important;
+      filter: none !important;
+    }
+  }
 </style>
