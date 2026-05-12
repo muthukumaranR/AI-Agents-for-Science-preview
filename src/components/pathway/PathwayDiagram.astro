@@ -13,151 +13,124 @@ const branch3 = stepsByRow('branch-3');
 const gateStep = stepsByRow('gate')[0];
 const flowUiStep = stepsByRow('flow-ui')[0];
 const endpoints = stepsByRow('endpoints');
+
+const labsStep = branch2.find((s) => s.id === 'b2-labs')!;
+const b2Initial = branch2.find((s) => s.id === 'b2-akdext')!;
 ---
 
-<div class="pathway-diagram" aria-label="Agent development pathway" aria-describedby="pathway-active-desc" data-pathway-diagram>
+<div class="pathway-pipeline" aria-label="Agent development pathway" aria-describedby="pathway-active-desc" data-pathway-diagram>
 
-  <!-- Row: design (CARE with two sub-paths inside) -->
-  <div class="pathway-row pathway-row--start">
-    <article class="pipe-step pipe-step--featured" data-step-id={designStep.id} role="group" aria-labelledby={`step-${designStep.id}-label`}>
-      <span>Phase 1 · All Agents</span>
-      <b id={`step-${designStep.id}-label`}>{designStep.label}</b>
-      <p class="pipe-sublabel">{designStep.sublabel}</p>
-      <p class="pipe-desc">{designStep.description}</p>
-      <div class="care-subpaths">
+  <!-- Stage 1 · CARE Design -->
+  <div class="pipeline-stage">
+    <span class="pipeline-stage__label">Phase 1 · Design</span>
+    <article class="pipe-card pipe-card--featured" data-step-id={designStep.id} role="group" aria-labelledby={`step-${designStep.id}-label`} title={designStep.description}>
+      <span class="pipe-card__eyebrow">Step 1</span>
+      <b id={`step-${designStep.id}-label`} class="pipe-card__title">{designStep.label}</b>
+      <p class="pipe-card__sub">{designStep.sublabel}</p>
+      <div class="pipe-card__subpaths">
         {designSub.map((sub) => (
-          <div class="care-subpath" data-step-id={sub.id}>
-            <b>{sub.label}</b>
-            <p>{sub.sublabel}</p>
+          <div class="subpath" data-step-id={sub.id} title={sub.sublabel}>
+            <b>{sub.label.replace(' · ', ' · ').split(' · ')[0]}</b>
+            <span>{sub.label.split(' · ').slice(1).join(' · ')}</span>
           </div>
         ))}
       </div>
-      {designStep.governance && (
-        <p class={`gov-tag${designStep.governanceStrong ? ' gov-tag--strong' : ''}`}>
-          <span>Governance:</span> {designStep.governance}
-        </p>
-      )}
-      {designStep.link && (
-        <a class="pipe-link" href={designStep.link.href} target="_blank" rel="noopener">{designStep.link.label}</a>
-      )}
     </article>
-    <div class="fork-indicator" aria-hidden="true">
-      <span class="fork-line fork-line--left"></span>
-      <span class="fork-node">↓ CARE Output</span>
-      <span class="fork-line fork-line--right"></span>
-    </div>
   </div>
 
-  <!-- Row: output -->
-  <div class="pathway-row pathway-row--single">
-    <article class="pipe-step pipe-step--output" data-step-id={outputStep.id} role="group" aria-labelledby={`step-${outputStep.id}-label`}>
-      <span>Artifacts</span>
-      <b id={`step-${outputStep.id}-label`}>{outputStep.label}</b>
-      <p class="pipe-sublabel">{outputStep.sublabel}</p>
-      <ul class="output-chips">
+  <span class="pipeline-arrow" aria-hidden="true">→</span>
+
+  <!-- Stage 2 · CARE Output -->
+  <div class="pipeline-stage">
+    <span class="pipeline-stage__label">Artifacts</span>
+    <article class="pipe-card" data-step-id={outputStep.id} role="group" aria-labelledby={`step-${outputStep.id}-label`} title={outputStep.description}>
+      <span class="pipe-card__eyebrow">Step 2</span>
+      <b id={`step-${outputStep.id}-label`} class="pipe-card__title">{outputStep.label}</b>
+      <ul class="pipe-card__chips">
         <li>Prompt</li><li>Tools</li><li>Context</li><li>Guardrails</li>
       </ul>
     </article>
   </div>
 
-  <!-- Row: decision -->
-  <div class="pathway-row pathway-row--decision">
-    <article class="pipe-step pipe-step--decision" data-step-id={decisionStep.id} role="group" aria-labelledby={`step-${decisionStep.id}-label`}>
-      <span>Pick your operationalization</span>
-      <b id={`step-${decisionStep.id}-label`}>{decisionStep.label}</b>
-      <p class="pipe-sublabel">{decisionStep.sublabel}</p>
-    </article>
-    <div class="fork-indicator" aria-hidden="true">
-      <span class="fork-line fork-line--left"></span>
-      <span class="fork-node">↓ choose path</span>
-      <span class="fork-line fork-line--right"></span>
-    </div>
-  </div>
+  <span class="pipeline-arrow" aria-hidden="true">→</span>
 
-  <!-- Row: 3 branches in parallel -->
-  <div class="pathway-row pathway-row--branches">
-    <div class="branch branch--1">
-      <div class="branch-label">Branch 1 · Simple</div>
-      {branch1.map((s) => (
-        <article class="pipe-step" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`}>
-          <span>{s.label.split(' · ')[0]}</span>
-          <b id={`step-${s.id}-label`}>{s.label}</b>
-          <p class="pipe-sublabel">{s.sublabel}</p>
-          <p class="pipe-desc">{s.description}</p>
-          {s.governance && <p class={`gov-tag${s.governanceStrong ? ' gov-tag--strong' : ''}`}><span>Governance:</span> {s.governance}</p>}
-          {s.link && <a class="pipe-link" href={s.link.href} target="_blank" rel="noopener">{s.link.label}</a>}
-        </article>
-      ))}
-    </div>
-    <div class="branch branch--2">
-      <div class="branch-label">Branch 2 · Tool-enabled</div>
-      {branch2.map((s) => (
-        <article class="pipe-step" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`}>
-          <span>{s.label.split(' · ')[0]}</span>
-          <b id={`step-${s.id}-label`}>{s.label}</b>
-          <p class="pipe-sublabel">{s.sublabel}</p>
-          <p class="pipe-desc">{s.description}</p>
-          {s.governance && <p class={`gov-tag${s.governanceStrong ? ' gov-tag--strong' : ''}`}><span>Governance:</span> {s.governance}</p>}
-          {s.link && <a class="pipe-link" href={s.link.href} target="_blank" rel="noopener">{s.link.label}</a>}
-        </article>
-      ))}
-    </div>
-    <div class="branch branch--3">
-      <div class="branch-label">Branch 3 · Multi-agent</div>
-      {branch3.map((s) => (
-        <article class="pipe-step" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`}>
-          <span>{s.label.split(' · ')[0]}</span>
-          <b id={`step-${s.id}-label`}>{s.label}</b>
-          <p class="pipe-sublabel">{s.sublabel}</p>
-          <p class="pipe-desc">{s.description}</p>
-          {s.governance && <p class={`gov-tag${s.governanceStrong ? ' gov-tag--strong' : ''}`}><span>Governance:</span> {s.governance}</p>}
-          {s.link && <a class="pipe-link" href={s.link.href} target="_blank" rel="noopener">{s.link.label}</a>}
-        </article>
-      ))}
-    </div>
-  </div>
-
-  <!-- Row: gate (full width, branches 2 & 3 converge) -->
-  <div class="pathway-row pathway-row--single">
-    <article class="pipe-step pipe-step--gov-gate" data-step-id={gateStep.id} role="group" aria-labelledby={`step-${gateStep.id}-label`}>
-      <span>Phase 4 · Branches 2 &amp; 3</span>
-      <b id={`step-${gateStep.id}-label`}>{gateStep.label}</b>
-      <p class="pipe-sublabel">{gateStep.sublabel}</p>
-      <p class="pipe-desc">{gateStep.description}</p>
-      {gateStep.governance && <p class={`gov-tag${gateStep.governanceStrong ? ' gov-tag--strong' : ''}`}><span>Governance:</span> {gateStep.governance}</p>}
+  <!-- Stage 3 · Decision -->
+  <div class="pipeline-stage">
+    <span class="pipeline-stage__label">Choose</span>
+    <article class="pipe-card pipe-card--decision" data-step-id={decisionStep.id} role="group" aria-labelledby={`step-${decisionStep.id}-label`} title={decisionStep.description}>
+      <span class="pipe-card__eyebrow">Step 3</span>
+      <b id={`step-${decisionStep.id}-label`} class="pipe-card__title">{decisionStep.label}</b>
+      <p class="pipe-card__sub">Tool-independent · Tool-enabled · Multi-agent</p>
     </article>
   </div>
 
-  <!-- Row: AKD Flow UI (full width) -->
-  <div class="pathway-row pathway-row--single">
-    <article class="pipe-step pipe-step--featured" data-step-id={flowUiStep.id} role="group" aria-labelledby={`step-${flowUiStep.id}-label`}>
-      <span>Production</span>
-      <b id={`step-${flowUiStep.id}-label`}>{flowUiStep.label}</b>
-      <p class="pipe-sublabel">{flowUiStep.sublabel}</p>
-      <p class="pipe-desc">{flowUiStep.description}</p>
-      {flowUiStep.governance && <p class={`gov-tag${flowUiStep.governanceStrong ? ' gov-tag--strong' : ''}`}><span>Governance:</span> {flowUiStep.governance}</p>}
-      {flowUiStep.link && <a class="pipe-link" href={flowUiStep.link.href} target="_blank" rel="noopener">{flowUiStep.link.label}</a>}
-    </article>
-    <div class="merge-indicator" aria-hidden="true">
-      <span class="fork-line fork-line--left"></span>
-      <span class="fork-node">↓ distribute</span>
-      <span class="fork-line fork-line--right"></span>
+  <span class="pipeline-arrow pipeline-arrow--fork" aria-hidden="true">↦</span>
+
+  <!-- Stage 4 · Branches (3 parallel lanes; Labs nested in B2) -->
+  <div class="pipeline-stage pipeline-stage--branches">
+    <span class="pipeline-stage__label">3 operationalization paths</span>
+    <div class="branch-lane">
+      <article class="pipe-card pipe-card--branch" data-step-id="b1-simple" role="group" aria-labelledby="step-b1-simple-label" title={branch1[0].description}>
+        <span class="pipe-card__eyebrow">Branch 1 · Simple</span>
+        <b id="step-b1-simple-label" class="pipe-card__title">{branch1[0].label.split(' · ').slice(1).join(' · ') || branch1[0].label}</b>
+        {branch1[0].governance && <span class="gov-dot" title={branch1[0].governance}>●</span>}
+      </article>
+    </div>
+    <div class="branch-lane branch-lane--b2">
+      <article class="pipe-card pipe-card--branch" data-step-id={b2Initial.id} role="group" aria-labelledby={`step-${b2Initial.id}-label`} title={b2Initial.description}>
+        <span class="pipe-card__eyebrow">Branch 2 · Tool-enabled</span>
+        <b id={`step-${b2Initial.id}-label`} class="pipe-card__title">{b2Initial.label.split(' · ').slice(1).join(' · ') || b2Initial.label}</b>
+        {b2Initial.governance && <span class="gov-dot" title={b2Initial.governance}>●</span>}
+      </article>
+      <span class="lane-arrow" aria-hidden="true">↓</span>
+      <article class="pipe-card pipe-card--branch pipe-card--sub" data-step-id={labsStep.id} role="group" aria-labelledby={`step-${labsStep.id}-label`} title={labsStep.description}>
+        <span class="pipe-card__eyebrow">Iterate</span>
+        <b id={`step-${labsStep.id}-label`} class="pipe-card__title">{labsStep.label}</b>
+      </article>
+    </div>
+    <div class="branch-lane">
+      <article class="pipe-card pipe-card--branch" data-step-id="b3-orch" role="group" aria-labelledby="step-b3-orch-label" title={branch3[0].description}>
+        <span class="pipe-card__eyebrow">Branch 3 · Multi-agent</span>
+        <b id="step-b3-orch-label" class="pipe-card__title">{branch3[0].label.split(' · ').slice(1).join(' · ') || branch3[0].label}</b>
+        {branch3[0].governance && <span class="gov-dot" title={branch3[0].governance}>●</span>}
+      </article>
     </div>
   </div>
 
-  <!-- Row: endpoints -->
-  <div class="pathway-row pathway-row--end">
-    <div class="endpoints-grid">
-      {endpoints.map((s) => (
-        <article class="pipe-step pipe-step--endpoint" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`}>
-          <span class="endpoint-tag">Endpoint</span>
-          <b id={`step-${s.id}-label`}>{s.label}</b>
-          <p class="pipe-sublabel">{s.sublabel}</p>
-          <p class="pipe-desc">{s.description}</p>
-          {s.link && <a class="pipe-link" href={s.link.href} target="_blank" rel="noopener">{s.link.label}</a>}
-        </article>
-      ))}
-    </div>
+  <span class="pipeline-arrow" aria-hidden="true">→</span>
+
+  <!-- Stage 5 · SME Gate (B1 bypasses; B2/B3 must pass) -->
+  <div class="pipeline-stage">
+    <span class="pipeline-stage__label">Phase 4 · Gate</span>
+    <article class="pipe-card pipe-card--gate" data-step-id={gateStep.id} role="group" aria-labelledby={`step-${gateStep.id}-label`} title={gateStep.description}>
+      <span class="pipe-card__eyebrow">B2 + B3 · SME review</span>
+      <b id={`step-${gateStep.id}-label`} class="pipe-card__title">{gateStep.label}</b>
+      <span class="gov-dot gov-dot--strong" title={gateStep.governance}>●</span>
+    </article>
+  </div>
+
+  <span class="pipeline-arrow" aria-hidden="true">→</span>
+
+  <!-- Stage 7 · Flow UI -->
+  <div class="pipeline-stage">
+    <span class="pipeline-stage__label">Production</span>
+    <article class="pipe-card pipe-card--featured" data-step-id={flowUiStep.id} role="group" aria-labelledby={`step-${flowUiStep.id}-label`} title={flowUiStep.description}>
+      <span class="pipe-card__eyebrow">Step 5</span>
+      <b id={`step-${flowUiStep.id}-label`} class="pipe-card__title">{flowUiStep.label}</b>
+    </article>
+  </div>
+
+  <span class="pipeline-arrow pipeline-arrow--fork" aria-hidden="true">↦</span>
+
+  <!-- Stage 8 · Endpoints -->
+  <div class="pipeline-stage pipeline-stage--endpoints">
+    <span class="pipeline-stage__label">Distribute</span>
+    {endpoints.map((s) => (
+      <article class="pipe-card pipe-card--endpoint" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`} title={s.description}>
+        <span class="pipe-card__eyebrow">Endpoint</span>
+        <b id={`step-${s.id}-label`} class="pipe-card__title">{s.label}</b>
+      </article>
+    ))}
   </div>
 
 </div>
@@ -171,7 +144,7 @@ const endpoints = stepsByRow('endpoints');
   </div>
   <ul class="services-list">
     {SERVICES.map((svc) => (
-      <li data-service-id={svc.id}>
+      <li data-service-id={svc.id} title={svc.description}>
         <b>{svc.label}</b>
         <span>{svc.description}</span>
       </li>
@@ -180,8 +153,187 @@ const endpoints = stepsByRow('endpoints');
 </aside>
 
 <style>
-  /* Services panel — copied verbatim from src/components/Pathway.astro:212-273 */
-  .pathway-services { margin-top: 24px; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px 24px 24px; background: var(--bg-0); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); }
+  /* ── Pipeline ──────────────────────────────────────────── */
+  .pathway-pipeline {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 4px;
+    padding: 8px 4px 12px;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+  }
+  .pathway-pipeline::-webkit-scrollbar { height: 8px; }
+  .pathway-pipeline::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .pipeline-stage {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 128px;
+    width: 128px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+  .pipeline-stage--branches { width: 178px; min-width: 178px; gap: 8px; }
+  .pipeline-stage--endpoints { width: 160px; min-width: 160px; gap: 6px; }
+
+  .branch-lane { display: flex; flex-direction: column; gap: 4px; }
+  .lane-arrow { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); text-align: center; padding: 0; line-height: 1; }
+  .pipe-card--sub { background: var(--surface); }
+
+  .pipeline-stage__label {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 0 2px;
+    min-height: 12px;
+    text-align: left;
+  }
+
+  .pipeline-arrow {
+    align-self: center;
+    flex-shrink: 0;
+    color: var(--text-muted);
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    margin-top: 18px; /* offset to align with card middles, since stages have a label row above */
+    line-height: 1;
+  }
+  .pipeline-arrow--fork { font-size: 16px; color: var(--accent); }
+
+  /* ── Cards ─────────────────────────────────────────────── */
+  .pipe-card {
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-0);
+    padding: 9px 11px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    flex: 1;
+    min-height: 88px;
+  }
+  .pipe-card:hover { border-color: var(--accent); cursor: help; }
+  .pipe-card__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .pipe-card__title {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 12.5px;
+    line-height: 1.25;
+    color: var(--text);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .pipe-card__sub {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin: 2px 0 0;
+    font-style: italic;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .pipe-card--featured {
+    border-color: var(--border-strong);
+  }
+  .pipe-card--featured::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.6;
+  }
+  .pipe-card--decision { background: oklch(0.985 0.005 262.881); }
+  .pipe-card--gate { border-left: 3px solid var(--accent); }
+  .pipe-card--branch { min-height: 64px; }
+  .pipe-card--endpoint { border-color: var(--border-strong); min-height: 64px; }
+  .pipe-card--endpoint .pipe-card__eyebrow { color: var(--accent); }
+
+  /* Output chips */
+  .pipe-card__chips { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-wrap: wrap; gap: 4px; }
+  .pipe-card__chips li {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    padding: 2px 6px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--surface);
+    color: var(--text);
+  }
+
+  /* CARE sub-paths inside the CARE card */
+  .pipe-card__subpaths { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+  .subpath {
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--surface);
+    padding: 5px 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .subpath b { font-family: var(--font-serif); font-weight: 500; font-size: 10.5px; }
+  .subpath span { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; color: var(--text-muted); }
+
+  /* Governance dot */
+  .gov-dot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 10px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .gov-dot--strong { font-size: 14px; }
+
+  /* ── Highlight & dim states ────────────────────────────── */
+  .pipe-card.active, .subpath.active, .services-list li.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent) inset, 0 4px 14px rgba(99, 102, 241, 0.10);
+  }
+  .pipe-card.dim, .subpath.dim, .services-list li.dim,
+  .pipe-card.dim *, .subpath.dim *, .services-list li.dim * {
+    opacity: 0.32;
+    filter: grayscale(0.3);
+    transition: opacity 0.18s ease, filter 0.18s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pipe-card.dim, .subpath.dim, .services-list li.dim,
+    .pipe-card.dim *, .subpath.dim *, .services-list li.dim * { transition: none; }
+  }
+  @media print {
+    .pipe-card.dim, .subpath.dim, .services-list li.dim,
+    .pipe-card.dim *, .subpath.dim *, .services-list li.dim * {
+      opacity: 1 !important;
+      filter: none !important;
+    }
+    .pathway-pipeline { overflow: visible !important; flex-wrap: wrap; }
+  }
+
+  /* ── Services panel (unchanged) ────────────────────────── */
+  .pathway-services { margin-top: 32px; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px 24px 24px; background: var(--bg-0); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); }
   .services-head { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
   .services-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
   .services-head p { font-size: 13.5px; color: var(--text-dim); margin: 0; line-height: 1.55; }
@@ -191,88 +343,4 @@ const endpoints = stepsByRow('endpoints');
   .services-list span { font-size: 12.5px; color: var(--text-muted); line-height: 1.5; }
   @media (max-width: 1024px) { .services-list { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 640px) { .services-list { grid-template-columns: 1fr; } }
-
-  /* Diagram — extended from Pathway.astro:276-507 to 3 branches + new rows */
-  .pathway-diagram { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
-  .pathway-row { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 0; }
-  .pathway-row--single .pipe-step,
-  .pathway-row--start .pipe-step,
-  .pathway-row--decision .pipe-step { width: 100%; max-width: 640px; }
-
-  .pathway-row--branches { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; align-items: start; }
-  .branch { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
-  .branch-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 3px 10px; align-self: flex-start; }
-
-  .fork-indicator, .merge-indicator { display: flex; align-items: center; width: 100%; max-width: 640px; margin: 8px 0; }
-  .fork-line { flex: 1; height: 1px; background: var(--border-strong); }
-  .fork-node { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); padding: 0 12px; white-space: nowrap; }
-
-  .pipe-step { position: relative; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px 16px; background: var(--bg-0); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); text-align: left; display: flex; flex-direction: column; gap: 5px; width: 100%; }
-  .pipe-step--featured { border-color: var(--border-strong); }
-  .pipe-step--featured::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; border-radius: var(--radius-md) var(--radius-md) 0 0; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.5; }
-  .pipe-step b { font-family: var(--font-serif); font-weight: 500; font-size: 17px; display: block; color: var(--text); margin-bottom: 2px; }
-  .pipe-step span { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
-  .pipe-sublabel { font-size: 12.5px; color: var(--text); line-height: 1.55; margin: 0; font-style: italic; opacity: 0.85; }
-  .pipe-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; margin: 0; flex: 1; }
-  .pipe-link { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--accent); text-decoration: none; border-bottom: 1px solid oklch(0.546 0.245 262.881 / 0.35); padding-bottom: 1px; margin-top: 4px; align-self: flex-start; transition: border-bottom-color 0.18s ease, color 0.18s ease; }
-  .pipe-link:hover { border-bottom-color: var(--accent); color: var(--accent-4); }
-
-  .care-subpaths { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
-  .care-subpath { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 10px; background: var(--surface); }
-  .care-subpath b { font-size: 13px; }
-  .care-subpath p { font-size: 12px; color: var(--text-muted); margin: 4px 0 0; line-height: 1.5; }
-
-  .output-chips { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
-  .output-chips li { font-family: var(--font-mono); font-size: 11px; padding: 3px 9px; border: 1px solid var(--border); border-radius: 3px; background: var(--surface); color: var(--text); }
-
-  .gov-tag { margin: 4px 0 0; padding: 8px 10px; border-left: 3px solid var(--accent); background: oklch(0.97 0.005 262.881); border-radius: 4px; font-size: 12px; line-height: 1.5; color: var(--text-dim); }
-  .gov-tag span { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-right: 4px; }
-  .gov-tag--strong { border-left-width: 4px; background: oklch(0.95 0.012 262.881); color: var(--text); font-weight: 500; }
-  .pipe-step--gov-gate { border-left: 3px solid var(--accent); }
-
-  .endpoints-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; width: 100%; }
-  .pipe-step--endpoint { border-color: var(--border-strong); }
-  .pipe-step--endpoint::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; border-radius: var(--radius-md) var(--radius-md) 0 0; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.4; }
-  .endpoint-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
-
-  @media (max-width: 1100px) {
-    .endpoints-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 860px) {
-    .pathway-row--branches { grid-template-columns: 1fr; gap: 24px; }
-    .branch { gap: 10px; }
-    .branch-label { align-self: center; }
-  }
-  @media (max-width: 580px) {
-    .endpoints-grid { grid-template-columns: 1fr; }
-  }
-
-  /* Highlight & dim states */
-  .pipe-step.active,
-  .care-subpath.active,
-  .services-list li.active {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 1px var(--accent) inset, 0 4px 14px rgba(99, 102, 241, 0.10);
-  }
-  .pipe-step.dim,
-  .care-subpath.dim,
-  .services-list li.dim,
-  .pipe-step.dim *, .care-subpath.dim *, .services-list li.dim * {
-    opacity: 0.35;
-    filter: grayscale(0.25);
-    transition: opacity 0.18s ease, filter 0.18s ease;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .pipe-step.dim, .care-subpath.dim, .services-list li.dim,
-    .pipe-step.dim *, .care-subpath.dim *, .services-list li.dim * {
-      transition: none;
-    }
-  }
-  @media print {
-    .pipe-step.dim, .care-subpath.dim, .services-list li.dim,
-    .pipe-step.dim *, .care-subpath.dim *, .services-list li.dim * {
-      opacity: 1 !important;
-      filter: none !important;
-    }
-  }
 </style>
