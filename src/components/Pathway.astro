@@ -12,48 +12,10 @@ import PathwayDiagram from './pathway/PathwayDiagram.astro';
       </p>
     </div>
 
-    <div class="pathway-layout">
-      <aside class="pathway-layout__chooser">
-        <PathwayChooser />
-      </aside>
-      <div class="pathway-layout__main">
-        <PathwayDiagram />
-      </div>
-    </div>
+    <PathwayChooser />
+    <PathwayDiagram />
   </div>
 </section>
-
-<style>
-  .pathway-layout { margin-top: 28px; display: block; }
-
-  @media (min-width: 1200px) {
-    .pathway-layout {
-      display: grid;
-      grid-template-columns: minmax(320px, 360px) minmax(0, 1fr);
-      gap: 32px;
-      align-items: start;
-    }
-    .pathway-layout__chooser {
-      position: sticky;
-      top: 24px;
-      max-height: calc(100vh - 48px);
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-    /* hide scrollbar visual noise but keep scrollable */
-    .pathway-layout__chooser::-webkit-scrollbar { width: 6px; }
-    .pathway-layout__chooser::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-    /* In the narrower right column, force branches to stack vertically and tighten endpoint grid */
-    .pathway-layout__main :global(.pathway-row--branches) { grid-template-columns: 1fr; gap: 22px; }
-    .pathway-layout__main :global(.branch) { gap: 10px; }
-    .pathway-layout__main :global(.branch-label) { align-self: center; }
-    .pathway-layout__main :global(.endpoints-grid) { grid-template-columns: repeat(2, 1fr); }
-    .pathway-layout__main :global(.services-list) { grid-template-columns: 1fr 1fr; }
-    .pathway-layout__main :global(.pathway-diagram) { margin-top: 0; }
-    .pathway-layout__main :global(.pathway-services) { margin-top: 32px; }
-  }
-</style>
 
 <script>
   import './pathway/pathway-interactive.ts';
