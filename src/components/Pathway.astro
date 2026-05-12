@@ -3,7 +3,7 @@ import PathwayChooser from './pathway/PathwayChooser.astro';
 import PathwayDiagram from './pathway/PathwayDiagram.astro';
 ---
 <section class="section section--pathway" id="pathway">
-  <div class="container container--wide">
+  <div class="container">
     <div class="section-head">
       <span class="eyebrow">04 · Agent Development Pathway</span>
       <h2>From idea to published agent — pick your path.</h2>
@@ -14,9 +14,36 @@ import PathwayDiagram from './pathway/PathwayDiagram.astro';
         The same blocks compose every agent; the same agent reaches scientists wherever they work. Pick a tour or set Role + Goal below to highlight one path through it. <span class="hover-hint">Hover any card to see its full description.</span>
       </p>
     </div>
+  </div>
 
+  <div class="container container--wide">
     <PathwayChooser />
     <PathwayDiagram />
+  </div>
+
+  <div class="container">
+    <aside class="pathway-getstarted" aria-labelledby="pathway-getstarted-title">
+      <div class="pgs-head">
+        <span class="pgs-eyebrow">Ready to build?</span>
+        <h3 id="pathway-getstarted-title">Get started on GitHub</h3>
+        <p>Clone the main repo, read CARE, and dive into the components that show up along the pathway above.</p>
+      </div>
+      <div class="pgs-cta-row">
+        <a class="btn btn-primary" href="https://github.com/NASA-IMPACT/AI-Agents-for-Science" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" width="14" height="14"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          Main repository
+        </a>
+        <a class="btn btn-ghost" href="https://ntrs.nasa.gov/citations/20260000926" target="_blank" rel="noopener">📄 CARE Paper (NTRS)</a>
+      </div>
+      <ul class="pgs-chips" aria-label="Component repositories">
+        <li><a href="https://github.com/NASA-IMPACT/AKD-CARE" target="_blank" rel="noopener"><b>CARE</b><span>AKD-CARE</span></a></li>
+        <li><a href="https://github.com/NASA-IMPACT/akd-core" target="_blank" rel="noopener"><b>AKD Core</b><span>akd-core</span></a></li>
+        <li><a href="https://github.com/NASA-IMPACT/akd-ext" target="_blank" rel="noopener"><b>AKD Ext</b><span>akd-ext</span></a></li>
+        <li><a href="https://github.com/NASA-IMPACT/akd-labs" target="_blank" rel="noopener"><b>AKD Labs</b><span>akd-labs</span></a></li>
+        <li><a href="https://github.com/NASA-IMPACT/akd/tree/main/flow" target="_blank" rel="noopener"><b>AKD Flow</b><span>akd · flow</span></a></li>
+        <li><a href="https://github.com/NASA-IMPACT/akd/tree/main/guardrails" target="_blank" rel="noopener"><b>Guardrails</b><span>akd · guardrails</span></a></li>
+      </ul>
+    </aside>
   </div>
 </section>
 
@@ -40,6 +67,79 @@ import PathwayDiagram from './pathway/PathwayDiagram.astro';
     margin-left: 4px;
   }
   .section--pathway .hover-hint::before { content: '↪ '; }
+
+  /* ── Get-started footer block ──────────────────────────── */
+  .pathway-getstarted {
+    margin-top: 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--bg-0);
+    padding: 22px 24px 24px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+  }
+  .pgs-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; }
+  .pgs-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .pathway-getstarted h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.25;
+    margin: 0;
+    color: var(--text);
+  }
+  .pathway-getstarted p {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 640px;
+  }
+  .pgs-cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+  .pgs-chips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .pgs-chips a {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+  }
+  .pgs-chips a:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .pgs-chips b {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .pgs-chips span {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+  }
+  @media (max-width: 900px) { .pgs-chips { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .pgs-chips { grid-template-columns: repeat(2, 1fr); } }
 </style>
 
 <script>

@@ -1,6 +1,5 @@
 ---
 import { getCollection } from 'astro:content';
-import { PERSONAS, GOALS } from '../../content/pathway-graph';
 
 const paths = (await getCollection('pathways'))
   .sort((a, b) => a.data.order - b.data.order);
@@ -36,29 +35,6 @@ const shortLabel = (eyebrow: string, startHere: boolean) => {
     ))}
   </div>
 
-  <div class="strip-aux-row">
-    <span class="strip-aux__label">Or pick by</span>
-    <label class="strip-select">
-      <span>Role</span>
-      <select data-chooser-persona aria-label="Select your role">
-        <option value="">—</option>
-        {PERSONAS.map((p) => <option value={p.id}>{p.label}</option>)}
-      </select>
-    </label>
-    <label class="strip-select">
-      <span>Goal</span>
-      <select data-chooser-goal aria-label="Select your goal">
-        <option value="">—</option>
-        {GOALS.map((g) => <option value={g.id}>{g.label}</option>)}
-      </select>
-    </label>
-
-    <div class="strip-banner" id="pathway-active-desc" data-chooser-banner hidden aria-live="polite">
-      <span class="strip-banner__label">Showing</span>
-      <b data-chooser-banner-title></b>
-      <button type="button" class="strip-banner__clear" data-chooser-clear>Clear ✕</button>
-    </div>
-  </div>
 </div>
 
 <script type="application/json" id="pathway-data" is:inline set:html={JSON.stringify(pathData)}></script>
@@ -140,88 +116,16 @@ const shortLabel = (eyebrow: string, startHere: boolean) => {
   }
   .strip-card--start .strip-card__sub { color: var(--accent); }
 
-  /* ── Row 2: persona/goal selects + banner ──────────────── */
-  .strip-aux-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 8px 14px;
-    border-top: 1px solid var(--border);
-    background: var(--surface);
-    border-radius: 0 0 var(--radius-md) var(--radius-md);
-    flex-wrap: wrap;
-  }
-  .strip-aux__label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-  .strip-select { display: flex; align-items: center; gap: 6px; }
-  .strip-select span {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-  .strip-select select {
-    font-family: var(--font-sans);
-    font-size: 12.5px;
-    padding: 4px 8px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: var(--bg-0);
-    color: var(--text);
-    min-width: 130px;
-  }
-
-  /* Inline active banner (lives inside the aux row, pushed to the right) */
-  .strip-banner {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-left: auto;
-    padding: 4px 10px;
-    background: var(--bg-0);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: var(--radius-sm);
-    font-size: 13px;
-  }
-  .strip-banner[hidden] { display: none; }
-  .strip-banner__label {
-    font-family: var(--font-mono);
-    font-size: 9.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-  .strip-banner b { font-family: var(--font-serif); font-weight: 500; }
-  .strip-banner__clear {
-    margin-left: 4px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    padding: 3px 8px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: var(--bg-0);
-    cursor: pointer;
-    color: var(--text);
-  }
-  .strip-banner__clear:hover { border-color: var(--accent); color: var(--accent); }
+  /* The cards row has no border-bottom on its own, so round the bottom of the
+     sticky strip when the row sits flush against it. */
+  .pathway-strip { border-radius: var(--radius-md); }
+  .strip-cards-row { border-radius: 0 0 var(--radius-md) var(--radius-md); }
 
   /* Responsive */
   @media (max-width: 900px) {
     .strip-cards-row { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .strip-aux-row { gap: 10px; }
-    .strip-banner { margin-left: 0; flex-basis: 100%; }
   }
   @media (max-width: 560px) {
     .strip-cards-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .strip-aux-row { flex-direction: column; align-items: stretch; }
-    .strip-select { flex-direction: column; align-items: flex-start; }
-    .strip-select select { min-width: 0; width: 100%; }
   }
 </style>

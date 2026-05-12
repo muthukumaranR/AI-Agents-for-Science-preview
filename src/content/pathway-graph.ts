@@ -200,25 +200,6 @@ export const EDGES: ReadonlyArray<readonly [StepId, StepId]> = [
   ['flow-ui', 'ep-repo'],
 ];
 
-export const PERSONAS = [
-  { id: 'developer', label: 'Developer / engineer' },
-  { id: 'scientist', label: 'Scientist / domain SME' },
-  { id: 'partner', label: 'Partner organization' },
-  { id: 'decision-maker', label: 'Decision-maker / stakeholder' },
-] as const;
-
-export const GOALS = [
-  { id: 'ship-custom-gpt', label: 'Ship a chat assistant' },
-  { id: 'build-tool-agent', label: 'Build a custom agent' },
-  { id: 'compose-multi-agent', label: 'Compose an agent workflow' },
-  { id: 'contribute-mcp-server', label: 'Contribute a Community MCP server' },
-  { id: 'guardrails-as-service', label: 'Add guardrails as a service' },
-  { id: 'use-flow', label: 'Use Flow — run or compose workflows' },
-  { id: 'stand-up-platform', label: 'Stand up an end-to-end platform' },
-] as const;
-
-export type PersonaId = (typeof PERSONAS)[number]['id'];
-export type GoalId = (typeof GOALS)[number]['id'];
 export type PathSlug =
   | 'dev-ship-gpt'
   | 'dev-tool-agent'
@@ -228,46 +209,6 @@ export type PathSlug =
   | 'guardrails-service'
   | 'pm-platform'
   | 'start-here';
-
-/** MATRIX[persona][goal] → path slug. Persona is only a tiebreaker; most goals resolve to the same slug regardless of persona. */
-export const MATRIX: Record<PersonaId, Record<GoalId, PathSlug>> = {
-  developer: {
-    'ship-custom-gpt': 'dev-ship-gpt',
-    'build-tool-agent': 'dev-tool-agent',
-    'compose-multi-agent': 'dev-multi-agent',
-    'contribute-mcp-server': 'contribute-mcp',
-    'guardrails-as-service': 'guardrails-service',
-    'use-flow': 'scientist-use-flow',
-    'stand-up-platform': 'pm-platform',
-  },
-  scientist: {
-    'ship-custom-gpt': 'dev-ship-gpt',
-    'build-tool-agent': 'dev-tool-agent',
-    'compose-multi-agent': 'dev-multi-agent',
-    'contribute-mcp-server': 'contribute-mcp',
-    'guardrails-as-service': 'guardrails-service',
-    'use-flow': 'scientist-use-flow',
-    'stand-up-platform': 'pm-platform',
-  },
-  partner: {
-    'ship-custom-gpt': 'dev-ship-gpt',
-    'build-tool-agent': 'dev-tool-agent',
-    'compose-multi-agent': 'dev-multi-agent',
-    'contribute-mcp-server': 'contribute-mcp',
-    'guardrails-as-service': 'guardrails-service',
-    'use-flow': 'scientist-use-flow',
-    'stand-up-platform': 'pm-platform',
-  },
-  'decision-maker': {
-    'ship-custom-gpt': 'pm-platform',
-    'build-tool-agent': 'pm-platform',
-    'compose-multi-agent': 'pm-platform',
-    'contribute-mcp-server': 'pm-platform',
-    'guardrails-as-service': 'guardrails-service',
-    'use-flow': 'scientist-use-flow',
-    'stand-up-platform': 'pm-platform',
-  },
-};
 
 export const STEP_IDS: ReadonlySet<StepId> = new Set(STEPS.map((s) => s.id));
 export const SERVICE_IDS: ReadonlySet<ServiceId> = new Set(SERVICES.map((s) => s.id));
