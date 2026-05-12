@@ -38,7 +38,7 @@ const pillars = [
     <img src={`${baseUrl}images/landing-mockflow3.png`} alt="" class="mf mf4" />
   </div>
   <div class="container hero-inner">
-    <div class="hero-content">
+    <div class="hero-content" id="vision">
       <span class="hero-tag"><span class="dot"></span>AI Agents for Science · NASA-IMPACT</span>
       <h1>
         How should we build<br/>
@@ -51,7 +51,7 @@ const pillars = [
       </p>
     </div>
 
-    <ul class="hero-pillars" id="vision" aria-label="Five strategic pillars">
+    <ul class="hero-pillars" aria-label="Five strategic pillars">
       {pillars.map((p) => (
         <li>
           <span class="pillar-num">Pillar {p.n}</span>
