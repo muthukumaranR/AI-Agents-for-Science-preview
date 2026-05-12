@@ -119,7 +119,6 @@ const pathways = defineCollection({
     order: z.number().int().default(100),
     featured: z.boolean().default(true),
     startHere: z.boolean().default(false),
-    repoUrl: z.string().url().optional(),
   }),
 });
 

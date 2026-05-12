@@ -1,4 +1,5 @@
 ---
+import StepGhLink from './StepGhLink.astro';
 import { STEPS, SERVICES, type Step } from '../../content/pathway-graph';
 
 const stepsByRow = (row: Step['row']) => STEPS.filter((s) => s.row === row);
@@ -35,6 +36,7 @@ const shortenLabel = (label: string) => {
       <span class="pipe-card__eyebrow">Step 1</span>
       <b id={`step-${designStep.id}-label`} class="pipe-card__title">{designStep.label}</b>
       <p class="pipe-card__sub">A 5-phase stage-gated process where SMEs, developers, and helper LLM agents specify what the agent should do.</p>
+      <StepGhLink step={designStep} />
     </article>
   </div>
 
@@ -46,10 +48,12 @@ const shortenLabel = (label: string) => {
     <article class="pipe-card pipe-card--branch" data-step-id={pathA.id} role="group" aria-labelledby={`step-${pathA.id}-label`} title={pathA.description}>
       <span class="pipe-card__eyebrow">Path A</span>
       <b id={`step-${pathA.id}-label`} class="pipe-card__title">CARE Studio in AKD Labs UI</b>
+      <StepGhLink step={pathA} />
     </article>
     <article class="pipe-card pipe-card--branch" data-step-id={pathB.id} role="group" aria-labelledby={`step-${pathB.id}-label`} title={pathB.description}>
       <span class="pipe-card__eyebrow">Path B</span>
       <b id={`step-${pathB.id}-label`} class="pipe-card__title">CARE phase prompts (ChatGPT / Claude)</b>
+      <StepGhLink step={pathB} />
     </article>
   </div>
 
@@ -64,6 +68,7 @@ const shortenLabel = (label: string) => {
       <ul class="pipe-card__chips">
         <li>Prompt</li><li>Tools</li><li>Context</li><li>Guardrails</li>
       </ul>
+      <StepGhLink step={outputStep} />
     </article>
   </div>
 
@@ -80,29 +85,34 @@ const shortenLabel = (label: string) => {
         <li><span class="opt-num">2</span> Custom agent</li>
         <li><span class="opt-num">3</span> Agent workflow</li>
       </ul>
+      <StepGhLink step={decisionStep} />
     </article>
     <span class="lane-fork" aria-hidden="true">↓ fork into 3</span>
     <article class="pipe-card pipe-card--branch" data-step-id="b1-simple" role="group" aria-labelledby="step-b1-simple-label" title={branch1[0].description}>
       <span class="pipe-card__eyebrow">Branch 1 · Chat assistant</span>
       <b id="step-b1-simple-label" class="pipe-card__title">{shortenLabel(branch1[0].label)}</b>
       {branch1[0].governance && <span class="gov-dot" title={branch1[0].governance}>●</span>}
+      <StepGhLink step={branch1[0]} />
     </article>
     <div class="branch-lane">
       <article class="pipe-card pipe-card--branch" data-step-id={b2Initial.id} role="group" aria-labelledby={`step-${b2Initial.id}-label`} title={b2Initial.description}>
         <span class="pipe-card__eyebrow">Branch 2 · Custom agent</span>
         <b id={`step-${b2Initial.id}-label`} class="pipe-card__title">{shortenLabel(b2Initial.label)}</b>
         {b2Initial.governance && <span class="gov-dot" title={b2Initial.governance}>●</span>}
+        <StepGhLink step={b2Initial} />
       </article>
       <span class="lane-arrow" aria-hidden="true">↓</span>
       <article class="pipe-card pipe-card--branch pipe-card--sub" data-step-id={labsStep.id} role="group" aria-labelledby={`step-${labsStep.id}-label`} title={labsStep.description}>
         <span class="pipe-card__eyebrow">Iterate</span>
         <b id={`step-${labsStep.id}-label`} class="pipe-card__title">{labsStep.label}</b>
+        <StepGhLink step={labsStep} />
       </article>
     </div>
     <article class="pipe-card pipe-card--branch" data-step-id="b3-orch" role="group" aria-labelledby="step-b3-orch-label" title={branch3[0].description}>
       <span class="pipe-card__eyebrow">Branch 3 · Agent workflow</span>
       <b id="step-b3-orch-label" class="pipe-card__title">{shortenLabel(branch3[0].label)}</b>
       {branch3[0].governance && <span class="gov-dot" title={branch3[0].governance}>●</span>}
+      <StepGhLink step={branch3[0]} />
     </article>
   </div>
 
@@ -115,6 +125,7 @@ const shortenLabel = (label: string) => {
       <span class="pipe-card__eyebrow">B2 + B3 · SME review</span>
       <b id={`step-${gateStep.id}-label`} class="pipe-card__title">SME Readiness Review (gate)</b>
       <span class="gov-dot gov-dot--strong" title={gateStep.governance}>●</span>
+      <StepGhLink step={gateStep} />
     </article>
   </div>
 
@@ -127,6 +138,7 @@ const shortenLabel = (label: string) => {
       <span class="pipe-card__eyebrow">Step 5 · Runtime</span>
       <b id={`step-${flowUiStep.id}-label`} class="pipe-card__title">{flowUiStep.label}</b>
       <p class="pipe-card__sub">The canonical production environment for every approved agent.</p>
+      <StepGhLink step={flowUiStep} />
     </article>
   </div>
 
@@ -139,6 +151,7 @@ const shortenLabel = (label: string) => {
       <article class="pipe-card pipe-card--endpoint" data-step-id={s.id} role="group" aria-labelledby={`step-${s.id}-label`} title={s.description}>
         <span class="pipe-card__eyebrow">Surface</span>
         <b id={`step-${s.id}-label`} class="pipe-card__title">{s.label}</b>
+        <StepGhLink step={s} />
       </article>
     ))}
     {flowSub.map((s) => (
@@ -146,6 +159,7 @@ const shortenLabel = (label: string) => {
         <span class="pipe-card__eyebrow">Surface</span>
         <b id={`step-${s.id}-label`} class="pipe-card__title">{s.label}</b>
         <p class="pipe-card__sub">Teams · Slack · NASA collab tools</p>
+        <StepGhLink step={s} />
       </article>
     ))}
   </div>
@@ -326,6 +340,29 @@ const shortenLabel = (label: string) => {
     border-top: 1px dashed var(--border);
     border-bottom: 1px dashed var(--border);
   }
+
+  /* Per-step GitHub anchor — bottom-right of the pipe-card so it doesn't
+     collide with the top-right governance dot. */
+  .pipe-card__gh {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    color: var(--text-muted);
+    background: transparent;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  .pipe-card__gh:hover,
+  .pipe-card__gh:focus-visible {
+    color: var(--accent);
+    background: var(--surface);
+  }
+  .pipe-card.active .pipe-card__gh { color: var(--accent); }
 
   /* Governance dot */
   .gov-dot {

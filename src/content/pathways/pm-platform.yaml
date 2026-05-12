@@ -31,4 +31,3 @@ services:
   - svc-science-guardrails
   - svc-granite-guardian
 order: 60
-repoUrl: https://github.com/NASA-IMPACT/AI-Agents-for-Science

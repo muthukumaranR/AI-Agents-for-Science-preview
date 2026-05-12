@@ -7,7 +7,7 @@ if (!dataEl) {
 const PATHS: Record<string, PathData> = JSON.parse(dataEl.textContent || '{}');
 
 const diagram = document.querySelector<HTMLElement>('[data-pathway-diagram]');
-const cards = document.querySelectorAll<HTMLElement>('[data-path-slug]');
+const cards = document.querySelectorAll<HTMLButtonElement>('[data-path-slug]');
 
 function setAllMarks(active: Set<string>, all: NodeListOf<HTMLElement>) {
   all.forEach((el) => {
@@ -47,35 +47,21 @@ function clearPath() {
   }
 }
 
-function togglePath(c: HTMLElement) {
-  const slug = c.dataset.pathSlug;
-  if (!slug) return;
-  // Re-activating the same card clears the highlight.
-  if (c.getAttribute('aria-pressed') === 'true') {
-    clearPath();
-  } else {
-    applyPath(slug);
-  }
-  // The 'Get started' CTA lives at the very top of the section; when clicked,
-  // smooth-scroll the strip into view so the user sees the diagram update.
-  if (c.hasAttribute('data-cta-getstarted')) {
-    const strip = document.querySelector<HTMLElement>('[data-pathway-strip]');
-    strip?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
-
 cards.forEach((c) => {
-  c.addEventListener('click', (e) => {
-    // Clicks on the per-card GitHub anchor must not toggle the filter.
-    if ((e.target as HTMLElement).closest('.strip-card__gh')) return;
-    togglePath(c);
-  });
-  c.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      // Let Enter/Space on the nested anchor follow the link instead of toggling.
-      if ((e.target as HTMLElement).closest('.strip-card__gh')) return;
-      e.preventDefault();
-      togglePath(c);
+  c.addEventListener('click', () => {
+    const slug = c.dataset.pathSlug;
+    if (!slug) return;
+    // Re-clicking the active card toggles the highlight off.
+    if (c.getAttribute('aria-pressed') === 'true') {
+      clearPath();
+    } else {
+      applyPath(slug);
+    }
+    // The 'Get started' CTA lives at the very top of the section; when clicked,
+    // smooth-scroll the strip into view so the user sees the diagram update.
+    if (c.hasAttribute('data-cta-getstarted')) {
+      const strip = document.querySelector<HTMLElement>('[data-pathway-strip]');
+      strip?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
 });

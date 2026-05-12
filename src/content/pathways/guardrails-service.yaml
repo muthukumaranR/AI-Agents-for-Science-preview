@@ -17,4 +17,3 @@ services:
   - svc-science-guardrails
   - svc-granite-guardian
 order: 50
-repoUrl: https://github.com/NASA-IMPACT/akd/tree/main/guardrails
