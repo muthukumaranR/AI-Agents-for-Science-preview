@@ -15,23 +15,6 @@ const flowUiStep = stepsByRow('flow-ui')[0];
 const endpoints = stepsByRow('endpoints');
 ---
 
-<aside class="pathway-services" aria-label="AKD services available to teams">
-  <div class="services-head">
-    <span class="services-eyebrow">AKD services teams can use</span>
-    <p>
-      Governance and safety services come built in — available across every stage of the pathway. Teams pick what they need; the list below is a non-exhaustive sample, not an ordered priority.
-    </p>
-  </div>
-  <ul class="services-list">
-    {SERVICES.map((svc) => (
-      <li data-service-id={svc.id}>
-        <b>{svc.label}</b>
-        <span>{svc.description}</span>
-      </li>
-    ))}
-  </ul>
-</aside>
-
 <div class="pathway-diagram" aria-label="Agent development pathway" aria-describedby="pathway-active-desc" data-pathway-diagram>
 
   <!-- Row: design (CARE with two sub-paths inside) -->
@@ -178,6 +161,23 @@ const endpoints = stepsByRow('endpoints');
   </div>
 
 </div>
+
+<aside class="pathway-services" aria-label="AKD services available to teams">
+  <div class="services-head">
+    <span class="services-eyebrow">AKD services plug into the path above</span>
+    <p>
+      Governance and safety services come built in — available across every stage of the pathway. Highlighted services match the active tour; teams pick the rest as needed.
+    </p>
+  </div>
+  <ul class="services-list">
+    {SERVICES.map((svc) => (
+      <li data-service-id={svc.id}>
+        <b>{svc.label}</b>
+        <span>{svc.description}</span>
+      </li>
+    ))}
+  </ul>
+</aside>
 
 <style>
   /* Services panel — copied verbatim from src/components/Pathway.astro:212-273 */
