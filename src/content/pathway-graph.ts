@@ -88,7 +88,7 @@ export const STEPS = [
       'A Custom agent is one you build end-to-end in our Agent Toolkit (akd-ext) — author the system prompt, wrap the tools you need, configure MCP integrations and API clients, and the agent runs on AKD Flow under our full governance pipeline. Use this branch when the agent needs deeper tool control than a chat platform offers, or when it has to integrate with NASA data systems. Examples: Earth Science Data Search (CMR), Code Search, Astro Data Search.',
     row: 'branch-2',
     governance: 'Tools whitelist; static MCP-server config; guardrail integration required',
-    link: { href: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/akd-ext', label: 'akd-ext ↗' },
+    link: { href: 'https://github.com/NASA-IMPACT/akd-ext', label: 'akd-ext ↗' },
   },
   {
     id: 'b2-labs',
@@ -165,7 +165,7 @@ export const STEPS = [
     sublabel: 'The open-source toolkit and reference agents — available for forking, peer review, and reuse by other science teams.',
     description: 'The open-source Agent Toolkit (akd-ext) on GitHub — agent SDK, tool wrappers, MCP integration helpers, and published reference agents. Available for forking, peer review, and integration into other projects. The canonical reference for tool-integrated domain agents across the AKD ecosystem.',
     row: 'endpoints',
-    link: { href: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/akd-ext', label: 'akd-ext ↗' },
+    link: { href: 'https://github.com/NASA-IMPACT/akd-ext', label: 'akd-ext ↗' },
   },
 ] as const satisfies readonly Step[];
 
