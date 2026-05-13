@@ -40,8 +40,9 @@ import PathwayDiagram from './pathway/PathwayDiagram.astro';
         <li><a href="https://github.com/NASA-IMPACT/akd-core" target="_blank" rel="noopener"><b>AKD Core</b><span>akd-core</span></a></li>
         <li><a href="https://github.com/NASA-IMPACT/akd-ext" target="_blank" rel="noopener"><b>AKD Ext</b><span>akd-ext</span></a></li>
         <li><a href="https://github.com/NASA-IMPACT/akd-labs" target="_blank" rel="noopener"><b>AKD Labs</b><span>akd-labs</span></a></li>
-        <li><a href="https://github.com/NASA-IMPACT/akd/tree/main/flow" target="_blank" rel="noopener"><b>AKD Flow</b><span>akd · flow</span></a></li>
-        <li><a href="https://github.com/NASA-IMPACT/akd/tree/main/guardrails" target="_blank" rel="noopener"><b>Guardrails</b><span>akd · guardrails</span></a></li>
+        <li><a href="https://github.com/NASA-IMPACT/akd-flow" target="_blank" rel="noopener"><b>AKD Flow</b><span>akd-flow</span></a></li>
+        <li><a href="https://github.com/NASA-IMPACT/akd-services" target="_blank" rel="noopener"><b>Flow runtime</b><span>akd-services</span></a></li>
+        <li><a href="https://github.com/NASA-IMPACT/akd-core" target="_blank" rel="noopener"><b>Guardrails</b><span>akd-core · guardrails</span></a></li>
       </ul>
     </aside>
   </div>
@@ -106,7 +107,7 @@ import PathwayDiagram from './pathway/PathwayDiagram.astro';
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(7, minmax(0, 1fr));
     gap: 8px;
   }
   .pgs-chips a {
@@ -138,6 +139,7 @@ import PathwayDiagram from './pathway/PathwayDiagram.astro';
     letter-spacing: 0.04em;
     color: var(--text-muted);
   }
+  @media (max-width: 1100px) { .pgs-chips { grid-template-columns: repeat(4, 1fr); } }
   @media (max-width: 900px) { .pgs-chips { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 560px) { .pgs-chips { grid-template-columns: repeat(2, 1fr); } }
 </style>

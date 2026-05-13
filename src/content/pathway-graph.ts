@@ -40,7 +40,7 @@ export const STEPS = [
       'Teams start with the AKD CARE process. Subject matter experts, developers, and helper LLM agents work through five phases — scope, key information elicitation, reasoning policy and guardrails, implementation, benchmarking — passing a stage gate at each phase. The output is a set of reusable design artifacts that will later become operational code.',
     row: 'design',
     governance: 'CARE phase gates — joint SME / developer / agent approval at each phase',
-    link: { href: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/akd-care', label: 'akd-care ↗' },
+    link: { href: 'https://github.com/NASA-IMPACT/AKD-CARE', label: 'AKD-CARE ↗' },
   },
   {
     id: 'care-path-a',
@@ -78,7 +78,7 @@ export const STEPS = [
       'A Chat assistant is an AKD-designed agent that lives inside a chat platform (ChatGPT or ChatGSFC). The platform provides the runtime, the chat UI, and the safety baseline; you contribute the CARE-developed system prompt, domain context, and (optionally) lightweight Actions or plugins. Examples: Scientific Illustrator, Paper Writing Assistant, NASA Data Governance.',
     row: 'branch-1',
     governance: 'Public-use policy approval; baseline guardrail prompt patterns embedded by CARE',
-    link: { href: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/agents', label: 'agents/ ↗' },
+    link: { href: 'https://github.com/NASA-IMPACT/AKD-CARE', label: 'AKD-CARE ↗' },
   },
   {
     id: 'b2-akdext',
@@ -150,7 +150,7 @@ export const STEPS = [
     sublabel: 'Same CARE prompt, surfaced inside each platform\'s chat-assistant directory — no code, no API, no extra hosting.',
     description: 'Tool-independent agents published as hosted chatbots inside ChatGPT (as a Custom GPT) or ChatGSFC (as an assistant). Each platform takes the CARE-developed system prompt + uploaded domain context and exposes the agent through its own chat-assistant directory. Examples: Scientific Illustrator, Paper Writing Assistant, Data Governance Agent.',
     row: 'endpoints',
-    link: { href: 'https://github.com/NASA-IMPACT/akd-suite/tree/main/agents', label: 'agents/ ↗' },
+    link: { href: 'https://github.com/NASA-IMPACT/AKD-CARE', label: 'AKD-CARE ↗' },
   },
   {
     id: 'ep-mcp',
