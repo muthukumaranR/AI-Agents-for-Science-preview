@@ -14,49 +14,41 @@
       <article class="primer-row">
         <div class="primer-row__lead">
           <span class="primer-row__num">01</span>
-          <h3>The jagged edge of AI</h3>
-          <p class="primer-row__hint">Why generic chatbots fall short in science</p>
+          <h3>Why Standard AI Chatbots Struggle with Specialized Science Tasks</h3>
         </div>
         <div class="primer-row__body">
-          <p>Standard chatbots lack the specialized tools, databases, terminology, and ontologies that advanced science requires, so they hallucinate more often in narrow technical domains.</p>
-          <p>Their value also depends on the user&rsquo;s expertise. A subject-matter expert can ask precise questions and judge weak reasoning; a novice may not know what to ask or how to verify a response.</p>
+          <p>Standard AI chatbots often lack access to the specialized tools, databases, terminology, and ontologies needed for advanced scientific work. As a result, they have a higher risk of hallucinating when they operate in narrow technical domains.</p>
+          <p>The value a chatbot provides usually depends on the user&rsquo;s domain expertise. A subject matter expert can ask precise questions, recognize weak reasoning, and quickly judge whether an answer is correct. A novice, however, may not be sure what to ask, which assumptions to challenge, or how to verify a response.</p>
+          <p>This uneven performance is often described as the &ldquo;jagged edge of AI&rdquo;: AI performs well on some tasks but fails unexpectedly on others, even when the tasks appear similar.</p>
         </div>
       </article>
 
       <article class="primer-row">
         <div class="primer-row__lead">
           <span class="primer-row__num">02</span>
-          <h3>What are agents?</h3>
-          <p class="primer-row__hint">From responding to acting</p>
+          <h3>What Is an AI Agent?</h3>
         </div>
         <div class="primer-row__body">
-          <p>An AI agent is an independent digital worker. You give it a task and it figures out how to accomplish it.</p>
-          <p>Unlike a chatbot that just responds, an agent analyzes the problem, breaks it into steps, uses the right tools, reviews results, and corrects mistakes along the way.</p>
+          <p>An AI agent can be viewed as an independent digital worker. You give it a task, and it determines how to accomplish that task.</p>
+          <p>Unlike a standard chatbot, which mainly responds to questions, an agent can take action. It can analyze a problem, break it into smaller steps, use the right tools, review intermediate results, and correct mistakes as it works toward completion.</p>
         </div>
       </article>
 
       <article class="primer-row">
         <div class="primer-row__lead">
           <span class="primer-row__num">03</span>
-          <h3>What makes an agent well-designed</h3>
-          <p class="primer-row__hint">Reasoning · Context · Tools</p>
+          <h3>How an Agent Is Designed</h3>
         </div>
         <div class="primer-row__body">
+          <p>A well-designed agent typically includes three core elements:</p>
           <ul class="primer-elements" aria-label="Three core elements of a well-designed agent">
-            <li>
-              <b>Reasoning logic</b>
-              <span>Prompts or instructions that shape how the agent thinks through a task.</span>
-            </li>
-            <li>
-              <b>Contextual information</b>
-              <span>Grounds the agent in the scientific domain it serves.</span>
-            </li>
-            <li>
-              <b>Tool access</b>
-              <span>Clear guidance on which tool to use, when, and how.</span>
-            </li>
+            <li><b>Reasoning logic</b>, often implemented through prompts or instructions.</li>
+            <li><b>Contextual information</b>, which grounds the agent&rsquo;s reasoning in the relevant domain.</li>
+            <li><b>Tool access</b>, along with clear guidance on when to use each tool and how to use it correctly.</li>
           </ul>
-          <p class="primer-row__caveat">Designed this way, the agent captures an expert&rsquo;s implicit knowledge so a novice can approach expert productivity.</p>
+          <p>Through the design of these elements, agents can help smooth the jagged edge of AI. When a subject matter expert helps build the agent, the design can capture some of that expert&rsquo;s implicit knowledge: how to reason through the task, what context matters, which tools to use, and when to use them.</p>
+          <p>As a result, a novice using the agent may achieve productivity gains closer to those of an expert because the agent embeds expert judgment into the workflow.</p>
+          <p class="primer-row__caveat">However, designing an agent for complex scientific tasks is difficult, and it should not be treated as a purely technical endeavor. Building a capable agent requires close collaboration among developers, scientists, domain experts, and end users to ensure the agent reasons correctly, uses tools appropriately, and produces reliable outputs.</p>
         </div>
       </article>
     </div>
@@ -153,7 +145,7 @@
     font-size: 12.5px !important;
   }
 
-  /* Three-element list inside row 03: single-column inside the narrow card. */
+  /* Three-element list inside row 03: inline-text items, bordered. */
   .primer-elements {
     list-style: none;
     padding: 0;
@@ -165,20 +157,14 @@
   .primer-elements li {
     border-left: 2px solid var(--border-strong);
     padding: 2px 0 2px 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--text-dim);
   }
   .primer-elements b {
     font-family: var(--font-serif);
     font-weight: 600;
-    font-size: 12.5px;
     color: var(--text);
-  }
-  .primer-elements span {
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.4;
   }
 
   /* ── Responsive ───────────────────────────────────────── */
