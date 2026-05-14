@@ -42,7 +42,12 @@
    Base
    ========================================================= */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* Sticky nav is 68px tall (see Nav.astro). Offset all anchor scrolls
+     and scrollIntoView calls so target sections don't slide under it. */
+  scroll-padding-top: 84px;
+}
 html, body { margin: 0; padding: 0; }
 
 body {
