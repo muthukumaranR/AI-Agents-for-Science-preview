@@ -1,23 +1,36 @@
 org: NASA-IMPACT AI team
 order: 10
-# Affiliation values must be one of: NASA, UAH, Barrios, USRA.
-# Fill these in per member; lines without an `affiliation:` render no chip.
+# Affiliation is free text shown in parentheses next to each name.
+# Examples: NASA, UAH, Barrios, USRA, SESDA. Leave blank to render no tag.
 members:
   - name: Rahul Ramachandran
     affiliation: NASA
   - name: Muthukumaran Ramasubramanian
     affiliation: UAH
   - name: Nidhi Jha
+    affiliation: UAH
   - name: Ajinkya Kulkarni
+    affiliation: UAH
   - name: Nishan Pantha
+    affiliation: UAH
   - name: Paridhi Parijuli
+    affiliation: UAH
   - name: Sanjog Thapa
+    affiliation: UAH
   - name: Rohit Sahoo
+    affiliation: UAH
   - name: Luke Payne
+    affiliation: SESDA
   - name: Pushwitha Krishnappa
+    affiliation: UAH
   - name: Rachel Slank
+    affiliation: USRA
   - name: Ash Danehkar
+    affiliation: USRA
   - name: Sajil Awale
+    affiliation: UAH
   - name: Simran KC
+    affiliation: UAH
   - name: Ray French
   - name: McKenzie Hicks
+    affiliation: Barrios
