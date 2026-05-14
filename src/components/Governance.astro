@@ -1,9 +1,4 @@
 ---
-import { getCollection } from 'astro:content';
-import AkdRefLink from './AkdRefLink.astro';
-
-const items = (await getCollection('governance'))
-  .sort((a, b) => (a.data.order - b.data.order) || a.data.title.localeCompare(b.data.title));
 ---
 <section class="section" id="governance">
   <div class="container">
@@ -75,26 +70,6 @@ const items = (await getCollection('governance'))
       </div>
 
     </div>
-
-    <!-- Codified deliverables (compact, from content collection) -->
-    {items.length > 0 && (
-      <div class="gov-deliverables">
-        <h3 class="gov-deliverables-label">Codified deliverables</h3>
-        <ul class="gov-deliverables-list">
-          {items.map((item) => (
-            <li>
-              <span class="gov-item-title">{item.data.title}</span>
-              {item.data.summary && (
-                <span class="gov-item-summary">: {item.data.summary}</span>
-              )}
-              {item.data.akdRef && (
-                <AkdRefLink kind={item.data.akdRef.kind} path={item.data.akdRef.path} />
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
   </div>
 </section>
 
@@ -154,46 +129,6 @@ const items = (await getCollection('governance'))
     line-height: 1.55;
     margin: 0;
     flex: 1;
-  }
-
-  /* ---- Codified deliverables sub-section ---- */
-  .gov-deliverables {
-    margin-top: 40px;
-    border-top: 1px solid var(--border);
-    padding-top: 28px;
-  }
-  .gov-deliverables-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    font-weight: 400;
-    margin: 0 0 14px;
-  }
-  .gov-deliverables-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .gov-deliverables-list li {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 6px;
-    font-size: 14px;
-    color: var(--text-dim);
-  }
-  .gov-item-title {
-    font-weight: 500;
-    color: var(--text);
-  }
-  .gov-item-summary {
-    color: var(--text-muted);
-    font-size: 13px;
   }
 
   /* ---- Responsive ---- */
