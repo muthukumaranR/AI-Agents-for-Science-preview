@@ -1,0 +1,195 @@
+---
+// Primer · For newcomers. Sets up *why* AI agents are needed for
+// specialized scientific work before the rest of the landing page
+// dives into AKD specifics. Sourced verbatim-ish from front.md and
+// tightened for the page voice.
+---
+<section class="section section--primer" id="primer">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Primer · For newcomers</span>
+      <h2>Why AI agents — and what makes one well-designed?</h2>
+      <p>Three foundations that everything else on this page builds on.</p>
+    </div>
+
+    <div class="primer-rows">
+      <article class="primer-row">
+        <div class="primer-row__lead">
+          <span class="primer-row__num">01</span>
+          <h3>The jagged edge of AI</h3>
+          <p class="primer-row__hint">Why generic chatbots fall short in science</p>
+        </div>
+        <div class="primer-row__body">
+          <p>Standard AI chatbots often lack access to the specialized tools, databases, terminology, and ontologies needed for advanced scientific work — so they carry a higher risk of hallucinating in narrow technical domains.</p>
+          <p>The value a chatbot provides usually depends on the user&rsquo;s own domain expertise. A subject-matter expert can ask precise questions, recognize weak reasoning, and quickly judge whether an answer is correct. A novice may not be sure what to ask, which assumptions to challenge, or how to verify a response. AI performs well on some tasks and fails unexpectedly on others that look similar — the <em>jagged edge of AI</em>.</p>
+        </div>
+      </article>
+
+      <article class="primer-row">
+        <div class="primer-row__lead">
+          <span class="primer-row__num">02</span>
+          <h3>An agent is a digital worker</h3>
+          <p class="primer-row__hint">From responding to acting</p>
+        </div>
+        <div class="primer-row__body">
+          <p>An AI agent can be viewed as an independent digital worker. You give it a task, and it determines how to accomplish it.</p>
+          <p>Unlike a chatbot, which mainly responds to questions, an agent takes action — analyzes a problem, breaks it into smaller steps, uses the right tools, reviews intermediate results, and corrects mistakes as it works toward completion.</p>
+        </div>
+      </article>
+
+      <article class="primer-row">
+        <div class="primer-row__lead">
+          <span class="primer-row__num">03</span>
+          <h3>What makes an agent well-designed</h3>
+          <p class="primer-row__hint">Reasoning · Context · Tools</p>
+        </div>
+        <div class="primer-row__body">
+          <ul class="primer-elements" aria-label="Three core elements of a well-designed agent">
+            <li>
+              <b>Reasoning logic</b>
+              <span>Often expressed as prompts or instructions that shape how the agent thinks through a task.</span>
+            </li>
+            <li>
+              <b>Contextual information</b>
+              <span>Grounds the agent&rsquo;s reasoning in the specific scientific domain it serves.</span>
+            </li>
+            <li>
+              <b>Tool access</b>
+              <span>With clear guidance on which tool to use, when to use it, and how to use it correctly.</span>
+            </li>
+          </ul>
+          <p>Designed this way, an agent can capture an expert&rsquo;s implicit knowledge — how to reason through a task, what context matters, which tools to reach for. A novice using the agent can then approach the productivity of an expert because that judgment is embedded in the workflow.</p>
+          <p class="primer-row__caveat">Designing an agent for complex scientific tasks is not a purely technical exercise. It requires close collaboration among developers, scientists, domain experts, and end users — which is exactly the process AKD encodes.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section--primer {
+    /* Tighten the top spacing so the primer sits close to the
+       OpenProjectBanner without losing breathing room. */
+    padding-top: 80px;
+  }
+
+  .primer-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    margin-top: 12px;
+  }
+
+  .primer-row {
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* Separator between rows — subtle dashed line, accent dot at left. */
+  .primer-row + .primer-row {
+    padding-top: 56px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .primer-row__lead {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: sticky;
+    top: 92px; /* below sticky nav (68px) + a little air */
+    align-self: start;
+  }
+  .primer-row__num {
+    font-family: var(--font-mono);
+    font-size: 44px;
+    line-height: 1;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .primer-row__lead h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.2;
+    margin: 4px 0 0;
+    color: var(--text);
+    text-wrap: balance;
+  }
+  .primer-row__hint {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .primer-row__body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 640px;
+  }
+  .primer-row__body p {
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--text-dim);
+    margin: 0;
+  }
+  .primer-row__body em {
+    font-style: italic;
+    color: var(--text);
+  }
+  .primer-row__caveat {
+    padding-left: 14px;
+    border-left: 2px solid var(--accent);
+    font-size: 15.5px !important;
+  }
+
+  /* Three-element list inside row 03 — small bordered cards. */
+  .primer-elements {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 6px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .primer-elements li {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .primer-elements b {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 14.5px;
+    color: var(--text);
+  }
+  .primer-elements span {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  /* ── Responsive ───────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .primer-row {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .primer-row__lead {
+      position: static;
+      top: auto;
+    }
+    .primer-row__num { font-size: 36px; }
+    .primer-elements { grid-template-columns: 1fr; }
+  }
+</style>
