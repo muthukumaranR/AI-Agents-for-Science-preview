@@ -31,9 +31,11 @@
 
   --maxw: 1200px;
 
-  --font-sans:   'Geist', system-ui, sans-serif;
-  --font-mono:   'Geist Mono', ui-monospace, monospace;
-  --font-serif:  'Geist', system-ui, sans-serif;     /* no serif in new design — fall back to sans */
+  /* NASA Horizon Design System families: Inter for headings, Public Sans
+     for body copy, DM Mono for technical labels and numbers. */
+  --font-sans:   'Public Sans', system-ui, sans-serif;
+  --font-mono:   'DM Mono', ui-monospace, monospace;
+  --font-serif:  'Inter', system-ui, sans-serif;
 }
 
 /* =========================================================
