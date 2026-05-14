@@ -7,7 +7,10 @@
 <section class="section section--primer" id="primer">
   <div class="container">
     <div class="section-head">
-      <h1>Accelerated Knowledge Discovery: AI Agents for Science</h1>
+      <h1>
+        <span class="t-primary">Accelerated Knowledge Discovery:</span>
+        <span class="t-accent">AI Agents for Science</span>
+      </h1>
     </div>
 
     <div class="primer-rows">
@@ -19,7 +22,7 @@
         <div class="primer-row__body">
           <p>Standard AI chatbots often lack access to the specialized tools, databases, terminology, and ontologies needed for advanced scientific work. As a result, they have a higher risk of hallucinating when they operate in narrow technical domains.</p>
           <p>The value a chatbot provides usually depends on the user&rsquo;s domain expertise. A subject matter expert can ask precise questions, recognize weak reasoning, and quickly judge whether an answer is correct. A novice, however, may not be sure what to ask, which assumptions to challenge, or how to verify a response.</p>
-          <p>This uneven performance is often described as the <a class="jagged-link" href="https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged" target="_blank" rel="noopener">&ldquo;jagged edge of AI&rdquo;</a>: AI performs well on some tasks but fails unexpectedly on others, even when the tasks appear similar.</p>
+          <p>This uneven performance is often described as the <a class="jagged-link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4573321" target="_blank" rel="noopener">&ldquo;jagged edge of AI&rdquo;</a>: AI performs well on some tasks but fails unexpectedly on others, even when the tasks appear similar.</p>
         </div>
       </article>
 
@@ -66,13 +69,25 @@
   }
   .section--primer h1 {
     font-family: var(--font-serif);
-    font-weight: 300;
-    font-size: clamp(32px, 5vw, 56px);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-weight: 500;
+    font-size: clamp(22px, 2.8vw, 34px);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
     margin: 12px 0 16px;
     color: var(--text);
     text-wrap: balance;
+    /* Wider container so the title can sit on one line at desktop sizes. */
+    max-width: none;
+  }
+  .section--primer h1 .t-primary { color: var(--text); }
+  .section--primer h1 .t-accent {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 500;
+  }
+  /* Keep the title on one line on desktop; allow natural wrap at narrow widths. */
+  @media (min-width: 900px) {
+    .section--primer h1 { white-space: nowrap; }
   }
 
   .primer-rows {
