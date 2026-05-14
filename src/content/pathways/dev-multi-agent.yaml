@@ -3,7 +3,7 @@ title: Compose an agent workflow
 eyebrow: Builder · Agent workflow
 blurb: >-
   I want to chain multiple already-approved agents into a workflow. Walk
-  me through Branch 3 — orchestration, handoffs, SME review, AKD Flow.
+  me through Branch 3, orchestration, handoffs, SME review, AKD Flow.
 persona: developer
 goal: compose-multi-agent
 steps:

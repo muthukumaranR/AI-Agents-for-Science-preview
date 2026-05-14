@@ -8,7 +8,7 @@ const baseUrl = import.meta.env.BASE_URL;
 const roles = [
   {
     label: 'Subject Matter Experts',
-    desc: 'Provide domain authority — surfacing nuanced constraints and validating scientific "truth".',
+    desc: 'Provide domain authority: surfacing nuanced constraints and validating scientific "truth".',
   },
   {
     label: 'Developers',
@@ -16,7 +16,7 @@ const roles = [
   },
   {
     label: 'Helper LLM Agents',
-    desc: 'Serve as facilitation infrastructure — asking phase-aligned questions, drafting specifications in Markdown, and proposing revisions for human approval.',
+    desc: 'Serve as facilitation infrastructure: asking phase-aligned questions, drafting specifications in Markdown, and proposing revisions for human approval.',
   },
 ];
 
@@ -65,7 +65,7 @@ const phases = [
       ))}
     </ul>
 
-    <p class="phases-eyebrow">Five phases — each gated by joint SME / developer / agent approval</p>
+    <p class="phases-eyebrow">Five phases: each gated by joint SME / developer / agent approval</p>
     <ol class="care-phases" aria-label="CARE methodology five phases">
       {phases.map((p) => (
         <li class="phase-step">

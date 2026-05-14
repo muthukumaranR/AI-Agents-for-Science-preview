@@ -2,7 +2,7 @@
    Design Tokens
    ========================================================= */
 :root {
-  /* Light theme tokens — adapted from ad-nextjs-ui (oklch values). */
+  /* Light theme tokens - adapted from ad-nextjs-ui (oklch values). */
   --bg-0:        oklch(1 0 0);                  /* page background */
   --bg-1:        oklch(0.985 0 0);              /* slightly raised */
   --bg-2:        oklch(0.97 0 0);               /* card/section surface */
@@ -15,9 +15,9 @@
   --text-dim:    oklch(0.4 0 0);                /* secondary text */
   --text-muted:  oklch(0.556 0 0);              /* tertiary / labels */
 
-  /* Accents — blue primary (matches ad-nextjs-ui) */
-  --accent:      oklch(0.546 0.245 262.881);   /* blue-600 — primary */
-  --accent-2:    oklch(0.637 0.216 255.546);   /* blue-400 — softer */
+  /* Accents - blue primary (matches ad-nextjs-ui) */
+  --accent:      oklch(0.546 0.245 262.881);   /* blue-600 - primary */
+  --accent-2:    oklch(0.637 0.216 255.546);   /* blue-400 - softer */
   --accent-3:    oklch(0.6 0.118 184.704);     /* teal accent */
   --accent-4:    oklch(0.488 0.243 264.376);   /* deeper blue / chart-1 */
 
@@ -56,7 +56,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Polka-dot + soft radial-gradient overlay — adapted from ad-nextjs-ui */
+/* Polka-dot + soft radial-gradient overlay - adapted from ad-nextjs-ui */
 body::before {
   content: "";
   position: fixed;
@@ -138,7 +138,7 @@ p { color: var(--text-dim); margin: 0 0 1em; }
 .section-head p { font-size: 17px; }
 
 /* =========================================================
-   Button utilities (page-wide — used by Nav, Hero, section CTAs)
+   Button utilities (page-wide - used by Nav, Hero, section CTAs)
    ========================================================= */
 .cta-row {
   display: flex;
@@ -179,7 +179,7 @@ p { color: var(--text-dim); margin: 0 0 1em; }
 .btn svg { width: 16px; height: 16px; }
 
 /* =========================================================
-   Prose — MDX-rendered body content (.prose wrapper)
+   Prose - MDX-rendered body content (.prose wrapper)
    Applies to Vision, CARE, and any future MDX sections.
    ========================================================= */
 .prose h3 {
@@ -252,7 +252,7 @@ p { color: var(--text-dim); margin: 0 0 1em; }
 }
 
 /* =========================================================
-   Card — base surface shared across section components
+   Card - base surface shared across section components
    (AgentsGrid, WorkflowsList, Objectives, Ecosystem)
    Component-specific overrides (.agent-card, .eco-card, etc.)
    remain scoped in each component's <style> block.

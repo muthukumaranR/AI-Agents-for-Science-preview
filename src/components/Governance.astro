@@ -11,7 +11,7 @@ const items = (await getCollection('governance'))
       <span class="eyebrow">11 · Governance</span>
       <h2>Governance built in, ready for teams</h2>
       <p>
-        Governance is not a separate process bolted on at the end — it is built into AKD
+        Governance is not a separate process bolted on at the end: it is built into AKD
         from day one and ready to support teams from their first design decision.
         Checkpoints run in parallel with the development pathway, and the same governance
         applies regardless of how an agent is distributed: AKD Flow workflows, Custom GPTs,
@@ -41,7 +41,7 @@ const items = (await getCollection('governance'))
         <b>Benchmark &amp; Guardrail Compliance</b>
         <p class="pipe-desc">
           Each agent must pass a defined benchmark suite and integrate the guardrail
-          layer — Granite Guardian, Risk Agent, FactReasoner, NASA Risk Taxonomy — that
+          layer (Granite Guardian, Risk Agent, FactReasoner, NASA Risk Taxonomy) that
           gates outputs. Teams pass benchmark thresholds in AKD Labs and integrate
           guardrails before the SME review.
         </p>
@@ -85,7 +85,7 @@ const items = (await getCollection('governance'))
             <li>
               <span class="gov-item-title">{item.data.title}</span>
               {item.data.summary && (
-                <span class="gov-item-summary"> — {item.data.summary}</span>
+                <span class="gov-item-summary">: {item.data.summary}</span>
               )}
               {item.data.akdRef && (
                 <AkdRefLink kind={item.data.akdRef.kind} path={item.data.akdRef.path} />

@@ -2,7 +2,7 @@
 
 This folder is the source of truth for everything on the live site that appears as a list (agents, workflows, governance items, partners, team members) and for prose pages (vision, CARE methodology). Edit these files, commit, the live site rebuilds.
 
-If you're new to the repo, read this top to bottom before editing — it walks through what each kind of edit looks like end-to-end.
+If you're new to the repo, read this top to bottom before editing: it walks through what each kind of edit looks like end-to-end.
 
 ## TL;DR
 
@@ -32,7 +32,7 @@ If `nvm` isn't installed, install Node 20 LTS some other way and verify with `no
 npm run dev        # http://localhost:4321/AI-Agents-for-Science/
 ```
 
-The dev server hot-reloads as you save MDX/YAML files. If you make a schema-invalid edit (e.g., delete a required field), the dev server prints a Zod error pointing at the file and the missing field — fix it and save, no restart needed.
+The dev server hot-reloads as you save MDX/YAML files. If you make a schema-invalid edit (e.g., delete a required field), the dev server prints a Zod error pointing at the file and the missing field: fix it and save, no restart needed.
 
 When you're happy:
 
@@ -65,7 +65,7 @@ akdRef: { kind: agents, path: agents/rag-auditor }   # only if this exists in ak
 ---
 ```
 
-Save. Run `npm run dev` and scroll to the Agents section — your new card should be there.
+Save. Run `npm run dev` and scroll to the Agents section: your new card should be there.
 
 If you don't have a corresponding `akd-suite/agents/rag-auditor` directory yet, **leave the `akdRef` line commented out**. The build runs a validator that fails on broken paths (see "akdRef cross-references" below).
 
@@ -79,16 +79,16 @@ cp _template.yaml my-org.yaml
 ```yaml
 name: My Org
 order: 70
-# url: https://my-org.example         # optional — uncomment if you have a verified URL
+# url: https://my-org.example         # optional: uncomment if you have a verified URL
 # blurb: Short tagline                # optional
 # logo: /images/partners/my-org.svg   # optional, place the asset under public/images/partners/
 ```
 
-Only `name` is required. Skip `url` if you don't have a verified one — partners with no URL render as text-only entries (no link). Same for `logo` — if absent, the card falls back to the partner name as text.
+Only `name` is required. Skip `url` if you don't have a verified one (partners with no URL render as text-only entries (no link). Same for `logo`) if absent, the card falls back to the partner name as text.
 
 ## Example: adding a team member
 
-Team members aren't separate files — each org has one file:
+Team members aren't separate files: each org has one file:
 
 - `team/nasa-impact.yaml`
 - `team/ibm-research.yaml`
@@ -146,9 +146,9 @@ CI builds get the authenticated rate limit (5000 req/hr) automatically via the G
 
 ## Editing prose pages (vision / CARE)
 
-`pages/vision.mdx` and `pages/care.mdx` are full markdown documents that render as their respective sections. Just edit the prose. The wrapping component owns the section heading (drawn from frontmatter `title`) — don't add a top-level `## ...` heading inside the body.
+`pages/vision.mdx` and `pages/care.mdx` are full markdown documents that render as their respective sections. Just edit the prose. The wrapping component owns the section heading (drawn from frontmatter `title`): don't add a top-level `## ...` heading inside the body.
 
-Tables, lists, links, bold/italic — all work as standard markdown. The site renders them with dark-theme-friendly styling.
+Tables, lists, links, bold/italic: all work as standard markdown. The site renders them with dark-theme-friendly styling.
 
 ## Submitting your change
 
@@ -195,7 +195,7 @@ You're not on Node 20. Run `nvm use` (or install Node 20). The build will still 
 
 ## Schemas
 
-The authoritative shape of every collection is in [`config.ts`](./config.ts). When in doubt, read the Zod schemas — they're the single source of truth that the build enforces.
+The authoritative shape of every collection is in [`config.ts`](./config.ts). When in doubt, read the Zod schemas: they're the single source of truth that the build enforces.
 
 ## Tag vocabulary
 
@@ -203,4 +203,4 @@ Only the `agents` collection has a `tags` field today. Use lowercase, hyphen-fre
 
 ## Empty collections
 
-A collection with zero entries renders nothing — no empty section, no placeholder. To hide a section, delete its entries.
+A collection with zero entries renders nothing: no empty section, no placeholder. To hide a section, delete its entries.

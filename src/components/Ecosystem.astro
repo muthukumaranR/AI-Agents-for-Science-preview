@@ -16,7 +16,7 @@ export const ECOSYSTEM_AKD_REFS = [
         web product, and an experimental lab in a single ecosystem. The SDK includes
         Python libraries, AKD agents, and science-specific guardrails. Seven layers run
         from infrastructure up to user-facing applications, with a governance lane in
-        parallel — example governance gates apply at each layer rather than being bolted
+        parallel: example governance gates apply at each layer rather than being bolted
         on at the end.
       </p>
     </div>
@@ -59,7 +59,7 @@ export const ECOSYSTEM_AKD_REFS = [
           <li>Quota Management</li>
           <li>Access Control (Authorization)</li>
         </ul>
-        <div class="stack-gov stack-gov--empty" aria-hidden="true">—</div>
+        <div class="stack-gov stack-gov--empty" aria-hidden="true">-</div>
       </div>
 
       <!-- Layer 3 -->
@@ -148,7 +148,7 @@ export const ECOSYSTEM_AKD_REFS = [
           <li>On-Prem (FM Models &amp; Inferencing)</li>
           <li>Personal Cloud</li>
         </ul>
-        <div class="stack-gov stack-gov--empty" aria-hidden="true">—</div>
+        <div class="stack-gov stack-gov--empty" aria-hidden="true">-</div>
       </div>
 
     </div>
@@ -286,7 +286,7 @@ export const ECOSYSTEM_AKD_REFS = [
     line-height: 1.45;
   }
 
-  /* Empty governance cell — for layers where the layer itself is governance
+  /* Empty governance cell: for layers where the layer itself is governance
      (Auth) or no per-instance gate applies (Infra). Keeps the rail visually
      consistent without forcing a fake gate label. */
   .stack-gov--empty {
@@ -299,14 +299,14 @@ export const ECOSYSTEM_AKD_REFS = [
   }
 
 
-  /* ---- Responsive: ≤900px — governance becomes an in-card footer ---- */
+  /* ---- Responsive: ≤900px: governance becomes an in-card footer ---- */
   @media (max-width: 900px) {
     .stack-layer {
       grid-template-columns: 180px 1fr;
       grid-template-rows: auto auto;
     }
     .stack-gov {
-      grid-column: 1 / -1;          /* span full card width — clearly footer of THIS card */
+      grid-column: 1 / -1;          /* span full card width: clearly footer of THIS card */
       grid-row: 2 / 3;
       border-left: none;
       border-top: 1px dashed var(--border);
@@ -328,7 +328,7 @@ export const ECOSYSTEM_AKD_REFS = [
     .stack-gov--empty .stack-gov-label { display: none; }
   }
 
-  /* ---- Responsive: ≤640px — full vertical stack ---- */
+  /* ---- Responsive: ≤640px: full vertical stack ---- */
   @media (max-width: 640px) {
     .stack-layer {
       grid-template-columns: 1fr;

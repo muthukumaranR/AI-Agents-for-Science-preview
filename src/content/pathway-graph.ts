@@ -37,9 +37,9 @@ export const STEPS = [
     label: 'CARE Design Process',
     sublabel: 'A 5-phase stage-gated process where SMEs, developers, and helper LLM agents work together to specify what the agent should do.',
     description:
-      'Teams start with the AKD CARE process. Subject matter experts, developers, and helper LLM agents work through five phases — scope, key information elicitation, reasoning policy and guardrails, implementation, benchmarking — passing a stage gate at each phase. The output is a set of reusable design artifacts that will later become operational code.',
+      'Teams start with the AKD CARE process. Subject matter experts, developers, and helper LLM agents work through five phases (scope, key information elicitation, reasoning policy and guardrails, implementation, benchmarking), passing a stage gate at each phase. The output is a set of reusable design artifacts that will later become operational code.',
     row: 'design',
-    governance: 'CARE phase gates — joint SME / developer / agent approval at each phase',
+    governance: 'CARE phase gates: joint SME / developer / agent approval at each phase',
     link: { href: 'https://github.com/NASA-IMPACT/AKD-CARE', label: 'AKD-CARE ↗' },
   },
   {
@@ -52,7 +52,7 @@ export const STEPS = [
   {
     id: 'care-path-b',
     label: 'Path B · CARE phase prompts (ChatGPT / ChatGSFC)',
-    sublabel: 'Run the 5 CARE phases by copying our open-source prompts into any frontier LLM. Lower friction — no special tooling.',
+    sublabel: 'Run the 5 CARE phases by copying our open-source prompts into any frontier LLM. Lower friction: no special tooling.',
     description: 'Copy the open-source CARE phase prompts from GitHub into any frontier chat assistant. Produces the same four artifacts (prompt, tools, context, guardrails) without requiring AKD Labs access.',
     row: 'design-sub',
   },
@@ -73,7 +73,7 @@ export const STEPS = [
   {
     id: 'b1-simple',
     label: '1 · Chat assistant → ChatGPT / ChatGSFC',
-    sublabel: 'Paste the CARE prompt into ChatGPT or ChatGSFC and you have a working chat assistant — no code required.',
+    sublabel: 'Paste the CARE prompt into ChatGPT or ChatGSFC and you have a working chat assistant: no code required.',
     description:
       'A Chat assistant is an AKD-designed agent that lives inside a chat platform (ChatGPT or ChatGSFC). The platform provides the runtime, the chat UI, and the safety baseline; you contribute the CARE-developed system prompt, domain context, and (optionally) lightweight Actions or plugins. Examples: Scientific Illustrator, Paper Writing Assistant, NASA Data Governance.',
     row: 'branch-1',
@@ -85,7 +85,7 @@ export const STEPS = [
     label: '2 · Custom agent → Build in Agent Toolkit',
     sublabel: 'Implement the agent in our open-source Agent Toolkit (akd-ext): write tool wrappers, MCP integrations, and API clients so the agent can search data, run code, or call external systems.',
     description:
-      'A Custom agent is one you build end-to-end in our Agent Toolkit (akd-ext) — author the system prompt, wrap the tools you need, configure MCP integrations and API clients, and the agent runs on AKD Flow under our full governance pipeline. Use this branch when the agent needs deeper tool control than a chat platform offers, or when it has to integrate with NASA data systems. Examples: Earth Science Data Search (CMR), Code Search, Astro Data Search.',
+      'A Custom agent is one you build end-to-end in our Agent Toolkit (akd-ext): author the system prompt, wrap the tools you need, configure MCP integrations and API clients, and the agent runs on AKD Flow under our full governance pipeline. Use this branch when the agent needs deeper tool control than a chat platform offers, or when it has to integrate with NASA data systems. Examples: Earth Science Data Search (CMR), Code Search, Astro Data Search.',
     row: 'branch-2',
     governance: 'Tools whitelist; static MCP-server config; guardrail integration required',
     link: { href: 'https://github.com/NASA-IMPACT/akd-ext', label: 'akd-ext ↗' },
@@ -93,7 +93,7 @@ export const STEPS = [
   {
     id: 'b2-labs',
     label: 'AKD Labs feedback loop',
-    sublabel: 'Internal testing playground — chat with the agent, inspect full trace logs (prompt, tool I/O, reasoning, cost), and run it against benchmark suites before promotion.',
+    sublabel: 'Internal testing playground: chat with the agent, inspect full trace logs (prompt, tool I/O, reasoning, cost), and run it against benchmark suites before promotion.',
     description:
       'Teams import the CARE artifacts into AKD Labs and begin to iterate. Author the system prompt and tool configuration, chat-test the agent in the Chat Lab, inspect full trace logs (system prompt, tool inputs and outputs, reasoning summary, token usage, estimated cost), and run benchmarks against a prepared test suite. AKD Labs is multi-tenant and scoped to a project or organization, but experimental agents stay internal to the team that owns them.',
     row: 'branch-2',
@@ -104,7 +104,7 @@ export const STEPS = [
     id: 'b3-orch',
     label: '3 · Agent workflow → Compose in Flow',
     sublabel: 'Compose multiple already-approved agents into a workflow. AKD Flow orchestrates the handoffs between them.',
-    description: 'An Agent workflow is a composition of already-published agents chained through an orchestration layer in AKD Flow. The layer manages handoffs, tool calls, and intermediate state, and surfaces traceable progress to scientists. Use this branch when no single agent can do the job — you need a pipeline of specialized agents working together.',
+    description: 'An Agent workflow is a composition of already-published agents chained through an orchestration layer in AKD Flow. The layer manages handoffs, tool calls, and intermediate state, and surfaces traceable progress to scientists. Use this branch when no single agent can do the job: you need a pipeline of specialized agents working together.',
     row: 'branch-3',
     governance: 'Orchestration policy and handoff guardrails required',
   },
@@ -115,7 +115,7 @@ export const STEPS = [
     description:
       'When the agent meets its design requirements, an SME lead conducts a readiness review. The agent must demonstrate scientific integrity (non-prescriptive behavior, traceable reasoning), guardrail compliance, and benchmark results before promotion is approved. This is the moment the team commits to publishing the agent for users beyond the project.',
     row: 'gate',
-    governance: 'This stage IS the gate — no agent reaches Flow without SME sign-off',
+    governance: 'This stage IS the gate: no agent reaches Flow without SME sign-off',
     governanceStrong: true,
   },
   {
@@ -131,23 +131,23 @@ export const STEPS = [
   {
     id: 'flow-integrations',
     label: 'Integrated Chatbots',
-    sublabel: 'Agents surfaced as chatbots inside the collaboration tools scientists already use — Microsoft Teams, Slack, and other NASA workplaces.',
+    sublabel: 'Agents surfaced as chatbots inside the collaboration tools scientists already use: Microsoft Teams, Slack, and other NASA workplaces.',
     description:
-      'Once an agent is in production, it can be surfaced as an integrated chatbot inside collaboration tools — Microsoft Teams, Slack, and other NASA workplace platforms — bringing agent capabilities directly into scientist workflows without forcing them to switch applications. (Hosted chatbots in ChatGPT / ChatGSFC live in the Distribute stage.)',
+      'Once an agent is in production, it can be surfaced as an integrated chatbot inside collaboration tools (Microsoft Teams, Slack, and other NASA workplace platforms), bringing agent capabilities directly into scientist workflows without forcing them to switch applications. (Hosted chatbots in ChatGPT / ChatGSFC live in the Distribute stage.)',
     row: 'flow-sub',
   },
   {
     id: 'ep-flow',
     label: 'AKD Flow Workflows',
     sublabel: 'Composed multi-agent pipelines at flow.akd.odsi.io. Scientists run them with streaming updates and guardrail badges.',
-    description: 'Composed multi-agent pipelines on the AKD Flow canvas — scientists assemble approved agents, run workflows with streaming updates and guardrail badges, and share reproducible results.',
+    description: 'Composed multi-agent pipelines on the AKD Flow canvas: scientists assemble approved agents, run workflows with streaming updates and guardrail badges, and share reproducible results.',
     row: 'endpoints',
     link: { href: 'https://flow.akd.odsi.io', label: 'flow.akd.odsi.io ↗' },
   },
   {
     id: 'ep-gpt',
     label: 'Hosted Chatbots (ChatGPT · ChatGSFC)',
-    sublabel: 'Same CARE prompt, surfaced inside each platform\'s chat-assistant directory — no code, no API, no extra hosting.',
+    sublabel: 'Same CARE prompt, surfaced inside each platform\'s chat-assistant directory: no code, no API, no extra hosting.',
     description: 'Tool-independent agents published as hosted chatbots inside ChatGPT (as a Custom GPT) or ChatGSFC (as an assistant). Each platform takes the CARE-developed system prompt + uploaded domain context and exposes the agent through its own chat-assistant directory. Examples: Scientific Illustrator, Paper Writing Assistant, Data Governance Agent.',
     row: 'endpoints',
     link: { href: 'https://github.com/NASA-IMPACT/AKD-CARE', label: 'AKD-CARE ↗' },
@@ -162,8 +162,8 @@ export const STEPS = [
   {
     id: 'ep-repo',
     label: 'Agent Toolkit (akd-ext)',
-    sublabel: 'The open-source toolkit and reference agents — available for forking, peer review, and reuse by other science teams.',
-    description: 'The open-source Agent Toolkit (akd-ext) on GitHub — agent SDK, tool wrappers, MCP integration helpers, and published reference agents. Available for forking, peer review, and integration into other projects. The canonical reference for tool-integrated domain agents across the AKD ecosystem.',
+    sublabel: 'The open-source toolkit and reference agents: available for forking, peer review, and reuse by other science teams.',
+    description: 'The open-source Agent Toolkit (akd-ext) on GitHub: agent SDK, tool wrappers, MCP integration helpers, and published reference agents. Available for forking, peer review, and integration into other projects. The canonical reference for tool-integrated domain agents across the AKD ecosystem.',
     row: 'endpoints',
     link: { href: 'https://github.com/NASA-IMPACT/akd-ext', label: 'akd-ext ↗' },
   },
@@ -174,8 +174,8 @@ export const SERVICES = [
   { id: 'svc-factreasoner', label: 'FactReasoner', description: 'Targeted factuality reasoning over claims, attribution, and supporting evidence to mitigate hallucinations.' },
   { id: 'svc-risk-agent', label: 'Risk Agent', description: 'An LLM judge that evaluates outputs against the IBM Risk Atlas and a NASA Science Literature Risk taxonomy, along with context-specific risks for each agent.' },
   { id: 'svc-compliance', label: 'Compliance Checking', description: 'Automated guardrail layer enforcing science-specific constraints on inputs and outputs.' },
-  { id: 'svc-science-guardrails', label: 'Science Guardrails', description: 'A reusable input/output safety net — each guardrail acts as a checkpoint between an AI agent and the outside world.' },
-  { id: 'svc-granite-guardian', label: 'Granite Guardian', description: 'A fast, content-focused moderation LLM based on the IBM Granite family — assesses jailbreaks, harm, bias, plus RAG-specific groundedness checks.' },
+  { id: 'svc-science-guardrails', label: 'Science Guardrails', description: 'A reusable input/output safety net: each guardrail acts as a checkpoint between an AI agent and the outside world.' },
+  { id: 'svc-granite-guardian', label: 'Granite Guardian', description: 'A fast, content-focused moderation LLM based on the IBM Granite family: assesses jailbreaks, harm, bias, plus RAG-specific groundedness checks.' },
 ] as const satisfies readonly Service[];
 
 export type StepId = (typeof STEPS)[number]['id'];

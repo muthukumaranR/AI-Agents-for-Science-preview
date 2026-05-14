@@ -6,7 +6,7 @@ const baseUrl = import.meta.env.BASE_URL;
 const generic = [
   {
     name: 'Granite Guardian',
-    desc: 'Foundation-model content moderation — jailbreak, harm, bias, plus RAG groundedness, relevance, and answer-relevance checks. Runs via Ollama. Off-the-shelf safety component reused across agents.',
+    desc: 'Foundation-model content moderation: jailbreak, harm, bias, plus RAG groundedness, relevance, and answer-relevance checks. Runs via Ollama. Off-the-shelf safety component reused across agents.',
     papers: [
       { title: 'Granite Guardian (IBM, 2024)', url: 'https://arxiv.org/abs/2412.07724' },
     ],
@@ -14,7 +14,7 @@ const generic = [
   },
   {
     name: 'Defense-in-Depth',
-    desc: 'Layered review pattern — input filters, intermediate-step checks, and output verification. A composition pattern, not a single component; AKD applies it across agent boundaries rather than gating only at one point.',
+    desc: 'Layered review pattern: input filters, intermediate-step checks, and output verification. A composition pattern, not a single component; AKD applies it across agent boundaries rather than gating only at one point.',
     papers: [],
     repo: 'https://github.com/NASA-IMPACT/akd-core',
   },
@@ -25,7 +25,7 @@ const science = [
     name: 'FactReasoner',
     desc: 'Claim-level factuality reasoning. Decomposes agent outputs into claims, scores attribution and supporting evidence, and surfaces unsupported assertions before they reach the user.',
     papers: [
-      { title: 'FactReasoner — source & docs', url: 'https://github.com/NASA-IMPACT/FactReasoner' },
+      { title: 'FactReasoner: source & docs', url: 'https://github.com/NASA-IMPACT/FactReasoner' },
     ],
     repo: 'https://github.com/NASA-IMPACT/FactReasoner',
   },
@@ -39,7 +39,7 @@ const science = [
   },
   {
     name: 'NASA Science Literature Risk Taxonomy',
-    desc: 'Domain risk categories tailored to scientific contexts and agent failure modes — hallucination, attribution gaps, overgeneralization, multidisciplinary reasoning failures, outdated confidence, and consistency issues. Used as the basis for the Risk Agent’s science-specific evaluation.',
+    desc: 'Domain risk categories tailored to scientific contexts and agent failure modes: hallucination, attribution gaps, overgeneralization, multidisciplinary reasoning failures, outdated confidence, and consistency issues. Used as the basis for the Risk Agent’s science-specific evaluation.',
     papers: [
       { title: 'CARE methodology paper (NTRS)', url: 'https://ntrs.nasa.gov/citations/20260000926' },
     ],
@@ -60,7 +60,7 @@ const detected = [
 ---
 <Base
   title="Guardrails · AI Agents for Science"
-  description="AKD pairs generic LLM safety with science-specific guardrails — composable components teams use across agents and workflows."
+  description="AKD pairs generic LLM safety with science-specific guardrails: composable components teams use across agents and workflows."
 >
   <main class="container detail-page">
     <a class="back-link" href={`${baseUrl}#guardrails`}>← Back home</a>
@@ -106,7 +106,7 @@ const detected = [
 
     <section class="g-section g-section--science">
       <h2>Science-specific guardrails</h2>
-      <p>Components built specifically for scientific agent outputs — claim-level factuality, NASA risk taxonomies, and domain-aware compliance reasoning.</p>
+      <p>Components built specifically for scientific agent outputs: claim-level factuality, NASA risk taxonomies, and domain-aware compliance reasoning.</p>
       {science.map((s) => (
         <article class="g-card g-card--science">
           <h3>{s.name}</h3>
@@ -128,9 +128,9 @@ const detected = [
     <section class="g-section">
       <h2>Reference papers</h2>
       <ul class="g-paper-list">
-        <li><a href="https://arxiv.org/abs/2412.07724" target="_blank" rel="noopener">Granite Guardian — IBM (arXiv 2412.07724) ↗</a></li>
+        <li><a href="https://arxiv.org/abs/2412.07724" target="_blank" rel="noopener">Granite Guardian: IBM (arXiv 2412.07724) ↗</a></li>
         <li><a href="https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas" target="_blank" rel="noopener">IBM AI Risk Atlas ↗</a></li>
-        <li><a href="https://ntrs.nasa.gov/citations/20260000926" target="_blank" rel="noopener">CARE methodology — NASA Technical Reports (citation 20260000926) ↗</a></li>
+        <li><a href="https://ntrs.nasa.gov/citations/20260000926" target="_blank" rel="noopener">CARE methodology: NASA Technical Reports (citation 20260000926) ↗</a></li>
         <li><a href="https://github.com/NASA-IMPACT/FactReasoner" target="_blank" rel="noopener">FactReasoner source &amp; documentation ↗</a></li>
         <li><a href="https://github.com/NASA-IMPACT/akd-core" target="_blank" rel="noopener">AKD guardrails repository ↗</a></li>
       </ul>
