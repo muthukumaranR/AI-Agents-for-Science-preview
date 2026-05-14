@@ -44,9 +44,9 @@
 *, *::before, *::after { box-sizing: border-box; }
 html {
   scroll-behavior: smooth;
-  /* Sticky nav is 68px tall (see Nav.astro). Offset all anchor scrolls
-     and scrollIntoView calls so target sections don't slide under it. */
-  scroll-padding-top: 84px;
+  /* Sticky nav is 68px tall (see Nav.astro). Offset anchor scrolls and
+     scrollIntoView calls just past the nav so targets land flush. */
+  scroll-padding-top: 72px;
 }
 html, body { margin: 0; padding: 0; }
 

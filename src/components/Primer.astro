@@ -7,7 +7,7 @@
 <section class="section section--primer" id="primer">
   <div class="container">
     <div class="section-head">
-      <h1>AI Agents for <span class="t-accent">Science</span></h1>
+      <h1><span class="t-accent">AI Agents for Science</span></h1>
     </div>
 
     <div class="primer-rows">
@@ -57,9 +57,13 @@
 
 <style>
   .section--primer {
-    /* Compact landing-page section: title + three rows fit inside one
-       viewport on a 1080p desktop. */
-    padding: 36px 0 28px;
+    /* First 'page' on the landing: fill the viewport below the sticky
+       nav so the next section doesn't bleed in below. */
+    min-height: calc(100vh - 68px);
+    padding: 36px 0 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .section--primer .section-head {
     margin-bottom: 20px;
