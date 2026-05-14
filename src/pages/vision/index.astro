@@ -32,14 +32,17 @@ const baseUrl = import.meta.env.BASE_URL;
   }
   .back-link:hover { color: var(--accent); }
   .detail-hero h1 {
-    font-size: clamp(32px, 5vw, 56px);
-    font-weight: 300;
-    line-height: 1.1;
-    margin: 12px 0 16px;
+    /* Match the rest-of-site section-heading scale (global h2). */
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 10px 0 14px;
     color: var(--text);
   }
   .detail-hero .lede {
-    font-size: 20px;
+    font-size: 17px;
     color: var(--text-dim);
     margin: 0 0 32px;
   }
