@@ -7,10 +7,7 @@
 <section class="section section--primer" id="primer">
   <div class="container">
     <div class="section-head">
-      <h1>
-        <span class="t-primary">AI Agents for Science:</span>
-        <span class="t-accent">Accelerated Knowledge Discovery</span>
-      </h1>
+      <h1>AI Agents for <span class="t-accent">Science</span></h1>
     </div>
 
     <div class="primer-rows">
@@ -68,26 +65,15 @@
     margin-bottom: 20px;
   }
   .section--primer h1 {
+    /* Landing-page primary title. One step bigger than section h2s. */
     font-family: var(--font-serif);
     font-weight: 500;
-    font-size: clamp(22px, 2.8vw, 34px);
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    margin: 12px 0 16px;
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 8px 0 18px;
     color: var(--text);
     text-wrap: balance;
-    /* Wider container so the title can sit on one line at desktop sizes. */
-    max-width: none;
-  }
-  .section--primer h1 .t-primary { color: var(--text); }
-  .section--primer h1 .t-accent {
-    color: var(--accent);
-    font-style: italic;
-    font-weight: 500;
-  }
-  /* Keep the title on one line on desktop; allow natural wrap at narrow widths. */
-  @media (min-width: 900px) {
-    .section--primer h1 { white-space: nowrap; }
   }
 
   .primer-rows {

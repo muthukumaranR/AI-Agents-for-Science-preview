@@ -121,6 +121,16 @@ img { max-width: 100%; display: block; }
   display: inline-block;
 }
 
+/* Inline title accent helpers, used inside h1/h2 on the landing and the
+   Vision page to highlight 'Science' so the visual connection between
+   surfaces is preserved. */
+.t-primary { color: var(--text); }
+.t-accent {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: inherit;
+}
+
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
   font-weight: 500;
