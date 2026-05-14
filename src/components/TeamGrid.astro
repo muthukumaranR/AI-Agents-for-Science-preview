@@ -27,6 +27,9 @@ const orgs = (await getCollection('team'))
                   {m.name.split(' ').map((w: string) => w[0]).slice(0, 2).join('')}
                 </div>
                 <span class="name">{m.name}</span>
+                {m.affiliation && (
+                  <span class={`affiliation affiliation--${m.affiliation.toLowerCase()}`}>{m.affiliation}</span>
+                )}
                 {m.role && <span class="role">{m.role}</span>}
               </li>
             ))}
@@ -103,6 +106,43 @@ const orgs = (await getCollection('team'))
     color: var(--text-muted);
     display: block;
     margin-top: 4px;
+  }
+  /* Affiliation chip: small badge showing where the person is hosted
+     (NASA / UAH / Barrios / USRA). Color-coded per affiliation. */
+  .affiliation {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+  .affiliation--nasa {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: oklch(0.97 0.02 262);
+  }
+  .affiliation--uah {
+    border-color: #C8102E;
+    color: #8E1224;
+    background: oklch(0.96 0.03 22);
+  }
+  .affiliation--barrios {
+    border-color: #2F855A;
+    color: #245A3E;
+    background: oklch(0.96 0.03 152);
+  }
+  .affiliation--usra {
+    border-color: #6B46C1;
+    color: #4C2E91;
+    background: oklch(0.96 0.03 285);
   }
 
   @media (max-width: 1024px) {

@@ -1,8 +1,12 @@
 org: NASA-IMPACT AI team
 order: 10
+# Affiliation values must be one of: NASA, UAH, Barrios, USRA.
+# Fill these in per member; lines without an `affiliation:` render no chip.
 members:
   - name: Rahul Ramachandran
+    affiliation: NASA
   - name: Muthukumaran Ramasubramanian
+    affiliation: UAH
   - name: Nidhi Jha
   - name: Ajinkya Kulkarni
   - name: Nishan Pantha

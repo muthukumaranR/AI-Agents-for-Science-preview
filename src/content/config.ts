@@ -88,6 +88,7 @@ const team = defineCollection({
       z.object({
         name: z.string(),
         role: z.string().optional(),
+        affiliation: z.enum(['NASA', 'UAH', 'Barrios', 'USRA']).optional(),
       }),
     ),
   }),

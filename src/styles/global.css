@@ -97,9 +97,12 @@ img { max-width: 100%; display: block; }
    Typography helpers
    ========================================================= */
 .eyebrow {
-  font-family: var(--font-mono);
+  /* NASA Horizon DS uses Inter (sans) for eyebrow labels rather than a
+     monospace face. Mono is reserved for technical labels and numbers. */
+  font-family: var(--font-serif);
+  font-weight: 600;
   font-size: 12px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
   display: inline-flex;
