@@ -4,7 +4,11 @@ const baseUrl = import.meta.env.BASE_URL;
 <nav class="nav" aria-label="Primary">
   <div class="nav-inner">
     <a href={`${baseUrl}#top`} class="nav-brand" aria-label="AI Agents for Science home">
-      <img src={`${baseUrl}images/akd-header-logo.png`} alt="Accelerated Knowledge Discovery" width="170" height="40" />
+      <span class="nav-brand-wordmark">
+        <span>Accelerated</span>
+        <span>Knowledge</span>
+        <span>Discovery</span>
+      </span>
       <span class="nav-brand-text">AI Agents for Science</span>
     </a>
 
@@ -81,8 +85,18 @@ const baseUrl = import.meta.env.BASE_URL;
     align-items: center;
     gap: 10px;
   }
-  .nav-brand img {
-    display: block;
+  .nav-brand-wordmark {
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1em;
+    row-gap: 2px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    line-height: 1;
   }
   .nav-brand-text {
     /* Hidden visually but available to screen readers; uncomment to show alongside logo. */
