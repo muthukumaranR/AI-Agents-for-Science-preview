@@ -19,7 +19,7 @@
         <div class="primer-row__body">
           <p>Standard AI chatbots often lack access to the specialized tools, databases, terminology, and ontologies needed for advanced scientific work. As a result, they have a higher risk of hallucinating when they operate in narrow technical domains.</p>
           <p>The value a chatbot provides usually depends on the user&rsquo;s domain expertise. A subject matter expert can ask precise questions, recognize weak reasoning, and quickly judge whether an answer is correct. A novice, however, may not be sure what to ask, which assumptions to challenge, or how to verify a response.</p>
-          <p>This uneven performance is often described as the &ldquo;jagged edge of AI&rdquo;: AI performs well on some tasks but fails unexpectedly on others, even when the tasks appear similar.</p>
+          <p>This uneven performance is often described as the <a class="jagged-link" href="https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged" target="_blank" rel="noopener">&ldquo;jagged edge of AI&rdquo;</a>: AI performs well on some tasks but fails unexpectedly on others, even when the tasks appear similar.</p>
         </div>
       </article>
 
@@ -143,6 +143,22 @@
     padding-left: 10px;
     border-left: 2px solid var(--accent);
     font-size: 12.5px !important;
+  }
+
+  /* "Jagged edge of AI" citation link: italic phrase, accent color,
+     dotted underline so it reads as a referenced term rather than
+     a generic link. */
+  .jagged-link {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 500;
+    text-decoration: underline dotted;
+    text-underline-offset: 3px;
+    transition: color 0.15s ease;
+  }
+  .jagged-link:hover {
+    color: var(--accent-4);
+    text-decoration-style: solid;
   }
 
   /* Three-element list inside row 03: inline-text items, bordered. */
